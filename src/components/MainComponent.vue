@@ -26,9 +26,18 @@ export default {
     <section>
       <div class="container">
         <div class="row">
-          <div class="col">
-            <h1>CIAO</h1>
+          <div class="col-6">
+            <div>
+              <h1>Cosa vorresti mangiare?</h1>
+              <form action="">
+                <input
+                  type="text"
+                  placeholder="Scrivi cosa vorresti mangiare"
+                />
+              </form>
+            </div>
           </div>
+          <div class="col-6">ciao</div>
         </div>
       </div>
     </section>
