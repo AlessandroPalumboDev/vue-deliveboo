@@ -2,11 +2,13 @@
 import { store } from "../store.js";
 import HeaderComponent from "./HeaderComponent.vue";
 import FooterComponent from "./FooterComponent.vue";
+import SmallCardComponent from "./SmallCardComponent.vue";
 export default {
   name: "MainComponent",
   components: {
     HeaderComponent,
     FooterComponent,
+    SmallCardComponent,
   },
 
   data() {
@@ -50,7 +52,17 @@ export default {
           <!-- END Search bar section -->
 
           <!-- Big image section -->
-          <div class="Image-big">ciao</div>
+          <div class="image-big">
+            <div>
+              <h3>Come ordinare?</h3>
+            </div>
+            <div>
+              <h2>E' semplicissimo!</h2>
+            </div>
+            <div>
+              <SmallCardComponent />
+            </div>
+          </div>
           <!-- END Big image section -->
         </div>
       </div>
