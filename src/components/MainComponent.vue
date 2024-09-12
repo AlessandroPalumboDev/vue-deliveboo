@@ -24,8 +24,13 @@ export default {
     <HeaderComponent />
 
     <section>
-      <p>This is a sample section added to your component.</p>
-      <button>Click Me</button>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h1>CIAO</h1>
+          </div>
+        </div>
+      </div>
     </section>
 
     <FooterComponent />

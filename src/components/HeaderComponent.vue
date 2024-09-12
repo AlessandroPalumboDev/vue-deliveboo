@@ -16,6 +16,6 @@ export default {
 
 <template>
   <header>
-    <h1>Welcome to the Main Component</h1>
+    <h1>CIAO</h1>
   </header>
 </template>
