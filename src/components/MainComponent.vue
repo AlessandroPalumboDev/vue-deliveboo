@@ -27,16 +27,23 @@ export default {
       <div class="container">
         <div class="row">
           <!-- Search bar section -->
-          <div>
-            <h1>Hai fame? Cerca il piatto che vuoi nella tua città</h1>
+          <div class="jumbo">
+            <div class="d-flex title-box">
+              <h1>Hai fame? Cerca il piatto che vuoi nella tua città</h1>
+            </div>
+            <div class="d-flex">
+              <h2>I piatti dei tuoi ristoranti ovunque, anche a domicilio</h2>
+            </div>
             <div class="search-bar">
               <form action="" class="d-flex">
                 <input
                   type="text"
                   placeholder="Cosa vorresti mangiare?"
-                  class="py-2"
+                  class="font-family"
                 />
-                <button class="go-button py-1">Vai!</button>
+                <button type="submit" class="go-button font-family">
+                  Vai!
+                </button>
               </form>
             </div>
           </div>
