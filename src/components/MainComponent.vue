@@ -26,18 +26,25 @@ export default {
     <section>
       <div class="container">
         <div class="row">
-          <div class="col-6">
-            <div>
-              <h1>Cosa vorresti mangiare?</h1>
-              <form action="">
+          <!-- Search bar section -->
+          <div>
+            <h1>Hai fame? Cerca il piatto che vuoi nella tua città</h1>
+            <div class="search-bar">
+              <form action="" class="d-flex">
                 <input
                   type="text"
-                  placeholder="Scrivi cosa vorresti mangiare"
+                  placeholder="Cosa vorresti mangiare?"
+                  class="py-2"
                 />
+                <button class="go-button py-1">Vai!</button>
               </form>
             </div>
           </div>
-          <div class="col-6">ciao</div>
+          <!-- END Search bar section -->
+
+          <!-- Big image section -->
+          <div class="Image-big">ciao</div>
+          <!-- END Big image section -->
         </div>
       </div>
     </section>
