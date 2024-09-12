@@ -6,9 +6,11 @@ footer {
   background-color: rgb(2, 88, 2);
 }
 
-h2 {
-  font-size: 28px;
-  padding-left: 20px;
+h1,
+h2,
+h3,
+h4 {
+  text-align: center;
 }
 
 // Jumbo section
@@ -46,7 +48,7 @@ h2 {
 .search-bar {
   width: 100%;
   display: flex;
-  padding-left: 92px;
+  padding-left: 97px;
   justify-content: center;
   padding-top: 30px;
 }
@@ -56,7 +58,7 @@ input {
   border-radius: 30px;
   border: 1px solid grey;
   padding-left: 90px;
-  padding-right: 200px;
+  padding-right: 235px;
   padding-top: 20px;
   padding-bottom: 20px;
   position: relative;
@@ -76,27 +78,35 @@ input {
 }
 // END Jumbo section
 
+// Cards section
 .image-big {
-  background-size: cover;
-  background-image: url("../../assets/img/background/food-background.jpg");
-  color: rgba(224, 224, 224, 0.774);
-  padding-bottom: 100px;
-  position: relative;
   padding-top: 100px;
 
-  * {
-    position: relative;
-    z-index: 2;
+  h2 {
+    padding-bottom: 60px;
+  }
+
+  h3 {
+    padding-bottom: 10px;
   }
 }
 
-.image-big::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(39, 34, 34, 0.753);
-  z-index: 1;
+.text {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.small-card {
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+  padding-bottom: 50px;
+
+  img {
+    padding-bottom: 15px;
+  }
+
+  h4 {
+    padding-bottom: 5px;
+  }
 }
