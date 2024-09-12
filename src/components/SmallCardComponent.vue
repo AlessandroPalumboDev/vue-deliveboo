@@ -1,5 +1,6 @@
 <script>
 import { store } from "../store.js";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 export default {
   name: "SmallCardComponent",
   components: {},
@@ -17,7 +18,13 @@ export default {
 <template>
   <div class="small-card">
     <div>
-      <i class="fas fa-map-pin"></i>
+      <img src="../assets/img/small-card/map-pin.svg" alt="" />
+    </div>
+    <div>
+      <img src="../assets/img/small-card/burger.svg" alt="" />
+    </div>
+    <div>
+      <img src="../assets/img/small-card/dish-cap.svg" alt="" />
     </div>
   </div>
 </template>
