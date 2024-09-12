@@ -34,6 +34,19 @@
 //   top: 20px;
 // }
 
+header {
+  background-color: orange;
+}
+
+footer {
+  background-color: rgb(2, 88, 2);
+}
+
+.jumbo {
+  object-fit: cover;
+  background-image: url("../../assets/img/background/food-background-2.jpg");
+}
+
 h2 {
   font-size: 28px;
   padding-left: 20px;

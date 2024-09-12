@@ -15,7 +15,7 @@ export default {
 </script>
 
 <template>
-  <header>
+  <footer>
     <h1>Welcome to the Footer Component</h1>
-  </header>
+  </footer>
 </template>
