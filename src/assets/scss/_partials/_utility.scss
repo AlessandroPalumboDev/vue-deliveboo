@@ -13,3 +13,12 @@
 li {
   list-style: none;
 }
+
+.info-container a {
+  color: rgba(224, 224, 224, 0.774);
+  text-decoration: none;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.89);
+  }
+}
