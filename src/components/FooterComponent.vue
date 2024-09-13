@@ -18,22 +18,33 @@ export default {
   <footer>
     <div class="container">
       <div class="row">
-        <div class="col-socials">
+        <div class="col-socials d-flex">
           <div class="socials-container">
-            <ul>
-              <li>
-                <img src="../assets/img/footer/facebook.svg" alt="" />
-              </li>
-              <li>
-                <img src="../assets/img/footer/instagram.svg" alt="" />
-              </li>
-              <li>
-                <img src="../assets/img/footer/x-social-media.svg" alt="" />
-              </li>
-              <li>
-                <img src="../assets/img/footer/linkedin.svg" alt="" />
-              </li>
-            </ul>
+            <div class="socials-paragraph">
+              <h3>
+                Seguici sui nostri canali ufficiali per restare sempre
+                aggiornato
+              </h3>
+            </div>
+            <div class="socials-list">
+              <ul class="d-flex justify-center">
+                <li>
+                  <a href="">
+                    <img src="../assets/img/footer/facebook.svg" alt="" />
+                  </a>
+                </li>
+                <li>
+                  <a href="">
+                    <img src="../assets/img/footer/instagram.svg" alt="" />
+                  </a>
+                </li>
+                <li>
+                  <a href="">
+                    <img src="../assets/img/footer/x-social-media.svg" alt="" />
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="col-info"></div>

@@ -26,6 +26,7 @@ body::before {
 header {
   background-color: orange;
   height: 100px;
+  margin-bottom: 100px;
 }
 // END header
 
@@ -38,7 +39,6 @@ h4 {
 }
 
 // Jumbo section
-
 .title-box {
   width: 100%;
   padding-bottom: 50px;
@@ -81,6 +81,7 @@ input {
 // Cards section
 .image-big {
   padding-top: 100px;
+  padding-bottom: 100px;
 
   h2 {
     padding-bottom: 60px;
@@ -114,8 +115,35 @@ input {
 // END Main section
 
 // Footer
-.socials-container img {
-  width: 10%;
+.socials-container {
+  width: 100%;
+  padding-bottom: 50px;
+
+  li {
+    width: 30%;
+  }
+
+  img {
+    width: 30%;
+  }
+
+  ul {
+    text-align: center;
+  }
+}
+
+.socials-paragraph {
+  padding-bottom: 30px;
+  margin: 0 auto;
+
+  h3 {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+.socials-list {
+  width: 100%;
 }
 
 // END Footer
