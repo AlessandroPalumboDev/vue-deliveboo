@@ -18,7 +18,7 @@ export default {
   <footer>
     <div class="container">
       <div class="row">
-        <div class="col-socials d-flex">
+        <div class="col-socials-info">
           <div class="socials-container">
             <div class="socials-paragraph">
               <h3>
@@ -46,8 +46,17 @@ export default {
               </ul>
             </div>
           </div>
+          <div class="col-info">
+            <div class="info-container d-flex justify-between">
+              <div class="column-sx">
+                <h5>contatti</h5>
+              </div>
+              <div class="column-dx">
+                <h5>supporto</h5>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="col-info"></div>
       </div>
     </div>
   </footer>

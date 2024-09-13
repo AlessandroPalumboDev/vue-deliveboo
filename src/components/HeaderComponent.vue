@@ -29,18 +29,9 @@ export default {
       <div>
         <ul class="d-flex">
           <li>Home</li>
-          <li>About us</li>
-          <li>Contact</li>
-        </ul>
-      </div>
-      <!-- END List -->
-
-      <!-- List -->
-      <div>
-        <ul class="d-flex">
-          <li>Home</li>
-          <li>About us</li>
-          <li>Contact</li>
+          <li>
+            Sei un ristoratore? Clicca qui per registrare il tuo ristorante
+          </li>
           <li>Carrello</li>
         </ul>
       </div>

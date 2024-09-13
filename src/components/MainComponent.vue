@@ -32,7 +32,10 @@ export default {
               <h1>Hai fame? Cerca il piatto che vuoi nella tua città</h1>
             </div>
             <div class="d-flex justify-center">
-              <h2>I piatti dei tuoi ristoranti ovunque, anche a domicilio</h2>
+              <h2>
+                I piatti dalle migliori cucine del mondo ovunque, anche a
+                domicilio
+              </h2>
             </div>
             <div class="search-bar">
               <form action="" class="d-flex">
