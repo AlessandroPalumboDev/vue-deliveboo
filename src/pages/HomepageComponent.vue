@@ -45,12 +45,12 @@ export default {
               <h1>Hai fame? Cerca il piatto che vuoi nella tua città</h1>
             </div>
             <div class="d-flex justify-center">
-              <h2>
+              <h2 class="delivery">
                 I piatti dalle migliori cucine del mondo ovunque, anche a
                 domicilio
               </h2>
             </div>
-            <div class="search-bar">
+            <!-- <div class="search-bar">
               <form action="" class="d-flex">
                 <input
                   type="text"
@@ -65,7 +65,7 @@ export default {
                   Vai!
                 </button>
               </form>
-            </div>
+            </div> -->
             <div class="image-big">
               <div class="text">
                 <h3>Come ordinare?</h3>
