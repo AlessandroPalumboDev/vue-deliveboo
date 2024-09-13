@@ -1,4 +1,5 @@
 import { createApp } from "vue";
+import { router } from "./router";
 
 // Import style
 import "./assets/scss/style.scss";
@@ -9,4 +10,4 @@ import * as bootstrap from "bootstrap";
 // Import Vue root component
 import App from "./App.vue";
 
-createApp(App).mount("#app");
+createApp(App).use(router).mount("#app");

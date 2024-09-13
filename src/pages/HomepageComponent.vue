@@ -1,28 +1,41 @@
 <script>
+import axios from "axios";
 import { store } from "../store.js";
-import HeaderComponent from "./shared/HeaderComponent.vue";
-import FooterComponent from "./shared/FooterComponent.vue";
 export default {
   name: "HomepageComponent",
-  components: {
-    HeaderComponent,
-    FooterComponent,
-  },
 
   data() {
     return {
       store,
+      response: {},
+      error: false,
+      api: {
+        baseUrl: "http://localhost:8000/api/",
+        endPoints: {
+          restaurantsList: "types",
+        },
+      },
     };
   },
 
-  methods: {},
+  methods: {
+    getRestaurants() {
+      const url = this.api.baseUrl + this.api.endPoints.restaurantsList;
+      console.log(url);
+      axios
+        .get(url)
+        .then((response) => {
+          this.response = response.data;
+          console.log(response);
+        })
+        .catch((error) => console.log(error));
+    },
+  },
 };
 </script>
 
 <template>
   <main>
-    <HeaderComponent />
-
     <section>
       <div class="container">
         <div class="row">
@@ -44,7 +57,11 @@ export default {
                   placeholder="Cosa vorresti mangiare?"
                   class="font-family"
                 />
-                <button type="submit" class="go-button font-family">
+                <button
+                  type="submit"
+                  @click="getRestaurants"
+                  class="go-button font-family"
+                >
                   Vai!
                 </button>
               </form>
@@ -86,7 +103,5 @@ export default {
         </div>
       </div>
     </section>
-
-    <FooterComponent />
   </main>
 </template>
