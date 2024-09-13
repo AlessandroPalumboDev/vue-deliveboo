@@ -65,8 +65,6 @@ export default {
                   Vai!
                 </button>
               </form>
-
-              <div></div>
             </div>
             <div class="image-big">
               <div class="text">
