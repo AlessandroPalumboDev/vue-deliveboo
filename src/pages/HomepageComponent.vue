@@ -10,9 +10,9 @@ export default {
       response: {},
       error: false,
       api: {
-        baseUrl: "http://localhost:5173/api/",
+        baseUrl: "http://localhost:8000/api/",
         endPoints: {
-          restaurantsList: "restaurants",
+          restaurantsList: "types",
         },
       },
     };
@@ -22,7 +22,6 @@ export default {
     getRestaurants() {
       const url = this.api.baseUrl + this.api.endPoints.restaurantsList;
       console.log(url);
-
       axios
         .get(url)
         .then((response) => {
@@ -66,6 +65,8 @@ export default {
                   Vai!
                 </button>
               </form>
+
+              <div></div>
             </div>
             <div class="image-big">
               <div class="text">
