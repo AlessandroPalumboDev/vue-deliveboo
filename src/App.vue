@@ -1,13 +1,13 @@
 <script>
-import MainComponent from "./components/MainComponent.vue";
+import HomepageComponent from "./components/HomepageComponent.vue";
 export default {
   name: "DeliveBoo",
   components: {
-    MainComponent,
+    HomepageComponent,
   },
 };
 </script>
 
 <template>
-  <MainComponent />
+  <HomepageComponent />
 </template>

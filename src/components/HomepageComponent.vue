@@ -1,9 +1,9 @@
 <script>
 import { store } from "../store.js";
-import HeaderComponent from "./HeaderComponent.vue";
-import FooterComponent from "./FooterComponent.vue";
+import HeaderComponent from "./shared/HeaderComponent.vue";
+import FooterComponent from "./shared/FooterComponent.vue";
 export default {
-  name: "MainComponent",
+  name: "HomepageComponent",
   components: {
     HeaderComponent,
     FooterComponent,
@@ -21,6 +21,7 @@ export default {
 
 <template>
   <main>
+    <div class="overlay"></div>
     <HeaderComponent />
 
     <section>

@@ -1,5 +1,5 @@
 <script>
-import { store } from "../store.js";
+import { store } from "../../store.js";
 export default {
   name: "FooterComponent",
   components: {},
@@ -30,17 +30,20 @@ export default {
               <ul class="d-flex justify-center">
                 <li>
                   <a href="">
-                    <img src="../assets/img/footer/facebook.svg" alt="" />
+                    <img src="../../assets/img/footer/facebook.svg" alt="" />
                   </a>
                 </li>
                 <li>
                   <a href="">
-                    <img src="../assets/img/footer/instagram.svg" alt="" />
+                    <img src="../../assets/img/footer/instagram.svg" alt="" />
                   </a>
                 </li>
                 <li>
                   <a href="">
-                    <img src="../assets/img/footer/x-social-media.svg" alt="" />
+                    <img
+                      src="../../assets/img/footer/x-social-media.svg"
+                      alt=""
+                    />
                   </a>
                 </li>
               </ul>
