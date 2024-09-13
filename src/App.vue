@@ -1,13 +1,18 @@
 <script>
-import HomepageComponent from "./components/HomepageComponent.vue";
+import { RouterView } from "vue-router";
+import HeaderComponent from "./components/shared/HeaderComponent.vue";
+import FooterComponent from "./components/shared/FooterComponent.vue";
 export default {
   name: "DeliveBoo",
   components: {
-    HomepageComponent,
+    HeaderComponent,
+    FooterComponent,
   },
 };
 </script>
 
 <template>
-  <HomepageComponent />
+  <HeaderComponent />
+  <router-view></router-view>
+  <FooterComponent />
 </template>
