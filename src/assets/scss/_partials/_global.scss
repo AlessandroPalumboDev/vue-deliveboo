@@ -1,11 +1,11 @@
+// Header
 header {
   background-color: orange;
+  height: 200px;
 }
+// END header
 
-footer {
-  background-color: rgb(2, 88, 2);
-}
-
+// Main section
 h1,
 h2,
 h3,
@@ -110,3 +110,11 @@ input {
     padding-bottom: 5px;
   }
 }
+// END Cards section
+// END Main section
+
+// Footer
+footer {
+  background-color: rgb(2, 88, 2);
+}
+// END Footer

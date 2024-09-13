@@ -18,9 +18,9 @@ export default {
 
 <template>
   <header>
-    <nav class="d-flex">
+    <nav class="d-flex justify-between">
       <!-- Logo -->
-      <div class="container-fluid">
+      <div class="logo-container">
         <div class="logo">LOGO</div>
       </div>
       <!-- END Logo -->
@@ -31,6 +31,17 @@ export default {
           <li>Home</li>
           <li>About us</li>
           <li>Contact</li>
+        </ul>
+      </div>
+      <!-- END List -->
+
+      <!-- List -->
+      <div>
+        <ul class="d-flex">
+          <li>Home</li>
+          <li>About us</li>
+          <li>Contact</li>
+          <li>Carrello</li>
         </ul>
       </div>
       <!-- END List -->

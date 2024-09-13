@@ -28,10 +28,10 @@ export default {
         <div class="row">
           <!-- Search bar section -->
           <div class="jumbo">
-            <div class="d-flex title-box">
+            <div class="d-flex justify-center title-box">
               <h1>Hai fame? Cerca il piatto che vuoi nella tua città</h1>
             </div>
-            <div class="d-flex">
+            <div class="d-flex justify-center">
               <h2>I piatti dei tuoi ristoranti ovunque, anche a domicilio</h2>
             </div>
             <div class="search-bar">
