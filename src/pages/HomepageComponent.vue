@@ -50,22 +50,25 @@ export default {
                 domicilio
               </h2>
             </div>
-            <!-- <div class="search-bar">
-              <form action="" class="d-flex">
+            <div class="search-bar">
+              <form action="">
+                <!-- method="POST" -->
                 <input
                   type="text"
-                  placeholder="Cosa vorresti mangiare?"
+                  placeholder="Che cucina preferisci?"
                   class="font-family"
                 />
-                <button
-                  type="submit"
-                  @click="getRestaurants"
-                  class="go-button font-family"
-                >
-                  Vai!
-                </button>
+                <div>
+                  <button
+                    type="submit"
+                    @click="getRestaurants"
+                    class="go-button font-family"
+                  >
+                    Vai!
+                  </button>
+                </div>
               </form>
-            </div> -->
+            </div>
             <div class="image-big">
               <div class="text">
                 <h3>Come ordinare?</h3>
