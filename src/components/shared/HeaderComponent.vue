@@ -7,15 +7,18 @@ export default {
   data() {
     return {
       store,
+      isHidden: true,
     };
   },
 
   methods: {
-    openModal() {
-      classList.remove("hidden");
+    modalAppearance() {
+      this.isHidden = !this.isHidden;
     },
 
-    closeModal() {},
+    modalAppearance() {
+      this.isHidden = !this.isHidden;
+    },
   },
 };
 </script>
@@ -32,11 +35,12 @@ export default {
       <!-- Restaurant registration -->
       <div class="registration">
         <p>
-          Sei un ristoratore? <button @click="openModal">Clicca qui</button> per
-          registrare il tuo ristorante
+          Sei un ristoratore?
+          <button @click="modalAppearance">Clicca qui</button> per registrare il
+          tuo ristorante
         </p>
-        <div id="modal" class="hidden">
-          <button @click="closeModal">Chiudi</button>
+        <div id="modal" :class="{ hidden: isHidden }">
+          <button @click="modalAppearance">Chiudi</button>
         </div>
       </div>
 
