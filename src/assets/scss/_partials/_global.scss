@@ -25,7 +25,6 @@ body::before {
 // Header
 header {
   background-color: orange;
-  height: 100px;
   margin-bottom: 100px;
 }
 // END header
@@ -161,6 +160,10 @@ footer {
     font-size: 19px;
     padding-bottom: 10px;
   }
+}
+
+.col-info li {
+  line-height: 25px;
 }
 
 .copyright {

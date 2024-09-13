@@ -21,7 +21,6 @@ export default {
 
 <template>
   <main>
-    <div class="overlay"></div>
     <HeaderComponent />
 
     <section>

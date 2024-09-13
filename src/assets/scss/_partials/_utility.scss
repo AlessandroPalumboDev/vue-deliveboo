@@ -10,6 +10,10 @@
   justify-content: space-between;
 }
 
+.justify-around {
+  justify-content: space-around;
+}
+
 li {
   list-style: none;
 }
@@ -21,4 +25,8 @@ li {
   &:hover {
     color: rgba(255, 255, 255, 0.89);
   }
+}
+
+.hidden {
+  display: none;
 }

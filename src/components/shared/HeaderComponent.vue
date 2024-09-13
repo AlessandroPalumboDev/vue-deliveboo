@@ -11,31 +11,45 @@ export default {
   },
 
   methods: {
-    openHamburger() {},
+    openModal() {
+      classList.remove("hidden");
+    },
+
+    closeModal() {},
   },
 };
 </script>
 
 <template>
   <header>
-    <nav class="d-flex justify-between">
+    <nav class="d-flex justify-around">
       <!-- Logo -->
       <div class="logo-container">
         <div class="logo">LOGO</div>
       </div>
       <!-- END Logo -->
 
-      <!-- List -->
+      <!-- Restaurant registration -->
+      <div class="registration">
+        <p>
+          Sei un ristoratore? <button @click="openModal">Clicca qui</button> per
+          registrare il tuo ristorante
+        </p>
+        <div id="modal" class="hidden">
+          <button @click="closeModal">Chiudi</button>
+        </div>
+      </div>
+
+      <!-- END Restaurant registration -->
+
+      <!-- Navbar list -->
       <div>
         <ul class="d-flex">
           <li>Home</li>
-          <li>
-            Sei un ristoratore? Clicca qui per registrare il tuo ristorante
-          </li>
           <li>Carrello</li>
         </ul>
       </div>
-      <!-- END List -->
+      <!-- END navbar List -->
 
       <!-- <div class="nav-hamburger">
         <span></span>
