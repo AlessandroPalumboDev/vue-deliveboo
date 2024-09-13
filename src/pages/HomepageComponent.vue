@@ -45,25 +45,28 @@ export default {
               <h1>Hai fame? Cerca il piatto che vuoi nella tua città</h1>
             </div>
             <div class="d-flex justify-center">
-              <h2>
+              <h2 class="delivery">
                 I piatti dalle migliori cucine del mondo ovunque, anche a
                 domicilio
               </h2>
             </div>
             <div class="search-bar">
-              <form action="" class="d-flex">
+              <form action="">
+                <!-- method="POST" -->
                 <input
                   type="text"
-                  placeholder="Cosa vorresti mangiare?"
+                  placeholder="Che cucina preferisci?"
                   class="font-family"
                 />
-                <button
-                  type="submit"
-                  @click="getRestaurants"
-                  class="go-button font-family"
-                >
-                  Vai!
-                </button>
+                <div>
+                  <button
+                    type="submit"
+                    @click="getRestaurants"
+                    class="go-button font-family"
+                  >
+                    Vai!
+                  </button>
+                </div>
               </form>
             </div>
             <div class="image-big">

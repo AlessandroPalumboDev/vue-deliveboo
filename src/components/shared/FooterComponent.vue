@@ -64,7 +64,7 @@ export default {
                     <a href="">Lavora con noi</a>
                   </li>
                   <li>
-                    <a href="">Diventa partner DeliveBoo</a>
+                    <a href="">Diventa partner</a>
                   </li>
                 </ul>
               </div>
