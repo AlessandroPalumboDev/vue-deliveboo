@@ -37,6 +37,7 @@ export default {
           this.restaurantTypes = response.data.types;
         })
         .catch((error) => console.log(error));
+      console.log(this.restaurantTypes.image_path);
     },
   },
 
@@ -67,7 +68,7 @@ export default {
             <div class="card-container">
               <div v-for="type in restaurantTypes" :key="type.id" class="card">
                 <div class="card-body">
-                  <img alt="" />
+                  <img :src="type.image_path" alt="" />
                   <p>{{ type.name }}</p>
                   <p>{{ type.description }}</p>
                   <p>{{ type.image_path }}</p>

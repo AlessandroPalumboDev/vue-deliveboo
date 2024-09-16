@@ -21,25 +21,25 @@ body::before {
 // END body
 
 // Header
-
 header {
-
   top: 0;
   z-index: 1000;
   background-color: rgb(255, 165, 0);
   padding: 5px 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 100px;
-  background: linear-gradient(to bottom, rgb(255, 166, 0), rgba(255, 166, 1, 0.425)),  rgba(255, 166, 0, 0);
+  background: linear-gradient(
+      to bottom,
+      rgb(255, 166, 0),
+      rgba(255, 166, 1, 0.425)
+    ),
+    rgba(255, 166, 0, 0);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   transition: box-shadow 0.3s ease;
-  
 
   &:hover {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
-    
   }
-  
 
   .logo {
     margin-top: 7px;
@@ -47,7 +47,6 @@ header {
     transition: transform 0.3s ease;
     &:hover {
       transform: scale(1.15);
-    
     }
   }
 
@@ -62,9 +61,9 @@ header {
     text-decoration: none;
     font-size: 28px;
     font-weight: bold;
-    margin:  15px;
+    margin: 15px;
     position: relative;
-    
+
     &:hover {
       color: #350d01;
     }
@@ -72,58 +71,56 @@ header {
 
   .nav-link-register {
     color: rgba(128, 13, 0, 255);
-   border: none;
+    border: none;
     text-decoration: none;
     font-size: 28px;
     font-weight: bold;
-    margin:  15px;
+    margin: 15px;
     position: relative;
-    
+
     background-color: transparent;
     &:hover {
       color: #350d01;
     }
   }
 
-
-
-  // MODAL
-
+  // Modal
   .modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    
-  
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1050;
     transform: translateY(-100%);
     animation: slideDown 0.5s ease forwards;
-  
-  
-  @keyframes slideDown {
-    from {
-      transform: translateY(-100%);
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+      }
+      to {
+        transform: translateY(0);
+      }
     }
-    to {
-      transform: translateY(0);
-    }
-  }
 
     .modal-content {
-      background: linear-gradient(to bottom, rgb(255, 165, 0), rgba(184, 123, 9, 0.812)),  rgba(173, 13, 201, 0.694);
+      background: linear-gradient(
+          to bottom,
+          rgb(255, 165, 0),
+          rgba(184, 123, 9, 0.812)
+        ),
+        rgba(173, 13, 201, 0.694);
       padding: 30px;
       border-radius: 18px;
       text-align: center;
       width: 800px;
       max-width: 90%;
       color: #ff4500;
-     
-// BUTTONS
 
+      // Buttons
       .btn-close {
         background-color: transparent;
         border: none;
@@ -134,8 +131,10 @@ header {
         right: 15px;
         border-radius: 20px;
       }
+      // END buttons
     }
   }
+  // END Modal
 }
 
 button {
@@ -161,23 +160,25 @@ button {
   }
 }
 
-// CARRELLO
-
+// Cart
 .cart {
   position: fixed;
-  bottom: -100%; 
+  bottom: -100%;
   left: 0;
   right: 0;
-  background: linear-gradient(to bottom, rgb(255, 165, 0), rgba(184, 123, 9, 0.812)),  rgba(173, 13, 201, 0.694);
+  background: linear-gradient(
+      to bottom,
+      rgb(255, 165, 0),
+      rgba(184, 123, 9, 0.812)
+    ),
+    rgba(173, 13, 201, 0.694);
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   padding: 20px;
   box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
-  transition: bottom 0.5s ease-in-out; 
+  transition: bottom 0.5s ease-in-out;
   z-index: 999;
   color: #ffffff;
-
-
 
   .cart-items {
     list-style: none;
@@ -196,15 +197,13 @@ button {
   .cart-footer {
     text-align: center;
     margin-top: 20px;
-
-  
   }
 }
 
 .cart-active {
-  bottom: 0; 
+  bottom: 0;
   transform: translateY(0);
-  animation: bounceIn 1.5s ease-in-out; 
+  animation: bounceIn 1.5s ease-in-out;
 }
 
 @keyframes bounceIn {
@@ -223,8 +222,7 @@ button {
     transform: translateY(0);
   }
 }
-
-
+// END cart
 // END header
 
 // Main section
