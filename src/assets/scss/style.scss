@@ -4,6 +4,7 @@ Index SASS
 
 // Import all the CSS partials
 @use "./_partials/global" as *;
+@use "./_partials/media-queries" as *;
 @use "./_partials/reset" as *;
 @use "./_partials/typography" as *;
 @use "./_partials/utility" as *;

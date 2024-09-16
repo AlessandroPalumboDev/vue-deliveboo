@@ -1,0 +1,26 @@
+/***************
+TABLET LAYOUT
+***************/
+
+@media (min-width: 580px) {
+  .card-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .socials-container li {
+    width: 25%;
+  }
+}
+
+/***************
+DESKTOP LAYOUT
+***************/
+@media (min-width: 960px) {
+  .card-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .socials-container li {
+    width: 15%;
+  }
+}

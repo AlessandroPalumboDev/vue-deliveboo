@@ -7,7 +7,7 @@ export default {
   data() {
     return {
       store,
-      restaurantTypes: {},
+      restaurantTypes: [],
       error: false,
       api: {
         baseUrl: "http://localhost:8000/api/",
@@ -44,7 +44,7 @@ export default {
     <section>
       <div class="container">
         <div class="row">
-          <!-- Search bar section -->
+          <!-- Jumbo section -->
           <div class="jumbo">
             <div class="d-flex justify-center title-box">
               <h1>Hai fame? Cerca il piatto che vuoi nella tua città</h1>
@@ -55,11 +55,19 @@ export default {
                 domicilio
               </h2>
             </div>
-            <div class="restaurant_types d-flex">
-              <div v-for="type in restaurantTypes">
-                <p>{{ type.name }}</p>
+
+            <!-- Restaurant types -->
+            <div class="card-container">
+              <div v-for="type in restaurantTypes" :key="type.id" class="card">
+                <div class="card-body">
+                  <img src="../assets/img/small-card/burger.svg" alt="" />
+                  <p>{{ type.name }}</p>
+                </div>
               </div>
             </div>
+            <!-- END restaurant types -->
+
+            <!-- Images in column -->
             <div class="image-big">
               <div class="text">
                 <h3>Come ordinare?</h3>
@@ -88,12 +96,9 @@ export default {
                 </div>
               </div>
             </div>
+            <!-- END images in column -->
           </div>
-          <!-- END Search bar section -->
-
-          <!-- Big image section -->
-
-          <!-- END Big image section -->
+          <!-- END jumbo section -->
         </div>
       </div>
     </section>

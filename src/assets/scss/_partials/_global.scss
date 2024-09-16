@@ -53,9 +53,24 @@ h4 {
   padding-bottom: 50px;
 }
 
-// .restaurant_types {
+.card-container {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  padding: 20px;
 
-// }
+  img {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+.card-body {
+  padding-bottom: 10px;
+  text-align: center;
+  border: 1px solid black;
+}
 // END Jumbo section
 
 // Cards section
