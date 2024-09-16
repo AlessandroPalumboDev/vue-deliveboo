@@ -15,7 +15,14 @@ export default {
           restaurantsList: "types",
         },
       },
+      imageUrlDefault: "http://localhost:8000/storage/",
     };
+  },
+
+  computed: {
+    getImage() {
+      return this.imageUrlDefault + this.image_path;
+    },
   },
 
   methods: {
@@ -60,8 +67,10 @@ export default {
             <div class="card-container">
               <div v-for="type in restaurantTypes" :key="type.id" class="card">
                 <div class="card-body">
-                  <img src="../assets/img/small-card/burger.svg" alt="" />
+                  <img alt="" />
                   <p>{{ type.name }}</p>
+                  <p>{{ type.description }}</p>
+                  <p>{{ type.image_path }}</p>
                 </div>
               </div>
             </div>
