@@ -2,7 +2,7 @@
 TABLET LAYOUT
 ***************/
 
-@media (min-width: 580px) {
+@media (min-width: 480px) {
   .card-container {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -15,7 +15,7 @@ TABLET LAYOUT
 /***************
 DESKTOP LAYOUT
 ***************/
-@media (min-width: 960px) {
+@media (min-width: 768px) {
   .card-container {
     grid-template-columns: repeat(3, 1fr);
   }
