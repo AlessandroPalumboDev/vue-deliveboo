@@ -7,7 +7,7 @@ export default {
   data() {
     return {
       store,
-      response: {},
+      restaurantTypes: {},
       error: false,
       api: {
         baseUrl: "http://localhost:8000/api/",
@@ -19,17 +19,22 @@ export default {
   },
 
   methods: {
-    getRestaurants() {
+    getRestaurantTypes() {
+      // Componing the url to make the API call
       const url = this.api.baseUrl + this.api.endPoints.restaurantsList;
-      console.log(url);
+
+      // API call
       axios
         .get(url)
         .then((response) => {
-          this.response = response.data;
-          console.log(response);
+          this.restaurantTypes = response.data.types;
         })
         .catch((error) => console.log(error));
     },
+  },
+
+  created() {
+    this.getRestaurantTypes();
   },
 };
 </script>
@@ -50,24 +55,10 @@ export default {
                 domicilio
               </h2>
             </div>
-            <div class="search-bar">
-              <form action="">
-                <!-- method="POST" -->
-                <input
-                  type="text"
-                  placeholder="Che cucina preferisci?"
-                  class="font-family"
-                />
-                <div>
-                  <button
-                    type="submit"
-                    @click="getRestaurants"
-                    class="go-button font-family"
-                  >
-                    Vai!
-                  </button>
-                </div>
-              </form>
+            <div class="restaurant_types d-flex">
+              <div v-for="type in restaurantTypes">
+                <p>{{ type.name }}</p>
+              </div>
             </div>
             <div class="image-big">
               <div class="text">
