@@ -8,12 +8,12 @@ export default {
   data() {
     return {
       store,
-      restaurantTypes: [],
+      restaurants: [],
       error: false,
       api: {
         baseUrl: "http://localhost:8000/api/",
         endPoints: {
-          restaurantsList: "types",
+          restaurant: "restaurants?type=",
         },
       },
       imageUrlDefault: "http://localhost:8000/storage/",
@@ -29,16 +29,18 @@ export default {
   methods: {
     getRestaurantTypes() {
       // Componing the url to make the API call
-      const url = this.api.baseUrl + this.api.endPoints.restaurantsList;
+      const url = this.api.baseUrl + this.api.endPoints.restaurant + this.store.searchrest;
 
       // API call
       axios
         .get(url)
         .then((response) => {
-          this.restaurantTypes = response.data.types;
+
+          this.restaurants = response.data.results.data;
+          console.log(this.restaurants)
         })
         .catch((error) => console.log(error));
-      console.log(this.restaurantTypes.image_path);
+      console.log(this.restaurants.image_path);
     },
   },
 
@@ -50,6 +52,20 @@ export default {
 
 <template>
   <main>
-   
+    <!-- Restaurant types -->
+    <div class="container-md">
+      <!-- Single card -->
+      <div v-for="type in restaurants" :key="type.id" class="card w-100 mt-5 mb-5 ">
+        <div class="d-flex justify-center">
+          <div class="card-body">
+
+            <img src="/src/assets/img/small-card/napoli.jpg" alt="" />
+
+            <p>{{ type.business_name }}</p>
+          </div>
+        </div>
+      </div>
+      <!-- END Single card -->
+    </div>
   </main>
 </template>
