@@ -19,11 +19,11 @@ export default {
     };
   },
 
-  computed: {
-    getImage() {
-      return this.imageUrlDefault + this.restaurantTypes.image_path;
-    },
-  },
+  // computed: {
+  //   getImage() {
+  //     return this.imageUrlDefault + this.restaurantTypes.image_path;
+  //   },
+  // },
 
   methods: {
     getRestaurantTypes() {
@@ -73,7 +73,7 @@ export default {
                 class="card d-flex justify-center"
               >
                 <div class="card-body">
-                  <img :src="type.image_path" alt="" />
+                  <img :src="imageUrlDefault + type.image_path" alt="" />
                   <p>{{ type.name }}</p>
                   <p>{{ type.description }}</p>
                   <p>{{ type.image_path }}</p>

@@ -263,6 +263,11 @@ h4 {
   padding-bottom: 10px;
   text-align: center;
   border: 1px solid black;
+
+  img {
+    width: 100%;
+    object-fit: contain;
+  }
 }
 // END Jumbo section
 
