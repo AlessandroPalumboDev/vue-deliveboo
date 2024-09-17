@@ -1,6 +1,6 @@
 import { createApp } from "vue";
 import { router } from "./router";
-
+import { store } from './store'
 // Import style
 import "./assets/scss/style.scss";
 
@@ -8,3 +8,4 @@ import "./assets/scss/style.scss";
 import App from "./App.vue";
 
 createApp(App).use(router).mount("#app");
+

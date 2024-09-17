@@ -1,6 +1,7 @@
 <script>
 import axios from "axios";
 import { store } from "../store.js";
+import { mapState } from 'vuex';
 export default {
   name: "HomepageComponent",
 
@@ -8,6 +9,7 @@ export default {
     return {
       store,
       restaurantTypes: [],
+      selectedTypes: [],
       error: false,
       api: {
         baseUrl: "http://localhost:8000/api/",
@@ -20,12 +22,18 @@ export default {
   },
 
   computed: {
+
     getImage() {
       return this.imageUrlDefault + this.restaurantTypes.image_path;
     },
+    ...mapState({
+      restaurantTypes: state => state.restaurantTypes
+    }),
+
   },
 
   methods: {
+
     getRestaurantTypes() {
       // Componing the url to make the API call
       const url = this.api.baseUrl + this.api.endPoints.restaurantsList;
@@ -35,9 +43,14 @@ export default {
         .get(url)
         .then((response) => {
           this.restaurantTypes = response.data.types;
+          this.store.commit('SET_RESTAURANT_TYPES', response.data);
         })
         .catch((error) => console.log(error));
       console.log(this.restaurantTypes.image_path);
+    },
+
+    updateSelectedTypes() {
+      this.store.commit('SET_SELECTED_RESTAURANT_TYPES', this.selectedTypes);
     },
   },
 
@@ -67,11 +80,7 @@ export default {
             <!-- Restaurant types -->
             <div class="card-container">
               <!-- Single card -->
-              <div
-                v-for="type in restaurantTypes"
-                :key="type.id"
-                class="card d-flex justify-center"
-              >
+              <div v-for="type in restaurantTypes" :key="type.id" class="card d-flex justify-center">
                 <div class="card-body">
                   <img :src="type.image_path" alt="" />
                   <p>{{ type.name }}</p>
@@ -82,6 +91,25 @@ export default {
               <!-- END Single card -->
             </div>
             <!-- END restaurant types -->
+
+            <div class="container">
+              <div class="row">
+                <div v-for="type in restaurantTypes" :key="type.id" class="card d-flex justify-center">
+                  <div class="card-body">
+                    <label>
+                      <input type="checkbox" :value="type.name" v-model="selectedTypes" @change="updateSelectedTypes">
+                      {{ type.name }}
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <!-- Resto del template... -->
+            </div>
+
+
+            <RouterLink to="/search">Go to Searchpage</RouterLink>
+
+
 
             <!-- Images in column -->
             <div class="image-big">
@@ -98,10 +126,7 @@ export default {
                   <p>Vedrai in quali ristoranti lo puoi trovare</p>
                 </div>
                 <div class="small-card">
-                  <img
-                    src="../assets/img/small-card/shopping-cart.svg"
-                    alt=""
-                  />
+                  <img src="../assets/img/small-card/shopping-cart.svg" alt="" />
                   <h4>Metti ciò che desideri nel carrello</h4>
                   <p>Puoi scegliere tra diversi metodi di pagamento</p>
                 </div>
