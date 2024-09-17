@@ -53,19 +53,26 @@ export default {
 <template>
   <main>
     <!-- Restaurant types -->
-    <div class="container-md">
+    <div class="card-restaurant">
+
       <!-- Single card -->
-      <div v-for="type in restaurants" :key="type.id" class="card w-100 mt-5 mb-5 ">
-        <div class="d-flex justify-center">
-          <div class="card-body">
-
-            <img src="/src/assets/img/small-card/napoli.jpg" alt="" />
-
-            <p>{{ type.business_name }}</p>
-          </div>
+      <div v-for="type in restaurants" :key="type.id" class="card-sd ">
+        <img src="/src/assets/img/small-card/napoli.jpg" alt="Restaurant Image" />
+        <div class="sd-card-name">
+          <h2>{{ type.business_name }}</h2>
         </div>
+        <div class="card-text-sd">
+          <div><span>indirizzo: </span><span>{{ type.address }}</span></div>
+          <div class="block-sd"><span>tipologia: </span>tipologia: <span v-for="type in type.types">{{ type.name + ', '
+              }}</span></div>
+
+
+
+        </div>
+        <button class="btn-rest-sd">menu</button>
       </div>
       <!-- END Single card -->
     </div>
+
   </main>
 </template>

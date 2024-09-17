@@ -24,29 +24,17 @@ export default {
       <!-- LOGO -->
       <div class="navbar-left">
         <a href="#" class="nav-link">
-          <img
-            src="../../assets/img/header/logo3.png"
-            alt="Logo"
-            class="logo"
-          />
+          <img src="../../assets/img/header/logo3.png" alt="Logo" class="logo" />
         </a>
       </div>
 
       <!-- BOTTONI -->
       <div class="navbar-right">
         <a href="#" class="nav-link" @click="toggleCart">
-          <img
-            src="../../assets/img/small-card/cart.webp"
-            alt="Logo"
-            class="logo2"
-          />
+          <img src="../../assets/img/small-card/cart.webp" alt="Logo" class="logo2" />
         </a>
         <button @click="modalAppearance" class="nav-link-register">
-          <img
-            src="../../assets/img/small-card/add.png"
-            alt="Logo"
-            class="logo3"
-          />
+          <img src="../../assets/img/small-card/add.png" alt="Logo" class="logo3" />
         </button>
       </div>
     </nav>

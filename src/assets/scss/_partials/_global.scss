@@ -462,3 +462,68 @@ footer {
   text-align: center;
 }
 // END Footer
+// restaurant search
+.card-restaurant {
+  width: 100vw;
+  margin-bottom: 100px;
+  display: flex;
+  justify-content: center;
+  
+ .card-sd {
+  width: 35vw;
+  height: 30vw;
+  margin: 30px 50px;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0rem .5rem 1rem 0rem rgba(0, 0, 0, 0.878);
+  background-color: #00000057;
+  position: relative;
+  text-align: start;
+  transition: transform 0.225s ease, background-color 0.225s ease;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.819);
+    transform: scale(1.05);
+  }
+  .block-sd{
+    display: block;
+  }
+  .inline-sd{
+    display: inline;
+  }
+  .sd-card-name{
+    position: absolute;
+    top: 40px;
+    padding: 20px 0px;
+    width: 100%;
+    background-color: #ffffff82;
+    color: #1b1b1b;
+  }
+  .card-text-sd{
+padding: 10px 10px;
+
+  }
+  img{
+    width: 100%;
+    height: 70%;
+    object-fit:cover;
+  }
+  .btn-rest-sd{
+position: absolute;
+right: 10px;
+bottom: 10px;
+transition: transform 0.225s ease, background-color 0.225s ease;
+&:hover {
+  background-color: rgba(0, 0, 0, 0.819);
+  transform: scale(1.05);
+}
+background: linear-gradient(
+  to bottom,
+  rgb(255, 165, 0),
+  rgba(184, 123, 9, 0.812)
+) 
+
+  }
+}
+}
+// end restaurant search
