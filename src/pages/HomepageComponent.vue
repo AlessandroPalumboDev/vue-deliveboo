@@ -66,6 +66,7 @@ export default {
 
             <!-- Restaurant types -->
             <div class="card-container">
+              <!-- Single card -->
               <div
                 v-for="type in restaurantTypes"
                 :key="type.id"
@@ -78,6 +79,7 @@ export default {
                   <p>{{ type.image_path }}</p>
                 </div>
               </div>
+              <!-- END Single card -->
             </div>
             <!-- END restaurant types -->
 
