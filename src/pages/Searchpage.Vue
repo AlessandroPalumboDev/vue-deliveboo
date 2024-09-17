@@ -58,7 +58,7 @@ export default {
 
 
 <template>
-  <div v-for="type in searchrest" :key="type.id" class="card d-flex justify-center">
+  <div v-for="type in searchrest" :key="type.name" class="card d-flex justify-center">
     <div class="card-body">
       <img :src="type.image_path" alt="" />
       <p>{{ type.name }}</p>

@@ -80,13 +80,15 @@ export default {
             <!-- Restaurant types -->
             <div class="card-container">
               <!-- Single card -->
-              <div v-for="type in restaurantTypes" :key="type.id" class="card d-flex justify-center">
-                <div class="card-body">
-                  <img :src="type.image_path" alt="" />
-                  <p>{{ type.name }}</p>
-                  <p>{{ type.description }}</p>
-                  <p>{{ type.image_path }}</p>
-                </div>
+              <div v-for="type in restaurantTypes" :key="type.id" class="card">
+                <form action="" class="d-flex justify-center" method="GET">
+                  <div class="card-body">
+                    <button type="submit">
+                      <img :src="imageUrlDefault + type.image_path" alt="" />
+                    </button>
+                    <p>{{ type.name }}</p>
+                  </div>
+                </form>
               </div>
               <!-- END Single card -->
             </div>
@@ -94,7 +96,7 @@ export default {
 
             <div class="container">
               <div class="row">
-                <div v-for="type in restaurantTypes" :key="type.id" class="card d-flex justify-center">
+                <div v-for="type in restaurantTypes" :key="type.name" class="card d-flex justify-center">
                   <div class="card-body">
                     <label>
                       <input type="checkbox" :value="type.name" v-model="selectedTypes" @change="updateSelectedTypes">
