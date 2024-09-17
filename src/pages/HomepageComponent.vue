@@ -21,7 +21,7 @@ export default {
 
   computed: {
     getImage() {
-      return this.imageUrlDefault + this.image_path;
+      return this.imageUrlDefault + this.restaurantTypes.image_path;
     },
   },
 
@@ -66,7 +66,11 @@ export default {
 
             <!-- Restaurant types -->
             <div class="card-container">
-              <div v-for="type in restaurantTypes" :key="type.id" class="card">
+              <div
+                v-for="type in restaurantTypes"
+                :key="type.id"
+                class="card d-flex justify-center"
+              >
                 <div class="card-body">
                   <img :src="type.image_path" alt="" />
                   <p>{{ type.name }}</p>
