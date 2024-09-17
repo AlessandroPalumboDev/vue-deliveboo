@@ -3,6 +3,26 @@ TABLET LAYOUT
 ***************/
 
 @media (min-width: 480px) {
+  .cart {
+    bottom: auto;
+    height: calc(100vh - 80px);
+    right: -350px;
+    left: auto;
+    max-width: 350px;
+    height: 100vh;
+    border-radius: 0;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    overflow-y: auto;
+    transition: right 0.5s ease-in-out;
+    top: 80px;
+    border-top-left-radius: 20px;
+  }
+
+  .cart-active {
+    right: 0;
+  }
+
   .card-container {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -16,6 +36,16 @@ TABLET LAYOUT
 DESKTOP LAYOUT
 ***************/
 @media (min-width: 768px) {
+  .cart {
+    width: 700px;
+    right: -400px;
+    border-top-left-radius: 20px;
+  }
+
+  .cart-active {
+    right: 0;
+  }
+
   .card-container {
     grid-template-columns: repeat(3, 1fr);
   }

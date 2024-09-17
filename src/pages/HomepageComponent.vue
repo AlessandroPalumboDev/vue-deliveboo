@@ -76,7 +76,6 @@ export default {
                   <img :src="imageUrlDefault + type.image_path" alt="" />
                   <p>{{ type.name }}</p>
                   <p>{{ type.description }}</p>
-                  <p>{{ type.image_path }}</p>
                 </div>
               </div>
               <!-- END Single card -->
