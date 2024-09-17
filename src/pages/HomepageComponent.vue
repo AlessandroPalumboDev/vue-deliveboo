@@ -67,17 +67,15 @@ export default {
             <!-- Restaurant types -->
             <div class="card-container">
               <!-- Single card -->
-              <div
-                v-for="type in restaurantTypes"
-                :key="type.id"
-                class="card d-flex justify-center"
-              >
-                <div class="card-body">
-                  <button>
-                    <img :src="imageUrlDefault + type.image_path" alt="" />
-                  </button>
-                  <p>{{ type.name }}</p>
-                </div>
+              <div v-for="type in restaurantTypes" :key="type.id" class="card">
+                <form action="" class="d-flex justify-center" method="GET">
+                  <div class="card-body">
+                    <button type="submit">
+                      <img :src="imageUrlDefault + type.image_path" alt="" />
+                    </button>
+                    <p>{{ type.name }}</p>
+                  </div>
+                </form>
               </div>
               <!-- END Single card -->
             </div>

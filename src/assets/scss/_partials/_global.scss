@@ -359,12 +359,14 @@ h4 {
   padding-bottom: 10px;
   text-align: center;
   border-radius: 10px;
-  transition-property: width;
-  transition-duration: 0.5s;
+  transition-property: width, margin;
+  transition-duration: 0.25s;
+  transition-delay: 0.05s;
 
   &:hover {
     background-color: rgba(0, 0, 0, 1);
     width: 62%;
+    margin: -10px;
   }
 }
 // END Jumbo section
