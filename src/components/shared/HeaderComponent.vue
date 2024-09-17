@@ -4,28 +4,20 @@ export default {
   name: "HeaderComponent",
   data() {
     return {
-      store,
-      isHidden: true,       
-      isCartVisible: false,   
-      cartItems: [
-        { name: "Pizza Margherita", price: 8.5 }, 
-        { name: "Pasta al Pomodoro", price: 7.0 },
-        { name: "Tiramisù", price: 5.0 },
-      ], 
+      isCartActive: false,
+      isHidden: true, 
     };
   },
   methods: {
-    modalAppearance() {
-      this.isHidden = !this.isHidden; 
-    },
     toggleCart() {
-      this.isCartVisible = !this.isCartVisible; 
+      this.isCartActive = !this.isCartActive;
+    },
+    modalAppearance() {
+      this.isHidden = !this.isHidden;
     },
   },
 };
 </script>
-
-
 <template>
   <header class="header">
     <nav class="navbar">
@@ -39,36 +31,39 @@ export default {
 
      <!-- BOTTONI -->
       <div class="navbar-right">
-        <a href="#" class="nav-link" @click="toggleCart"> <i class="fas fa-cart-plus"></i> </a>
+        <a href="#" class="nav-link" @click="toggleCart">  <img src="../../assets/img/small-card/cart.webp" alt="Logo" class="logo2" /> </a>
         <button @click="modalAppearance" class="nav-link-register">
-          <i class="fas fa-user-plus"></i> 
+          <img src="../../assets/img/small-card/add.png" alt="Logo" class="logo3" />
         </button>
       </div>
     </nav>
 
    <!-- MODAL -->
-    <div v-if="!isHidden" class="modal">
+
+   <div :class="['modal', isHidden ? '' : 'modal-active']" ref="modal">
       <div class="modal-content">
-        <button @click="modalAppearance" class="btn-close">x</button>
+      
         <div class="modal-header">
-          <a href="#">
-          <h2>Clicca qui se vuoi registrare il tuo ristorante.</h2>
-          </a>
+         <a href="#" > 
+          <h3>Area Riservata</h3> 
+        </a>
+          
         </div>
+       
       </div>
     </div>
 
     <!-- CARRELLO -->
-    <div :class="['cart', isCartVisible ? 'cart-active' : '']">
-      <h3>Il tuo carrello</h3>
+    <div :class="['cart', isCartActive ? 'cart-active' : '']">
+     
+      <h3>Il tuo Carrello</h3>
       <ul class="cart-items">
-        <li v-for="(item, index) in cartItems" :key="index" class="cart-item">
-          <span>{{ item.name }}</span>
-          <span>{{ item.price.toFixed(2) }}€</span>
-        </li>
+        <li class="cart-item">Prodotto 1</li>
+        <li class="cart-item">Prodotto 2</li>
       </ul>
       <div class="cart-footer">
-        <button class="btn-register " @click="toggleCart">Chiudi</button>
+      
+        <button @click="toggleCart" class="cart-close-btn">Chiudi</button>
       </div>
     </div>
   </header>

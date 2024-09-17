@@ -22,10 +22,14 @@ body::before {
 
 // Header
 header {
+<<<<<<< HEAD
+=======
+height: 80px;
+>>>>>>> Federico/headerfix
   top: 0;
   z-index: 1000;
   background-color: rgb(255, 165, 0);
-  padding: 5px 20px;
+  
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 100px;
   background: linear-gradient(
@@ -41,12 +45,39 @@ header {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
   }
 
+
+
   .logo {
-    margin-top: 7px;
-    width: 250px;
+    
+    width: 170px;
     transition: transform 0.3s ease;
     &:hover {
+<<<<<<< HEAD
       transform: scale(1.15);
+=======
+      transform: scale(1.05);
+    
+    }
+  }
+
+  .logo2 {
+   
+    width: 70px;
+    transition: transform 0.3s ease;
+    &:hover {
+      transform: scale(1.05);
+    
+    }
+  }
+
+  .logo3 {
+    
+    width: 35px;
+    transition: transform 0.3s ease;
+    &:hover {
+      transform: scale(1.05);
+    
+>>>>>>> Federico/headerfix
     }
   }
 
@@ -84,12 +115,18 @@ header {
     }
   }
 
+<<<<<<< HEAD
   // Modal
+=======
+
+
+  // MODAL
+>>>>>>> Federico/headerfix
   .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: sticky; 
+   
     width: 100%;
+<<<<<<< HEAD
     display: flex;
     justify-content: center;
     align-items: center;
@@ -119,6 +156,95 @@ header {
       width: 800px;
       max-width: 90%;
       color: #ff4500;
+=======
+    left: 85%;
+    max-width: 200px; 
+    max-height: 60px;
+    background: linear-gradient(to bottom, rgb(255, 165, 0), rgba(184, 123, 9, 0.812)), rgba(173, 13, 201, 0.694);
+    padding: 20px;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    color: #ffffff;
+    display: none; 
+    transition: all 0.3s ease; 
+  
+    
+    &.modal-active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+      animation: slideDown 0.3s ease;
+    }
+  
+    .modal-header {
+     
+    }
+  
+    .modal-body {
+      padding: 10px 0;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes slideUp {
+      from {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      to {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+    }
+    
+   
+
+    @media (min-width: 768px) {
+      .modal {
+        max-width: 350px; 
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .modal {
+        max-width: 400px; 
+      }
+    }
+
+    .btn-close {
+      background-color: #ff4500;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: #ff6600;
+      }
+    }
+  }
+  
+  .modal-active {
+    right: 0; 
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3); 
+    animation: bounceIn 1.5s ease-in-out;
+  }
+     
+// BUTTONS
+>>>>>>> Federico/headerfix
 
       // Buttons
       .btn-close {
@@ -133,9 +259,13 @@ header {
       }
       // END buttons
     }
+<<<<<<< HEAD
   }
   // END Modal
 }
+=======
+  
+>>>>>>> Federico/headerfix
 
 button {
   background-color: #ff6600;
@@ -160,6 +290,7 @@ button {
   }
 }
 
+<<<<<<< HEAD
 // Cart
 .cart {
   position: fixed;
@@ -172,13 +303,30 @@ button {
       rgba(184, 123, 9, 0.812)
     ),
     rgba(173, 13, 201, 0.694);
+=======
+// CARRELLO
+.cart {
+  position: fixed;
+  bottom: -100%; 
+  
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  left: 0;
+  right: 0;
+  background-color: rgb(255, 255, 255);
+>>>>>>> Federico/headerfix
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   padding: 20px;
   box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
   transition: bottom 0.5s ease-in-out;
   z-index: 999;
+<<<<<<< HEAD
   color: #ffffff;
+=======
+  color: #350d01;
+  overflow-y: auto; 
+>>>>>>> Federico/headerfix
 
   .cart-items {
     list-style: none;
@@ -197,13 +345,42 @@ button {
   .cart-footer {
     text-align: center;
     margin-top: 20px;
+<<<<<<< HEAD
+=======
+  }
+}
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-close-btn {
+  background-color: #ff6600;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  
+  &:hover {
+    background-color: #ff660073; 
+>>>>>>> Federico/headerfix
   }
 }
 
 .cart-active {
   bottom: 0;
   transform: translateY(0);
+<<<<<<< HEAD
   animation: bounceIn 1.5s ease-in-out;
+=======
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3); 
+  animation: bounceIn 1.5s ease-in-out; 
+>>>>>>> Federico/headerfix
 }
 
 @keyframes bounceIn {
@@ -212,17 +389,63 @@ button {
     opacity: 0;
   }
   60% {
-    transform: translateY(-20%);
+    transform: translateY(-5%);
     opacity: 1;
   }
   80% {
-    transform: translateY(15%);
+    transform: translateY(2%);
   }
   100% {
     transform: translateY(0);
   }
 }
+<<<<<<< HEAD
 // END cart
+=======
+
+@media (min-width: 568px) {
+  .cart {
+    bottom: auto; 
+    height: calc(100vh - 80px); 
+    right: -350px; 
+    left: auto; 
+    max-width: 350px;
+    height: 100vh;
+    border-radius: 0;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    overflow-y: auto;
+    transition: right 0.5s ease-in-out;
+    top: 80px;
+    border-top-left-radius: 20px;
+  
+  }
+
+  
+
+  .cart-active {
+    right: 0; 
+  }
+}
+
+@media (min-width: 1024px) {
+  .cart {
+    width: 700px; 
+    right: -400px; 
+    border-top-left-radius: 20px;
+   
+  }
+
+
+  .cart-active {
+    right: 0; 
+  }
+
+}
+
+
+
+>>>>>>> Federico/headerfix
 // END header
 
 // Main section
