@@ -22,10 +22,7 @@ body::before {
 
 // Header
 header {
-<<<<<<< HEAD
-=======
 height: 80px;
->>>>>>> Federico/headerfix
   top: 0;
   z-index: 1000;
   background-color: rgb(255, 165, 0);
@@ -52,9 +49,6 @@ height: 80px;
     width: 170px;
     transition: transform 0.3s ease;
     &:hover {
-<<<<<<< HEAD
-      transform: scale(1.15);
-=======
       transform: scale(1.05);
     
     }
@@ -77,7 +71,6 @@ height: 80px;
     &:hover {
       transform: scale(1.05);
     
->>>>>>> Federico/headerfix
     }
   }
 
@@ -115,48 +108,13 @@ height: 80px;
     }
   }
 
-<<<<<<< HEAD
-  // Modal
-=======
 
 
   // MODAL
->>>>>>> Federico/headerfix
   .modal {
     position: sticky; 
    
     width: 100%;
-<<<<<<< HEAD
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1050;
-    transform: translateY(-100%);
-    animation: slideDown 0.5s ease forwards;
-
-    @keyframes slideDown {
-      from {
-        transform: translateY(-100%);
-      }
-      to {
-        transform: translateY(0);
-      }
-    }
-
-    .modal-content {
-      background: linear-gradient(
-          to bottom,
-          rgb(255, 165, 0),
-          rgba(184, 123, 9, 0.812)
-        ),
-        rgba(173, 13, 201, 0.694);
-      padding: 30px;
-      border-radius: 18px;
-      text-align: center;
-      width: 800px;
-      max-width: 90%;
-      color: #ff4500;
-=======
     left: 85%;
     max-width: 200px; 
     max-height: 60px;
@@ -244,7 +202,6 @@ height: 80px;
   }
      
 // BUTTONS
->>>>>>> Federico/headerfix
 
       // Buttons
       .btn-close {
@@ -259,13 +216,7 @@ height: 80px;
       }
       // END buttons
     }
-<<<<<<< HEAD
-  }
-  // END Modal
-}
-=======
   
->>>>>>> Federico/headerfix
 
 button {
   background-color: #ff6600;
@@ -290,20 +241,6 @@ button {
   }
 }
 
-<<<<<<< HEAD
-// Cart
-.cart {
-  position: fixed;
-  bottom: -100%;
-  left: 0;
-  right: 0;
-  background: linear-gradient(
-      to bottom,
-      rgb(255, 165, 0),
-      rgba(184, 123, 9, 0.812)
-    ),
-    rgba(173, 13, 201, 0.694);
-=======
 // CARRELLO
 .cart {
   position: fixed;
@@ -314,19 +251,14 @@ button {
   left: 0;
   right: 0;
   background-color: rgb(255, 255, 255);
->>>>>>> Federico/headerfix
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   padding: 20px;
   box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
   transition: bottom 0.5s ease-in-out;
   z-index: 999;
-<<<<<<< HEAD
-  color: #ffffff;
-=======
   color: #350d01;
   overflow-y: auto; 
->>>>>>> Federico/headerfix
 
   .cart-items {
     list-style: none;
@@ -345,8 +277,6 @@ button {
   .cart-footer {
     text-align: center;
     margin-top: 20px;
-<<<<<<< HEAD
-=======
   }
 }
 
@@ -368,19 +298,14 @@ button {
   
   &:hover {
     background-color: #ff660073; 
->>>>>>> Federico/headerfix
   }
 }
 
 .cart-active {
   bottom: 0;
   transform: translateY(0);
-<<<<<<< HEAD
-  animation: bounceIn 1.5s ease-in-out;
-=======
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3); 
   animation: bounceIn 1.5s ease-in-out; 
->>>>>>> Federico/headerfix
 }
 
 @keyframes bounceIn {
@@ -399,9 +324,6 @@ button {
     transform: translateY(0);
   }
 }
-<<<<<<< HEAD
-// END cart
-=======
 
 @media (min-width: 568px) {
   .cart {
@@ -445,7 +367,6 @@ button {
 
 
 
->>>>>>> Federico/headerfix
 // END header
 
 // Main section
