@@ -73,9 +73,10 @@ export default {
                 class="card d-flex justify-center"
               >
                 <div class="card-body">
-                  <img :src="imageUrlDefault + type.image_path" alt="" />
+                  <button>
+                    <img :src="imageUrlDefault + type.image_path" alt="" />
+                  </button>
                   <p>{{ type.name }}</p>
-                  <p>{{ type.description }}</p>
                 </div>
               </div>
               <!-- END Single card -->
