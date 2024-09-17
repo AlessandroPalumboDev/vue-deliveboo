@@ -4,8 +4,8 @@ export default {
   name: "HeaderComponent",
   data() {
     return {
-      isCartActive: false, // Gestione del carrello
-      isHidden: true, // Gestione della modale di registrazione
+      isCartActive: false,
+      isHidden: true, 
     };
   },
   methods: {
@@ -39,14 +39,17 @@ export default {
     </nav>
 
    <!-- MODAL -->
-    <div v-if="!isHidden" class="modal">
+
+   <div :class="['modal', isHidden ? '' : 'modal-active']" ref="modal">
       <div class="modal-content">
-        <button @click="modalAppearance" class="btn-close">x</button>
+      
         <div class="modal-header">
-          <a href="#">
-          <h2>Clicca qui se vuoi registrare il tuo ristorante.</h2>
-          </a>
+         <a href="#" > 
+          <h3>Area Riservata</h3> 
+        </a>
+          
         </div>
+       
       </div>
     </div>
 
