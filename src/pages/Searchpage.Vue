@@ -58,14 +58,14 @@ export default {
 
 
 <template>
-  <div v-for="type in searchrest" :key="type.name" class="card d-flex justify-center">
+  <!-- <div v-for="type in searchrest" :key="type.name" class="card d-flex justify-center">
     <div class="card-body">
       <img :src="type.image_path" alt="" />
       <p>{{ type.name }}</p>
       <p>{{ type.description }}</p>
       <p>{{ type.image_path }}</p>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <style scoped></style>
