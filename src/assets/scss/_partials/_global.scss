@@ -350,9 +350,6 @@ h4 {
   }
 }
 
-.card {
-}
-
 .card-body {
   width: 60%;
   background-color: rgba(0, 0, 0, 0.5);
@@ -366,6 +363,7 @@ h4 {
   &:hover {
     background-color: rgba(0, 0, 0, 1);
     width: 62%;
+    margin-bottom: -5px;
   }
 }
 // END Jumbo section
