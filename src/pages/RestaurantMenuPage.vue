@@ -63,7 +63,6 @@ export default {
     },
     getRest() {
       const restaurant = JSON.parse(localStorage.getItem('rest_show'));
-
       this.rest = restaurant;
 
     },
@@ -103,17 +102,20 @@ export default {
     <button class="back-btn" @click="goBack">← Torna Indietro</button>
 
     <section class="restaurant-header">
-      <img src="https://picsum.photos/600/400" alt="Banner del ristorante" class="restaurant-banner" />
+      <img :src="this.imageUrlDefault + this.rest.image_path" alt="Banner del ristorante" class="restaurant-banner" />
       <div class="restaurant-info">
-        <h1 class="title"></h1>
-        <p class="description"></p>
-        <p class="type"></p>
+        <h1 class="title">{{ this.rest.business_name }}</h1>
+        <span v-for="type in this.rest.types"><span class="type">{{ type.name + ' ' }}</span></span>
+        <div v-for="type in this.rest.types">
+          <span class="description">{{ type.description }}</span>
+        </div>
+
       </div>
     </section>
 
     <div class="content">
       <div class="menu-items">
-      
+
         <div v-for="item in this.restaurantMenu" :key="index" class="menu-item">
           <img :src="imageUrlDefault + item.cover_image" alt="Immagine del piatto" class="menu-item-image" />
           <div class="menu-item-details">
@@ -192,17 +194,15 @@ export default {
   justify-content: space-between;
   margin-bottom: 40px;
   transition: transform 0.3s ease;
-  background: linear-gradient(
-      to bottom,
+  background: linear-gradient(to bottom,
       rgba(255, 255, 255, 0.453),
-      rgba(81, 8, 8, 0.094)
-    ),
+      rgba(81, 8, 8, 0.094)),
     rgba(84, 17, 17, 0);
-    border-radius: 10px;
+  border-radius: 10px;
 }
 
 .restaurant-header:hover {
-  transform: translateY(-5px); 
+  transform: translateY(-5px);
 }
 
 .restaurant-banner {
@@ -212,7 +212,7 @@ export default {
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, filter 0.3s ease;
- 
+
 
 }
 
@@ -232,17 +232,17 @@ export default {
   font-weight: bold;
   color: rgb(255, 166, 0);
   margin: 10px 0;
-  text-align: justify; 
-  transition: color 0.3s ease, text-shadow 0.3s ease; 
+  text-align: justify;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .title-food {
- text-align: justify;
+  text-align: justify;
 }
 
 .title:hover {
   color: #ff4500;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); 
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .description {
@@ -259,7 +259,7 @@ export default {
 
 .content {
   display: flex;
-  flex-direction: row; 
+  flex-direction: row;
   gap: 30px;
   margin: 0 auto;
 }
@@ -279,19 +279,19 @@ export default {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
   padding: 15px;
-  align-items: center; 
-  
-  
+  align-items: center;
+
+
 }
 
 .menu-item:hover {
   transform: scale(1.03);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  background-color: #fafafa; 
+  background-color: #fafafa;
 }
 
 .menu-item-image {
-  width: 100px; 
+  width: 100px;
   height: 100px;
   object-fit: cover;
   border-radius: 12px;
@@ -300,7 +300,7 @@ export default {
 }
 
 .menu-item-image:hover {
-  transform: scale(1.1); 
+  transform: scale(1.1);
 }
 
 .menu-item-details {
@@ -319,7 +319,7 @@ export default {
 .description-food {
   font-size: 0.9em;
   color: #888;
-  word-wrap: break-word; 
+  word-wrap: break-word;
 }
 
 .add-to-cart-btn {
@@ -331,7 +331,7 @@ export default {
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; 
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -339,17 +339,15 @@ export default {
 
 .add-to-cart-btn:hover {
   background-color: #ff4500;
-  transform: scale(1.1); 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .cart {
   flex: 1;
-  background: linear-gradient(
-      to bottom,
+  background: linear-gradient(to bottom,
       rgb(255, 166, 0),
-      rgba(255, 166, 1, 0.425)
-    ),
+      rgba(255, 166, 1, 0.425)),
     rgba(255, 166, 0, 0%);
   padding: 20px;
   border-radius: 12px;
@@ -360,8 +358,8 @@ export default {
 }
 
 .cart:hover {
-  transform: translateY(-5px); 
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .cart h3 {
@@ -388,7 +386,7 @@ export default {
   cursor: pointer;
   font-size: 1em;
   text-decoration: underline;
-  transition: color 0.3s ease; 
+  transition: color 0.3s ease;
 }
 
 .remove-btn:hover {
@@ -421,7 +419,7 @@ export default {
 .cart-footer button:hover {
   background-color: #ff4500;
   transform: scale(1.05);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Mobile */
@@ -435,7 +433,7 @@ export default {
   margin-top: 20px;
   text-align: center;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease; 
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .cart-toggle-btn:hover {
@@ -448,7 +446,9 @@ export default {
 .cart-leave-active {
   transition: opacity 0.5s ease;
 }
-.cart-enter, .cart-leave-to {
+
+.cart-enter,
+.cart-leave-to {
   opacity: 0;
 }
 
@@ -468,9 +468,7 @@ export default {
   }
 
   .cart-toggle-btn {
-    display: block; 
+    display: block;
   }
 }
-
-
 </style>
