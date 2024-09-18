@@ -80,17 +80,20 @@ export default {
 
 <template>
   <main>
-    <button class="back-btn" @click="goBack()">← Torna Indietro</button>
     <!-- Restaurant types -->
+    <button class="back-btn" @click="goBack()">← Torna Indietro</button>
     <div class="card-restaurant">
+
+
       <!-- Single card -->
+
       <div v-for="restaurant in restaurants" :key="restaurant.id" class="card-sd " @click="getMenu(restaurant)">
 
         <img :src="this.imageUrlDefault + restaurant.image_path" :alt="restaurant.name" />
         <div class="sd-card-name">
           <h2>{{ restaurant.business_name }}</h2>
         </div>
-        <div class="card-text-sd">
+        <!-- <div class="card-text-sd">
           <div><span>indirizzo: </span><span>{{ restaurant.address }}</span></div>
           <div class="block-sd"><span>tipologia: </span><span v-for="restaurant in restaurant.types">{{
             restaurant.name + ', '
@@ -98,10 +101,29 @@ export default {
 
 
 
-        </div>
+        </div> -->
 
       </div>
       <!-- END Single card -->
     </div>
   </main>
 </template>
+<style scoped>
+.back-btn {
+
+  margin: 20px;
+  background-color: transparent;
+  color: rgb(255, 166, 0);
+  font-size: 1.2em;
+  border: 2px solid rgb(255, 166, 0);
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.back-btn:hover {
+  background-color: #ff6600;
+  color: white;
+}
+</style>

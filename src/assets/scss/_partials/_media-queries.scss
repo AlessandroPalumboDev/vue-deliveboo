@@ -18,7 +18,7 @@ TABLET LAYOUT
     top: 80px;
     border-top-left-radius: 20px;
   }
-
+ 
   .cart-active {
     right: 0;
   }
@@ -52,6 +52,24 @@ TABLET LAYOUT
   .socials-container li {
     width: 25%;
   }
+
+  // restaurant media
+
+  .card-sd {
+    width: 70vw; /* Adattamento per tablet */
+    height: 60vw;
+    margin: 20px;
+  }
+
+  .sd-card-name {
+    top: 40px;
+    padding: 15px 0px;
+  }
+
+  .card-text-sd {
+    padding: 10px;
+  }
+
 }
 
 /***************
@@ -126,4 +144,21 @@ DESKTOP LAYOUT
   .type {
     font-size: 1.5em;
   }
+
+  // restaurant media 
+  .card-sd {
+    width: 30vw; /* Adattamento per desktop */
+    height: 25vw;
+    margin: 30px 50px;
+  }
+
+  .sd-card-name {
+    top: 50px;
+    padding: 20px 0px;
+  }
+
+  .card-text-sd {
+    padding: 15px;
+  }
+
 }
