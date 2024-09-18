@@ -116,7 +116,7 @@ export default {
                 <!-- END Single card -->
               </div>
 
-              <button @click="prevSlide" class="prev">&lt;</button>
+              <button @click="prevSlide" class="prev"><span>&lt;</span></button>
               <button @click="nextSlide" class="next">&gt;</button>
               <!-- Carousel wrapper -->
             </div>
