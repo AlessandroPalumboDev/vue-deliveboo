@@ -20,6 +20,7 @@ export default {
             description: "Bevanda rinfrescante",
             price: 2.5,
           },
+          
         ],
       },
       isCartActive: false,
@@ -61,7 +62,6 @@ export default {
   },
 };
 </script>
-
 <template>
   <div class="restaurant-menu-page">
     <button class="back-btn" @click="goBack">← Torna Indietro</button>
@@ -81,7 +81,6 @@ export default {
 
     <div class="content">
       <div class="menu-items">
-        
         <div
           v-for="(item, index) in restaurant.menuItems"
           :key="index"
@@ -98,7 +97,7 @@ export default {
             <span class="description-food">€{{ item.price.toFixed(2) }}</span>
           </div>
           <button @click="addToCart(item)" class="add-to-cart-btn">
-            Aggiungi
+            +
           </button>
         </div>
 
@@ -130,12 +129,11 @@ export default {
   </div>
 </template>
 
+
 <style scoped>
 /* CSS simile a quello originale */
-</style>
 
-<!-- CSS ANCORA DA SISTEMARE E SPOSTARE -->
-<style scoped>
+
 .restaurant-menu-page {
   font-family: 'Arial', sans-serif;
   color: #333;
@@ -296,22 +294,27 @@ export default {
 .description-food {
   font-size: 0.9em;
   color: #888;
+  word-wrap: break-word; 
 }
 
 .add-to-cart-btn {
-  padding: 10px;
+  width: 40px;
+  height: 40px;
   background: rgb(255, 166, 0);
   color: white;
-  font-size: 1.1em;
+  font-size: 1.5em;
   border: none;
-  border-radius: 50px;
+  border-radius: 50%;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .add-to-cart-btn:hover {
   background-color: #ff4500;
-  transform: scale(1.05); 
+  transform: scale(1.1); 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
@@ -396,7 +399,7 @@ export default {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
-/* Mobile Cart Toggle */
+/* Mobile */
 .cart-toggle-btn {
   background-color: #ff6600;
   color: white;
@@ -433,10 +436,6 @@ export default {
 
   .menu-items {
     grid-template-columns: 1fr;
-  }
-
-  .add-to-cart-btn {
-    width: 100%;
   }
 
   .cart {
