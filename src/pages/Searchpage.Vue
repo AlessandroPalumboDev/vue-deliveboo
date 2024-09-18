@@ -42,6 +42,14 @@ export default {
         .catch((error) => console.log(error));
       console.log(this.restaurants.image_path);
     },
+    goBack() {
+      this.$router.push({
+        name: 'home',
+      }).catch((error) => {
+        console.log("Errore nel routing:", error);  // Eventuali errori nel routing
+      });
+    }
+
   },
 
   mounted() {
@@ -52,6 +60,7 @@ export default {
 
 <template>
   <main>
+    <button class="back-btn" @click="goBack()">← Torna Indietro</button>
     <!-- Restaurant types -->
     <div class="card-restaurant">
 
