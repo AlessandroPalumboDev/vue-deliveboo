@@ -25,6 +25,7 @@ export default {
 
       // },
       restaurantMenu: [],
+      rest: [],
       api: {
         baseUrl: "http://localhost:8000/api/",
         endPoints: {
@@ -60,6 +61,12 @@ export default {
     toggleCart() {
       this.isCartActive = !this.isCartActive;
     },
+    getRest() {
+      const restaurant = JSON.parse(localStorage.getItem('rest_show'));
+
+      this.rest = restaurant;
+
+    },
     getMenuRest() {
       // Componing the url to make the API call
       const valore_id = localStorage.getItem('rest_ID');
@@ -83,6 +90,7 @@ export default {
     // Sincronizza il carrello quando il componente è montato
     store.syncCartFromStorage();
     this.getMenuRest();
+    this.getRest();
   },
   beforeDestroy() {
     window.removeEventListener("resize", this.checkIfMobile);
