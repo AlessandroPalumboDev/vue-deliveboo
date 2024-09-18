@@ -40,7 +40,8 @@ export default {
     <nav class="navbar">
       <!-- LOGO -->
       <div class="navbar-left">
-        <a href="#" class="nav-link">
+        <a class="nav-link">
+          <router-link :to="{ name: 'home' }"></router-link>
           <img
             src="../../assets/img/header/logo3.png"
             alt="Logo"
@@ -57,10 +58,6 @@ export default {
             alt="Logo"
             class="logo2"
           />
-          <!-- Mostra il numero di elementi nel carrello -->
-          <span v-if="cartItemCount > 0" class="cart-count">{{
-            cartItemCount
-          }}</span>
         </a>
         <button @click="modalAppearance" class="nav-link-register">
           <img
@@ -71,6 +68,15 @@ export default {
         </button>
       </div>
     </nav>
+
+    <!-- MODAL -->
+    <div :class="['modal', isHidden ? '' : 'modal-active']" ref="modal">
+      <div class="modal-header">
+        <a href="http://localhost:8000/">
+          <h3>Area Riservata</h3>
+        </a>
+      </div>
+    </div>
 
     <!-- CARRELLO -->
     <div :class="['cart', isCartActive ? 'cart-active' : '']">

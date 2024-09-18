@@ -1,5 +1,4 @@
 <script>
-
 import axios from "axios";
 import { store } from "../store.js";
 export default {
@@ -30,13 +29,12 @@ export default {
   methods: {
     getRestaurant() {
       // Componing the url to make the API call
-      const valore = localStorage.getItem('searchrest');
+      const valore = localStorage.getItem("searchrest");
       const url = this.api.baseUrl + this.api.endPoints.restaurant + valore;
       // API call
       axios
         .get(url)
         .then((response) => {
-
           this.restaurants = response.data.results.data;
           console.log(this.restaurants)
 
@@ -77,7 +75,6 @@ export default {
     <button class="back-btn" @click="goBack()">← Torna Indietro</button>
     <!-- Restaurant types -->
     <div class="card-restaurant">
-
       <!-- Single card -->
       <div v-for="restaurant in restaurants" :key="restaurant.id" class="card-sd " @click="getMenu(restaurant.id)">
 
@@ -98,6 +95,5 @@ export default {
       </div>
       <!-- END Single card -->
     </div>
-
   </main>
 </template>

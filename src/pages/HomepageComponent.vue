@@ -8,7 +8,7 @@ export default {
     return {
       store,
       restaurantTypes: [],
-      searchrest: '',
+      searchrest: "",
       error: false,
       api: {
         baseUrl: "http://localhost:8000/api/",
@@ -80,9 +80,8 @@ export default {
             <div class="card-container">
               <!-- Single card -->
               <div v-for="type in restaurantTypes" :key="type.id" class="card">
-                <div class="d-flex justify-center">
+                <div class="card-box">
                   <div class="card-body" @click="goToSearchPage(type.name)">
-
                     <img :src="imageUrlDefault + type.image_path" alt="" />
 
                     <p>{{ type.name }}</p>
