@@ -58,6 +58,10 @@ export default {
             alt="Logo"
             class="logo2"
           />
+          <!-- Mostra il numero di elementi nel carrello -->
+          <span v-if="cartItemCount > 0" class="cart-count">{{
+            cartItemCount
+          }}</span>
         </a>
         <button @click="modalAppearance" class="nav-link-register">
           <img
@@ -163,5 +167,16 @@ export default {
 
 .cart-close-btn:hover {
   background-color: #ff4500;
+}
+
+.cart-count {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 3px 8px;
+  font-size: 12px;
+  position: absolute;
+  top: 5px;
+  right: 15px;
 }
 </style>
