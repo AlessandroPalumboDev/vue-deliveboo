@@ -38,22 +38,19 @@ export default {
           this.restaurantTypes = response.data.types;
         })
         .catch((error) => console.log(error));
-      console.log(this.restaurantTypes.image_path);
+
     },
 
     goToSearchPage(typeName) {
-      (this.searchrest = typeName),
-        localStorage.setItem("searchrest", typeName);
-      console.log(typeName),
-        this.$router
-          .push({
-            name: "search",
-            query: { type: typeName },
-          })
-          .catch((error) => {
-            console.log("Errore nel routing:", error); // Eventuali errori nel routing
-          });
-    },
+
+      this.searchrest = typeName,
+        localStorage.setItem('searchrest', typeName);
+      this.$router.push({
+        name: 'search',
+      }).catch((error) => {
+        console.log("Errore nel routing:", error);  // Eventuali errori nel routing
+      });
+    }
   },
 
   created() {
@@ -110,10 +107,7 @@ export default {
                   <p>Vedrai in quali ristoranti lo puoi trovare</p>
                 </div>
                 <div class="small-card">
-                  <img
-                    src="../assets/img/small-card/shopping-cart.svg"
-                    alt=""
-                  />
+                  <img src="../assets/img/small-card/shopping-cart.svg" alt="" />
                   <h4>Metti ciò che desideri nel carrello</h4>
                   <p>Puoi scegliere tra diversi metodi di pagamento</p>
                 </div>

@@ -1,30 +1,40 @@
 <script>
 import { store } from "../store.js";
-
+import axios from "axios";
 export default {
   data() {
     return {
-      restaurant: {
-        name: "Burger King",
-        description: "Fast food di alta qualità",
-        type: "Fast Food",
-        menuItems: [
-          { name: "Whopper", description: "Il classico Whopper", price: 7.99 },
-          {
-            name: "Chicken Burger",
-            description: "Pollo alla griglia",
-            price: 6.49,
-          },
-          {
-            name: "Coca-Cola",
-            description: "Bevanda rinfrescante",
-            price: 2.5,
-          },
-          
-        ],
+      // restaurant: {
+      //   name: "Burger King",
+      //   description: "Fast food di alta qualità",
+      //   type: "Fast Food",
+
+      //   menuItems: [
+      //     { name: "Whopper", description: "Il classico Whopper", price: 7.99 },
+      //     {
+      //       name: "Chicken Burger",
+      //       description: "Pollo alla griglia",
+      //       price: 6.49,
+      //     },
+      //     {
+      //       name: "Coca-Cola",
+      //       description: "Bevanda rinfrescante",
+      //       price: 2.5,
+      //     },
+      //   ],
+
+      // },
+      restaurantMenu: [],
+      api: {
+        baseUrl: "http://localhost:8000/api/",
+        endPoints: {
+          restaurant: "restaurants/",
+          plate: '/plates'
+        },
       },
       isCartActive: false,
       isMobile: false,
+      imageUrlDefault: "http://localhost:8000/storage/",
     };
   },
   computed: {
@@ -50,12 +60,29 @@ export default {
     toggleCart() {
       this.isCartActive = !this.isCartActive;
     },
+    getMenuRest() {
+      // Componing the url to make the API call
+      const valore_id = localStorage.getItem('rest_ID');
+
+      const url = this.api.baseUrl + this.api.endPoints.restaurant + valore_id + this.api.endPoints.plate;
+
+      // API call
+      axios
+        .get(url)
+        .then((response) => {
+          this.restaurantMenu = response.data.plates
+
+        })
+        .catch((error) => console.log(error));
+
+    }
   },
   mounted() {
     this.checkIfMobile();
     window.addEventListener("resize", this.checkIfMobile);
     // Sincronizza il carrello quando il componente è montato
     store.syncCartFromStorage();
+    this.getMenuRest();
   },
   beforeDestroy() {
     window.removeEventListener("resize", this.checkIfMobile);
@@ -63,38 +90,28 @@ export default {
 };
 </script>
 <template>
+
   <div class="restaurant-menu-page">
     <button class="back-btn" @click="goBack">← Torna Indietro</button>
 
     <section class="restaurant-header">
-      <img
-        src="https://picsum.photos/600/400"
-        alt="Banner del ristorante"
-        class="restaurant-banner"
-      />
+      <img src="https://picsum.photos/600/400" alt="Banner del ristorante" class="restaurant-banner" />
       <div class="restaurant-info">
-        <h1 class="title">{{ restaurant.name }}</h1>
-        <p class="description">{{ restaurant.description }}</p>
-        <p class="type">{{ restaurant.type }}</p>
+        <h1 class="title"></h1>
+        <p class="description"></p>
+        <p class="type"></p>
       </div>
     </section>
 
     <div class="content">
       <div class="menu-items">
-        <div
-          v-for="(item, index) in restaurant.menuItems"
-          :key="index"
-          class="menu-item"
-        >
-          <img
-            :src="`https://picsum.photos/100/100?random=${index}`"
-            alt="Immagine del piatto"
-            class="menu-item-image"
-          />
+      
+        <div v-for="item in this.restaurantMenu" :key="index" class="menu-item">
+          <img :src="imageUrlDefault + item.cover_image" alt="Immagine del piatto" class="menu-item-image" />
           <div class="menu-item-details">
             <h4 class="title-food">{{ item.name }}</h4>
-            <p class="description-food">{{ item.description }}</p>
-            <span class="description-food">€{{ item.price.toFixed(2) }}</span>
+            <p class="description-food">{{ item.price }}</p>
+            <span class="description-food">{{ item.ingredients }}</span>
           </div>
           <button @click="addToCart(item)" class="add-to-cart-btn">
             +
