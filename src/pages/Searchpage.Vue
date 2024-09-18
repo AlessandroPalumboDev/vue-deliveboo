@@ -8,6 +8,7 @@ export default {
     return {
       store,
       restaurants: [],
+      rest_show: [],
       rest_ID: null,
       error: false,
       api: {
@@ -49,10 +50,17 @@ export default {
         console.log("Errore nel routing:", error);  // Eventuali errori nel routing
       });
     },
-    getMenu(restID) {
+    getMenu(rest) {
+      // id
+      let restID = rest.id;
 
-      this.rest_ID = restID,
-        localStorage.setItem('rest_ID', restID);
+      this.rest_ID = restID;
+      localStorage.setItem('rest_ID', restID);
+
+      // obj
+
+      this.rest_show = rest;
+      localStorage.setItem('rest_show', JSON.stringify(rest));
 
       this.$router.push({
         name: 'restaurantMenu',
@@ -76,7 +84,7 @@ export default {
     <!-- Restaurant types -->
     <div class="card-restaurant">
       <!-- Single card -->
-      <div v-for="restaurant in restaurants" :key="restaurant.id" class="card-sd " @click="getMenu(restaurant.id)">
+      <div v-for="restaurant in restaurants" :key="restaurant.id" class="card-sd " @click="getMenu(restaurant)">
 
         <img :src="this.imageUrlDefault + restaurant.image_path" :alt="restaurant.name" />
         <div class="sd-card-name">
@@ -86,7 +94,7 @@ export default {
           <div><span>indirizzo: </span><span>{{ restaurant.address }}</span></div>
           <div class="block-sd"><span>tipologia: </span><span v-for="restaurant in restaurant.types">{{
             restaurant.name + ', '
-          }}</span></div>
+              }}</span></div>
 
 
 

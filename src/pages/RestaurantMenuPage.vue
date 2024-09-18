@@ -9,6 +9,7 @@ export default {
       currentRestaurantId: null,
       showCartWarning: false,
       pendingItem: null,
+      rest: [],
       api: {
         baseUrl: "http://localhost:8000/api/",
         endPoints: {
@@ -53,6 +54,10 @@ export default {
     },
     toggleCart() {
       this.isCartActive = !this.isCartActive;
+    },
+    getRest() {
+      const restaurant = JSON.parse(localStorage.getItem("rest_show"));
+      this.rest = restaurant;
     },
     getMenuRest() {
       const valore_id = localStorage.getItem("rest_ID");
@@ -104,13 +109,13 @@ export default {
     window.addEventListener("resize", this.checkIfMobile);
     store.syncCartFromStorage();
     this.getMenuRest();
+    this.getRest();
   },
   beforeDestroy() {
     window.removeEventListener("resize", this.checkIfMobile);
   },
 };
 </script>
-
 <template>
   <div class="restaurant-menu-page">
     <!-- Avviso di cambio ristorante -->
@@ -127,25 +132,24 @@ export default {
 
     <section class="restaurant-header">
       <img
-        src="https://picsum.photos/600/400"
+        :src="this.imageUrlDefault + this.rest.image_path"
         alt="Banner del ristorante"
         class="restaurant-banner"
       />
       <div class="restaurant-info">
-        <h1 class="title">{{ restaurantName }}</h1>
-        <p class="description">{{ restaurantDescription }}</p>
-        <p class="type">{{ restaurantType }}</p>
+        <h1 class="title">{{ this.rest.business_name }}</h1>
+        <span v-for="type in this.rest.types"
+          ><span class="type">{{ type.name + " " }}</span></span
+        >
+        <div v-for="type in this.rest.types">
+          <span class="description">{{ type.description }}</span>
+        </div>
       </div>
     </section>
 
     <div class="content">
       <div class="menu-items">
-        <h3 class="title">Menu</h3>
-        <div
-          v-for="(item, index) in restaurantMenu"
-          :key="index"
-          class="menu-item"
-        >
+        <div v-for="item in this.restaurantMenu" :key="index" class="menu-item">
           <img
             :src="imageUrlDefault + item.cover_image"
             alt="Immagine del piatto"
@@ -156,18 +160,16 @@ export default {
             <p class="description-food">€{{ item.price }}</p>
             <span class="description-food">{{ item.ingredients }}</span>
           </div>
-          <button @click="addToCart(item)" class="add-to-cart-btn">
-            Aggiungi
-          </button>
+          <button @click="addToCart(item)" class="add-to-cart-btn">+</button>
         </div>
 
-        <button class="cart-toggle-btn" v-if="isMobile" @click="toggleCart">
+        <button class="back-btn" v-if="isMobile" @click="toggleCart">
           {{ isCartActive ? "Chiudi Carrello" : "Apri Carrello" }}
         </button>
       </div>
 
       <div class="cart" v-if="!isMobile">
-        <h3>Il tuo carrello</h3>
+        <h3>Il tuo ordine</h3>
         <ul v-if="cart.length > 0">
           <li v-for="(item, index) in cart" :key="index" class="cart-item">
             <div class="cart-item-details">
@@ -191,223 +193,315 @@ export default {
 
 <style lang="scss" scoped>
 .restaurant-menu-page {
-  font-family: Arial, sans-serif;
+  font-family: "Arial", sans-serif;
   color: #333;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 .back-btn {
   margin: 20px;
-  background: linear-gradient(
-      to bottom,
-      rgb(255, 166, 0),
-      rgba(255, 166, 1, 0.668)
-    ),
-    rgba(255, 166, 0, 0.428);
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
+  background-color: transparent;
+  color: rgb(255, 166, 0);
+  font-size: 1.2em;
+  border: 2px solid rgb(255, 166, 0);
+  padding: 10px 20px;
+  border-radius: 50px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .back-btn:hover {
-  background-color: #ff4500;
+  background-color: #ff6600;
+  color: white;
 }
 
 .restaurant-header {
   display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: space-between;
-  padding: 20px;
+  margin-bottom: 40px;
+  transition: transform 0.3s ease;
+  background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.453),
+      rgba(81, 8, 8, 0.094)
+    ),
+    rgba(84, 17, 17, 0);
+  border-radius: 10px;
+}
+
+.restaurant-header:hover {
+  transform: translateY(-5px);
 }
 
 .restaurant-banner {
-  width: 60%;
-  max-width: 600px;
-  border-radius: 8px;
-  object-fit: cover;
+  width: 40%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.restaurant-banner:hover {
+  transform: scale(1.02);
+  filter: brightness(1.1);
 }
 
 .restaurant-info {
-  width: 35%;
-  padding-left: 20px;
-  text-align: justify;
+  margin-left: 20px;
+  text-align: left;
+  flex: 1;
 }
 
 .title {
-  font-size: 1.5em;
-  margin: 0;
+  font-size: 2em;
+  font-weight: bold;
   color: rgb(255, 166, 0);
-  text-align: justify;
-}
-
-.description {
-  font-size: 1.1em;
   margin: 10px 0;
-  color: #ffffff;
+  text-align: justify;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .title-food {
-  font-size: 1.5em;
-  margin: 0;
-  color: rgb(255, 166, 0);
   text-align: justify;
 }
 
-.description-food {
-  font-size: 1.1em;
-  margin: 10px 0;
+.title:hover {
+  color: #ff4500;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.description {
+  font-size: 1.2em;
   color: #ffffff;
+  margin-bottom: 5px;
 }
 
 .type {
-  font-size: 1.1em;
-  font-weight: bold;
+  font-size: 1em;
   color: #ff6600;
+  font-weight: bold;
 }
 
 .content {
   display: flex;
-  justify-content: space-between;
-  margin: 20px;
+  flex-direction: row;
+  gap: 30px;
+  margin: 0 auto;
 }
 
 .menu-items {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 2;
 }
 
 .menu-item {
   display: flex;
+  flex-direction: row;
+  background-color: #ffffffc9;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    background-color 0.3s ease;
+  padding: 15px;
   align-items: center;
-  margin-bottom: 15px;
-  padding: 10px;
-  border-bottom: 1px solid orange;
+}
+
+.menu-item:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  background-color: #fafafa;
 }
 
 .menu-item-image {
-  width: 80px;
-  height: 80px;
-  margin-right: 20px;
-  border-radius: 8px;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-right: 15px;
+  transition: transform 0.3s ease;
+}
+
+.menu-item-image:hover {
+  transform: scale(1.1);
 }
 
 .menu-item-details {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.title-food {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
+}
+
+.description-food {
+  font-size: 0.9em;
+  color: #888;
+  word-wrap: break-word;
 }
 
 .add-to-cart-btn {
-  background: linear-gradient(
-      to bottom,
-      rgb(255, 166, 0),
-      rgba(255, 166, 1, 0.668)
-    ),
-    rgba(255, 166, 0, 0.428);
+  width: 40px;
+  height: 40px;
+  background: rgb(255, 166, 0);
   color: white;
+  font-size: 1.5em;
   border: none;
-  padding: 8px 12px;
+  border-radius: 50%;
   cursor: pointer;
-  border-radius: 5px;
-  position: absolute;
-  right: 20px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .add-to-cart-btn:hover {
   background-color: #ff4500;
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .cart {
   flex: 1;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 20px;
-  margin-bottom: 100px;
   background: linear-gradient(
       to bottom,
       rgb(255, 166, 0),
-      rgba(255, 166, 1, 0.109)
+      rgba(255, 166, 1, 0.425)
     ),
-    rgba(255, 166, 0, 0);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  transition: box-shadow 0.3s ease;
+    rgba(255, 166, 0, 0%);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cart:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.cart h3 {
+  font-size: 1.8em;
+  color: #333;
+  margin-bottom: 20px;
 }
 
 .cart-item {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.cart-item-details {
+  font-size: 1.1em;
 }
 
 .remove-btn {
   background-color: transparent;
-  color: #ff4500;
+  color: #ff6600;
   border: none;
   cursor: pointer;
+  font-size: 1em;
   text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.remove-btn:hover {
+  color: #ff4500;
 }
 
 .cart-footer {
   margin-top: 20px;
-  text-align: right;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-footer span {
+  font-size: 1.4em;
+  font-weight: bold;
 }
 
 .cart-footer button {
   background-color: #ff6600;
   color: white;
-  padding: 10px;
+  padding: 10px 20px;
+  font-size: 1.2em;
   border: none;
-  border-radius: 5px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .cart-footer button:hover {
   background-color: #ff4500;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Mobile */
 .cart-toggle-btn {
-  display: block;
   background-color: #ff6600;
   color: white;
   padding: 10px 15px;
   border: none;
-  border-radius: 5px;
-  margin: 20px auto;
+  border-radius: 50px;
+  font-size: 1.2em;
+  margin-top: 20px;
   text-align: center;
-  z-index: 1000;
-}
-
-.mobile-cart {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 80vh;
-  background-color: white;
-  padding: 20px;
-  z-index: 999;
-  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
-  overflow-y: auto;
-  transition: transform 0.3s ease;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-}
-
-.cart-close-btn {
-  background-color: #ff6600;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
-  margin-bottom: 20px;
-  width: 100%;
-  text-align: center;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.cart-close-btn:hover {
+.cart-toggle-btn:hover {
   background-color: #ff4500;
+  transform: scale(1.05);
+}
+
+.cart-enter-active,
+.cart-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.cart-enter,
+.cart-leave-to {
+  opacity: 0;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .restaurant-header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .menu-items {
+    grid-template-columns: 1fr;
+  }
+
+  .cart {
+    display: none;
+  }
+
+  .cart-toggle-btn {
+    display: block;
+  }
 }
 
 .cart-warning-modal {
