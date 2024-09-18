@@ -38,20 +38,18 @@ export default {
           this.restaurantTypes = response.data.types;
         })
         .catch((error) => console.log(error));
-      console.log(this.restaurantTypes.image_path);
+
     },
 
     goToSearchPage(typeName) {
 
       this.searchrest = typeName,
         localStorage.setItem('searchrest', typeName);
-      console.log(typeName),
-        this.$router.push({
-          name: 'search',
-          query: { type: typeName },
-        }).catch((error) => {
-          console.log("Errore nel routing:", error);  // Eventuali errori nel routing
-        });
+      this.$router.push({
+        name: 'search',
+      }).catch((error) => {
+        console.log("Errore nel routing:", error);  // Eventuali errori nel routing
+      });
     }
   },
 
