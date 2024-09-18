@@ -57,13 +57,14 @@ DESKTOP LAYOUT
   }
 
   .card-container {
-    margin-left: 140px;
-    margin-right: 140px;
+    max-width: 100%;
+    margin-left: 90px;
+    margin-right: 90px;
   }
 
   .carousel-wrapper {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 
   .socials-container li {

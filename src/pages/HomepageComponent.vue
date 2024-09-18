@@ -6,6 +6,7 @@ export default {
 
   data() {
     return {
+      currentIndex: 0,
       store,
       restaurantTypes: [],
       searchrest: "",
@@ -50,6 +51,22 @@ export default {
         .catch((error) => {
           console.log("Errore nel routing:", error); // Eventuali errori nel routing
         });
+    },
+
+    nextSlide() {
+      if (this.currentIndex < this.images.length - 1) {
+        this.currentIndex++;
+      } else {
+        this.currentIndex = 0;
+      }
+    },
+
+    prevSlide() {
+      if (this.currentIndex > 0) {
+        this.currentIndex--;
+      } else {
+        this.currentIndex = this.images.length - 1;
+      }
     },
   },
 
@@ -98,6 +115,9 @@ export default {
                 </div>
                 <!-- END Single card -->
               </div>
+
+              <button @click="prevSlide" class="prev">&lt;</button>
+              <button @click="nextSlide" class="next">&gt;</button>
               <!-- Carousel wrapper -->
             </div>
             <!-- END restaurant types -->
