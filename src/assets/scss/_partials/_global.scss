@@ -386,19 +386,11 @@ h4 {
 .prev {
   width: 5%;
   left: 5px;
-  transition: width 0.5s;
 }
 
 .next {
   width: 5%;
   right: 5px;
-  transition: width 0.5s;
-}
-
-.prev:hover,
-.next:hover {
-  width: 10%;
-  height: 10%;
 }
 
 .card-box {

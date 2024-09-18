@@ -54,7 +54,7 @@ export default {
     },
 
     nextSlide() {
-      if (this.currentIndex < this.images.length - 1) {
+      if (this.currentIndex < this.restaurantTypes.length - 1) {
         this.currentIndex++;
       } else {
         this.currentIndex = 0;
@@ -65,7 +65,7 @@ export default {
       if (this.currentIndex > 0) {
         this.currentIndex--;
       } else {
-        this.currentIndex = this.images.length - 1;
+        this.currentIndex = this.restaurantTypes.length - 1;
       }
     },
   },
