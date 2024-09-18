@@ -22,11 +22,11 @@ body::before {
 
 // Header
 header {
-  height: 80px;
+  height: 95px;
   top: 0;
   z-index: 1000;
   background-color: rgb(255, 165, 0);
-
+ position: sticky;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 100px;
   background: linear-gradient(
@@ -43,7 +43,7 @@ header {
   }
 
   .logo {
-    width: 170px;
+    width: 190px;
     transition: transform 0.3s ease;
     &:hover {
       transform: scale(1.05);
