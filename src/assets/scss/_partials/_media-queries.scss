@@ -24,9 +24,13 @@ TABLET LAYOUT
   }
 
   .card-container {
-    grid-template-columns: repeat(2, 1fr);
     margin-left: 40px;
     margin-right: 40px;
+  }
+
+  .carousel-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .card-body:hover {
@@ -53,9 +57,13 @@ DESKTOP LAYOUT
   }
 
   .card-container {
-    grid-template-columns: 1fr 1fr 1fr;
     margin-left: 140px;
     margin-right: 140px;
+  }
+
+  .carousel-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .socials-container li {
