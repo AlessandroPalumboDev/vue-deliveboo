@@ -8,7 +8,7 @@ export default {
     return {
       store,
       restaurantTypes: [],
-      searchrest: '',
+      searchrest: "",
       error: false,
       api: {
         baseUrl: "http://localhost:8000/api/",
@@ -42,17 +42,18 @@ export default {
     },
 
     goToSearchPage(typeName) {
-
-      this.searchrest = typeName,
-        localStorage.setItem('searchrest', typeName);
+      (this.searchrest = typeName),
+        localStorage.setItem("searchrest", typeName);
       console.log(typeName),
-        this.$router.push({
-          name: 'search',
-          query: { type: typeName },
-        }).catch((error) => {
-          console.log("Errore nel routing:", error);  // Eventuali errori nel routing
-        });
-    }
+        this.$router
+          .push({
+            name: "search",
+            query: { type: typeName },
+          })
+          .catch((error) => {
+            console.log("Errore nel routing:", error); // Eventuali errori nel routing
+          });
+    },
   },
 
   created() {
@@ -64,7 +65,7 @@ export default {
 <template>
   <main>
     <section>
-      <div class="container">
+      <div class="container" v-cloak>
         <div class="row">
           <!-- Jumbo section -->
           <div class="jumbo">
@@ -82,9 +83,8 @@ export default {
             <div class="card-container">
               <!-- Single card -->
               <div v-for="type in restaurantTypes" :key="type.id" class="card">
-                <div class="d-flex justify-center">
+                <div class="card-box">
                   <div class="card-body" @click="goToSearchPage(type.name)">
-
                     <img :src="imageUrlDefault + type.image_path" alt="" />
 
                     <p>{{ type.name }}</p>
@@ -110,7 +110,10 @@ export default {
                   <p>Vedrai in quali ristoranti lo puoi trovare</p>
                 </div>
                 <div class="small-card">
-                  <img src="../assets/img/small-card/shopping-cart.svg" alt="" />
+                  <img
+                    src="../assets/img/small-card/shopping-cart.svg"
+                    alt=""
+                  />
                   <h4>Metti ciò che desideri nel carrello</h4>
                   <p>Puoi scegliere tra diversi metodi di pagamento</p>
                 </div>

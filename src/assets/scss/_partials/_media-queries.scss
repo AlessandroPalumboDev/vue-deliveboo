@@ -25,6 +25,8 @@ TABLET LAYOUT
 
   .card-container {
     grid-template-columns: repeat(2, 1fr);
+    gap: 0px;
+    padding: 0px;
   }
 
   .card-body:hover {
@@ -54,12 +56,14 @@ DESKTOP LAYOUT
     grid-template-columns: repeat(3, 1fr);
   }
 
+  .card-body {
+    width: 60%;
+  }
+
   .socials-container li {
     width: 15%;
   }
-}
 
-@media (min-width: 768px) {
   .restaurant-header {
     flex-direction: row;
     align-items: flex-start;
@@ -77,14 +81,14 @@ DESKTOP LAYOUT
   }
 
   .title {
-    font-size: 3em; 
+    font-size: 3em;
   }
 
   .description {
-    font-size: 1.5em; 
+    font-size: 1.5em;
   }
 
   .type {
-    font-size: 1.5em; 
+    font-size: 1.5em;
   }
 }

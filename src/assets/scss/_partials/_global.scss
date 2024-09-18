@@ -331,11 +331,9 @@ h4 {
 }
 
 .card-container {
-  margin-top: 20px;
+  margin-top: 40px;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 20px;
-  padding: 20px;
 
   img {
     width: 100%;
@@ -350,20 +348,27 @@ h4 {
   }
 }
 
+.card {
+  margin-bottom: 40px;
+}
+
+.card-box {
+  display: flex;
+  justify-content: center;
+}
+
 .card-body {
-  width: 60%;
+  width: 80%;
   background-color: rgba(0, 0, 0, 0.5);
   padding-bottom: 10px;
   text-align: center;
   border-radius: 10px;
-  transition-property: width, margin;
-  transition-duration: 0.225s;
-  transition-delay: 0.03s;
+  transition: transform 1s ease-in-out, background-color 0.3s ease-in-out;
+  transition-delay: 0.1s;
 
   &:hover {
     background-color: rgba(0, 0, 0, 1);
-    width: 62%;
-    margin-bottom: -5px;
+    transform: scale(1.01);
   }
 }
 // END Jumbo section
@@ -468,72 +473,64 @@ footer {
   margin-bottom: 100px;
   display: flex;
   justify-content: center;
-  
- .card-sd {
-  width: 35vw;
-  height: 30vw;
-  margin: 30px 50px;
-  border-radius: 5px;
-  overflow: hidden;
-  box-shadow: 0rem .5rem 1rem 0rem rgba(0, 0, 0, 0.878);
-  background-color: #00000057;
-  position: relative;
-  text-align: start;
-  transition: transform 0.225s ease, background-color 0.225s ease;
 
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.819);
-    transform: scale(1.05);
-    .btn-rest-sd{
-        display: inline-block
+  .card-sd {
+    width: 35vw;
+    height: 30vw;
+    margin: 30px 50px;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0rem 0.5rem 1rem 0rem rgba(0, 0, 0, 0.878);
+    background-color: #00000057;
+    position: relative;
+    text-align: start;
+    transition: transform 0.225s ease, background-color 0.225s ease;
 
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.819);
+      transform: scale(1.05);
+      .btn-rest-sd {
+        display: inline-block;
+      }
+    }
+    .block-sd {
+      display: block;
+    }
+    .inline-sd {
+      display: inline;
+    }
+    .sd-card-name {
+      position: absolute;
+      top: 40px;
+      padding: 20px 0px;
+      width: 100%;
+      background-color: #ffffff82;
+      color: #1b1b1b;
+    }
+    .card-text-sd {
+      padding: 10px 10px;
+    }
+    img {
+      width: 100%;
+      height: 70%;
+      object-fit: cover;
+    }
+    .btn-rest-sd {
+      position: absolute;
+      display: none;
+      right: 10px;
+      bottom: 10px;
+      transition: transform 0.225s ease, background-color 0.225s ease;
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.819);
+        transform: scale(1.05);
+      }
+      background: linear-gradient(
+        to bottom,
+        rgb(255, 165, 0),
+        rgba(184, 123, 9, 0.812)
+      );
     }
   }
-  .block-sd{
-    display: block;
-  }
-  .inline-sd{
-    display: inline;
-  }
-  .sd-card-name{
-    position: absolute;
-    top: 40px;
-    padding: 20px 0px;
-    width: 100%;
-    background-color: #ffffff82;
-    color: #1b1b1b;
-  }
-  .card-text-sd{
-padding: 10px 10px;
-
-  }
-  img{
-    width: 100%;
-    height: 70%;
-    object-fit:cover;
-  }
-  .btn-rest-sd{
-position: absolute;
-display: none;
-right: 10px;
-bottom: 10px;
-transition: transform 0.225s ease, background-color 0.225s ease;
-&:hover {
-  background-color: rgba(0, 0, 0, 0.819);
-  transform: scale(1.05);
-}
-background: linear-gradient(
-  to bottom,
-  rgb(255, 165, 0),
-  rgba(184, 123, 9, 0.812)
-) 
-
-  }
-}
 }
 // end restaurant search
-
-::-webkit-scrollbar {
- display: none;
-}
-
