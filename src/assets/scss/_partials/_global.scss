@@ -26,13 +26,13 @@ header {
   top: 0;
   z-index: 1000;
   background-color: rgb(255, 165, 0);
- position: sticky;
+  position: sticky;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 100px;
   background: linear-gradient(
       to bottom,
       rgb(255, 166, 0),
-      rgba(255, 166, 1, 0.425)
+      rgba(255, 166, 1, 0.94)
     ),
     rgba(255, 166, 0, 0);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
