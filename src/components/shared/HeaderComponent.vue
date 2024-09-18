@@ -108,6 +108,7 @@ export default {
 </template>
 
 <style scoped>
+
 .cart-count {
   background-color: red;
   color: white;
@@ -119,18 +120,7 @@ export default {
   right: 15px;
 }
 
-.cart {
-  position: absolute;
-  top: 60px;
-  right: 20px;
-  width: 300px;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  display: none;
-}
+
 
 .cart-active {
   display: block;
