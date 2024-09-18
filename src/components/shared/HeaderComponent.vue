@@ -72,6 +72,15 @@ export default {
       </div>
     </nav>
 
+    <!-- MODAL -->
+    <div :class="['modal', isHidden ? '' : 'modal-active']" ref="modal">
+      <div class="modal-header">
+        <a href="http://localhost:8000/">
+          <h3>Area Riservata</h3>
+        </a>
+      </div>
+    </div>
+
     <!-- CARRELLO -->
     <div :class="['cart', isCartActive ? 'cart-active' : '']">
       <h3>Il tuo Carrello</h3>
