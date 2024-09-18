@@ -8,6 +8,7 @@ export default {
     return {
       store,
       restaurants: [],
+      rest_show: [],
       rest_ID: null,
       error: false,
       api: {
@@ -49,10 +50,19 @@ export default {
         console.log("Errore nel routing:", error);  // Eventuali errori nel routing
       });
     },
-    getMenu(restID) {
+    getMenu(rest) {
 
-      this.rest_ID = restID,
-        localStorage.setItem('rest_ID', restID);
+      // id
+      let restID = rest.id;
+
+      this.rest_ID = restID;
+      localStorage.setItem('rest_ID', restID);
+
+      // obj
+      let restaurant = rest;
+
+      this.rest_show = restaurant;
+      localStorage.setItem('rest_show', JSON.stringify(restaurant));
 
       this.$router.push({
         name: 'restaurantMenu',
