@@ -6,6 +6,7 @@ export default {
 
   data() {
     return {
+      currentIndex: 0,
       store,
       restaurantTypes: [],
       searchrest: "",
@@ -38,19 +39,35 @@ export default {
           this.restaurantTypes = response.data.types;
         })
         .catch((error) => console.log(error));
-
     },
 
     goToSearchPage(typeName) {
+      (this.searchrest = typeName),
+        localStorage.setItem("searchrest", typeName);
+      this.$router
+        .push({
+          name: "search",
+        })
+        .catch((error) => {
+          console.log("Errore nel routing:", error); // Eventuali errori nel routing
+        });
+    },
 
-      this.searchrest = typeName,
-        localStorage.setItem('searchrest', typeName);
-      this.$router.push({
-        name: 'search',
-      }).catch((error) => {
-        console.log("Errore nel routing:", error);  // Eventuali errori nel routing
-      });
-    }
+    nextSlide() {
+      if (this.currentIndex < this.images.length - 1) {
+        this.currentIndex++;
+      } else {
+        this.currentIndex = 0;
+      }
+    },
+
+    prevSlide() {
+      if (this.currentIndex > 0) {
+        this.currentIndex--;
+      } else {
+        this.currentIndex = this.images.length - 1;
+      }
+    },
   },
 
   created() {
@@ -78,17 +95,30 @@ export default {
 
             <!-- Restaurant types -->
             <div class="card-container">
-              <!-- Single card -->
-              <div v-for="type in restaurantTypes" :key="type.id" class="card">
-                <div class="card-box">
-                  <div class="card-body" @click="goToSearchPage(type.name)">
-                    <img :src="imageUrlDefault + type.image_path" alt="" />
-
-                    <p>{{ type.name }}</p>
+              <!-- Carousel wrapper -->
+              <div
+                class="carousel-wrapper"
+                :style="{ transform: `translateX(-${currentIndex * 100}%)` }"
+              >
+                <!-- Single card -->
+                <div
+                  v-for="type in restaurantTypes"
+                  :key="type.id"
+                  class="card"
+                >
+                  <div class="card-box">
+                    <div class="card-body" @click="goToSearchPage(type.name)">
+                      <img :src="imageUrlDefault + type.image_path" alt="" />
+                      <p>{{ type.name }}</p>
+                    </div>
                   </div>
                 </div>
+                <!-- END Single card -->
               </div>
-              <!-- END Single card -->
+
+              <button @click="prevSlide" class="prev">&lt;</button>
+              <button @click="nextSlide" class="next">&gt;</button>
+              <!-- Carousel wrapper -->
             </div>
             <!-- END restaurant types -->
 
@@ -107,7 +137,10 @@ export default {
                   <p>Vedrai in quali ristoranti lo puoi trovare</p>
                 </div>
                 <div class="small-card">
-                  <img src="../assets/img/small-card/shopping-cart.svg" alt="" />
+                  <img
+                    src="../assets/img/small-card/shopping-cart.svg"
+                    alt=""
+                  />
                   <h4>Metti ciò che desideri nel carrello</h4>
                   <p>Puoi scegliere tra diversi metodi di pagamento</p>
                 </div>

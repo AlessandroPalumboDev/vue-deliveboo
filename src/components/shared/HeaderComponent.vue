@@ -46,14 +46,13 @@ export default {
     <nav class="navbar">
       <!-- LOGO -->
       <div class="navbar-left">
-        <a class="nav-link">
-          <router-link :to="{ name: 'home' }"></router-link>
+        <router-link :to="{ name: 'home' }" class="nav-link">
           <img
             src="../../assets/img/header/logo3.png"
             alt="Logo"
             class="logo"
           />
-        </a>
+        </router-link>
       </div>
 
       <!-- BOTTONI -->
