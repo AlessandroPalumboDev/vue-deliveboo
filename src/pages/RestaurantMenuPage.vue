@@ -141,9 +141,9 @@ export default {
         <span v-for="type in this.rest.types"
           ><span class="type">{{ type.name + " " }}</span></span
         >
-        <div v-for="type in this.rest.types">
+        <!-- <div v-for="type in this.rest.types">
           <span class="description">{{ type.description }}</span>
-        </div>
+        </div> -->
       </div>
     </section>
 
