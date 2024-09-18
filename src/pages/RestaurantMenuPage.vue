@@ -1,40 +1,27 @@
 <script>
 import { store } from "../store.js";
 import axios from "axios";
+
 export default {
   data() {
     return {
-      // restaurant: {
-      //   name: "Burger King",
-      //   description: "Fast food di alta qualità",
-      //   type: "Fast Food",
-
-      //   menuItems: [
-      //     { name: "Whopper", description: "Il classico Whopper", price: 7.99 },
-      //     {
-      //       name: "Chicken Burger",
-      //       description: "Pollo alla griglia",
-      //       price: 6.49,
-      //     },
-      //     {
-      //       name: "Coca-Cola",
-      //       description: "Bevanda rinfrescante",
-      //       price: 2.5,
-      //     },
-      //   ],
-
-      // },
       restaurantMenu: [],
+      currentRestaurantId: null,
+      showCartWarning: false,
+      pendingItem: null,
       api: {
         baseUrl: "http://localhost:8000/api/",
         endPoints: {
           restaurant: "restaurants/",
-          plate: '/plates'
+          plate: "/plates",
         },
       },
       isCartActive: false,
       isMobile: false,
       imageUrlDefault: "http://localhost:8000/storage/",
+      restaurantName: "", // Nome del ristorante
+      restaurantDescription: "", // Descrizione del ristorante
+      restaurantType: "", // Tipo di ristorante
     };
   },
   computed: {
@@ -49,7 +36,14 @@ export default {
   },
   methods: {
     addToCart(item) {
-      store.addToCart(item);
+      const restaurantId = this.currentRestaurantId;
+
+      const result = store.addToCart(item, restaurantId);
+      // MODIFICA CONDIZIONE PER LA VISUALIZZAZIONE
+      if (!result) {
+        this.showCartWarning = true;
+        this.pendingItem = item;
+      }
     },
     removeFromCart(item) {
       store.removeFromCart(item);
@@ -61,26 +55,53 @@ export default {
       this.isCartActive = !this.isCartActive;
     },
     getMenuRest() {
-      // Componing the url to make the API call
-      const valore_id = localStorage.getItem('rest_ID');
+      const valore_id = localStorage.getItem("rest_ID");
+      this.currentRestaurantId = valore_id;
 
-      const url = this.api.baseUrl + this.api.endPoints.restaurant + valore_id + this.api.endPoints.plate;
+      const url =
+        this.api.baseUrl +
+        this.api.endPoints.restaurant +
+        valore_id +
+        this.api.endPoints.plate;
 
-      // API call
       axios
         .get(url)
         .then((response) => {
-          this.restaurantMenu = response.data.plates
-
+          this.restaurantMenu = response.data.plates;
+          this.restaurantName = response.data.restaurant.name;
+          this.restaurantDescription = response.data.restaurant.description;
+          this.restaurantType = response.data.restaurant.type;
         })
         .catch((error) => console.log(error));
+    },
 
-    }
+    confirmClearCart() {
+      store.clearCart(); // Svuota il carrello nel tuo store
+      this.$nextTick(() => {
+        // Aggiorna la UI dopo che il carrello è stato svuotato
+        store.addToCart(this.pendingItem, this.currentRestaurantId);
+        this.showCartWarning = false;
+        this.pendingItem = null;
+      });
+    },
+    cancelClearCart() {
+      this.showCartWarning = false;
+      this.pendingItem = null;
+    },
+    watch: {
+      cart(newCart) {
+        // Ricarica l'interfaccia utente se necessario
+        this.$forceUpdate();
+      },
+    },
+
+    goBack() {
+      this.$router.back();
+    },
   },
   mounted() {
     this.checkIfMobile();
     window.addEventListener("resize", this.checkIfMobile);
-    // Sincronizza il carrello quando il componente è montato
     store.syncCartFromStorage();
     this.getMenuRest();
   },
@@ -91,27 +112,48 @@ export default {
 </script>
 
 <template>
-
   <div class="restaurant-menu-page">
+    <!-- Avviso di cambio ristorante -->
+    <div v-if="showCartWarning" class="cart-warning-modal">
+      <p>
+        Hai già elementi nel carrello di un altro ristorante. Vuoi svuotare il
+        carrello?
+      </p>
+      <button @click="confirmClearCart">Sì, svuota il carrello</button>
+      <button @click="cancelClearCart">No, mantieni il carrello</button>
+    </div>
+
     <button class="back-btn" @click="goBack">← Torna Indietro</button>
 
     <section class="restaurant-header">
-      <img src="https://picsum.photos/600/400" alt="Banner del ristorante" class="restaurant-banner" />
+      <img
+        src="https://picsum.photos/600/400"
+        alt="Banner del ristorante"
+        class="restaurant-banner"
+      />
       <div class="restaurant-info">
-        <h1 class="title"></h1>
-        <p class="description"></p>
-        <p class="type"></p>
+        <h1 class="title">{{ restaurantName }}</h1>
+        <p class="description">{{ restaurantDescription }}</p>
+        <p class="type">{{ restaurantType }}</p>
       </div>
     </section>
 
     <div class="content">
       <div class="menu-items">
         <h3 class="title">Menu</h3>
-        <div v-for="item in this.restaurantMenu" :key="index" class="menu-item">
-          <img :src="imageUrlDefault + item.cover_image" alt="Immagine del piatto" class="menu-item-image" />
+        <div
+          v-for="(item, index) in restaurantMenu"
+          :key="index"
+          class="menu-item"
+        >
+          <img
+            :src="imageUrlDefault + item.cover_image"
+            alt="Immagine del piatto"
+            class="menu-item-image"
+          />
           <div class="menu-item-details">
             <h4 class="title-food">{{ item.name }}</h4>
-            <p class="description-food">{{ item.price }}</p>
+            <p class="description-food">€{{ item.price }}</p>
             <span class="description-food">{{ item.ingredients }}</span>
           </div>
           <button @click="addToCart(item)" class="add-to-cart-btn">
@@ -147,12 +189,7 @@ export default {
   </div>
 </template>
 
-<style scoped>
-/* CSS simile a quello originale */
-</style>
-
-<!-- CSS ANCORA DA SISTEMARE E SPOSTARE -->
-<style scoped>
+<style lang="scss" scoped>
 .restaurant-menu-page {
   font-family: Arial, sans-serif;
   color: #333;
@@ -160,9 +197,11 @@ export default {
 
 .back-btn {
   margin: 20px;
-  background: linear-gradient(to bottom,
+  background: linear-gradient(
+      to bottom,
       rgb(255, 166, 0),
-      rgba(255, 166, 1, 0.668)),
+      rgba(255, 166, 1, 0.668)
+    ),
     rgba(255, 166, 0, 0.428);
   color: white;
   border: none;
@@ -257,9 +296,11 @@ export default {
 }
 
 .add-to-cart-btn {
-  background: linear-gradient(to bottom,
+  background: linear-gradient(
+      to bottom,
       rgb(255, 166, 0),
-      rgba(255, 166, 1, 0.668)),
+      rgba(255, 166, 1, 0.668)
+    ),
     rgba(255, 166, 0, 0.428);
   color: white;
   border: none;
@@ -283,9 +324,11 @@ export default {
   position: sticky;
   top: 20px;
   margin-bottom: 100px;
-  background: linear-gradient(to bottom,
+  background: linear-gradient(
+      to bottom,
       rgb(255, 166, 0),
-      rgba(255, 166, 1, 0.109)),
+      rgba(255, 166, 1, 0.109)
+    ),
     rgba(255, 166, 0, 0);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   transition: box-shadow 0.3s ease;
@@ -364,6 +407,34 @@ export default {
 }
 
 .cart-close-btn:hover {
+  background-color: #ff4500;
+}
+
+.cart-warning-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(255, 166, 0);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+.cart-warning-modal button {
+  background-color: #ff6600;
+  color: white;
+  border: none;
+  margin: 5px;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.cart-warning-modal button:hover {
   background-color: #ff4500;
 }
 </style>

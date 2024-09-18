@@ -28,6 +28,12 @@ export default {
     modalAppearance() {
       this.isHidden = !this.isHidden;
     },
+    removeFromCart(item) {
+      store.removeFromCart(item);
+    },
+    removeAllFromCart(item) {
+      store.removeAllFromCart(item); // Rimozione completa di un articolo
+    },
   },
   mounted() {
     store.syncCartFromStorage();
@@ -93,12 +99,19 @@ export default {
             <!-- Prezzo moltiplicato per la quantità -->
             <span>€{{ (item.price * item.quantity).toFixed(2) }}</span>
           </div>
+          <!-- Bottone per rimuovere singolarmente o completamente l'articolo -->
+          <button @click="removeFromCart(item)" class="remove-btn">
+            Rimuovi 1
+          </button>
+          <button @click="removeAllFromCart(item)" class="remove-btn">
+            Rimuovi tutto
+          </button>
         </li>
       </ul>
 
-      <div class="cart-footer" v-if="cart.length > 0">
+      <div class="cart-footer">
         <!-- Totale del carrello -->
-        <p>Totale: €{{ cartTotal }}</p>
+        <p v-if="cart.length > 0">Totale: €{{ cartTotal }}</p>
         <button @click="toggleCart" class="cart-close-btn">Chiudi</button>
       </div>
 
@@ -178,5 +191,13 @@ export default {
   position: absolute;
   top: 5px;
   right: 15px;
+}
+
+.remove-btn {
+  background-color: transparent;
+  color: #ff4500;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
 }
 </style>
