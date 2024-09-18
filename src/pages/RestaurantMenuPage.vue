@@ -25,6 +25,7 @@ export default {
 
       // },
       restaurantMenu: [],
+      rest: {},
       api: {
         baseUrl: "http://localhost:8000/api/",
         endPoints: {
@@ -48,18 +49,28 @@ export default {
     },
   },
   methods: {
+
     addToCart(item) {
       store.addToCart(item);
     },
+
     removeFromCart(item) {
       store.removeFromCart(item);
     },
+
     checkIfMobile() {
       this.isMobile = window.innerWidth <= 768;
     },
+
     toggleCart() {
       this.isCartActive = !this.isCartActive;
     },
+
+    getRest() {
+      const Restaurant = JSON.parse(localStorage.getItem('rest_show'));
+      this.rest = Restaurant;
+    },
+
     getMenuRest() {
       // Componing the url to make the API call
       const valore_id = localStorage.getItem('rest_ID');
@@ -79,10 +90,16 @@ export default {
   },
   mounted() {
     this.checkIfMobile();
+
     window.addEventListener("resize", this.checkIfMobile);
+
     // Sincronizza il carrello quando il componente è montato
+
     store.syncCartFromStorage();
+
     this.getMenuRest();
+
+    this.getRest();
   },
   beforeDestroy() {
     window.removeEventListener("resize", this.checkIfMobile);
@@ -96,11 +113,16 @@ export default {
     <button class="back-btn" @click="goBack">← Torna Indietro</button>
 
     <section class="restaurant-header">
-      <img src="https://picsum.photos/600/400" alt="Banner del ristorante" class="restaurant-banner" />
+      <img :src="this.imageUrlDefault + this.rest.image_path" alt="Banner del ristorante" class="restaurant-banner" />
       <div class="restaurant-info">
-        <h1 class="title"></h1>
-        <p class="description"></p>
-        <p class="type"></p>
+        <h1 class="title">{{ this.rest.business_name }}</h1>
+        <span v-for="rest in this.rest.types">
+          <span class="type"> {{ rest.name + ' ' }}</span>
+        </span>
+        <div v-for="rest in this.rest.types">
+          <span class="description"> {{ rest.description }}</span>
+        </div>
+        <!-- <p class="type">{{ this.rest.types }}</p> -->
       </div>
     </section>
 
