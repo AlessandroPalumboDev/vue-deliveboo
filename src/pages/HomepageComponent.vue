@@ -63,7 +63,7 @@ export default {
 <template>
   <main>
     <section>
-      <div class="container" v-cloak>
+      <div class="container">
         <div class="row">
           <!-- Jumbo section -->
           <div class="jumbo">
