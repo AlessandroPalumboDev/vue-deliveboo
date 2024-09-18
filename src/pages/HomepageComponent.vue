@@ -8,6 +8,7 @@ export default {
     return {
       store,
       restaurantTypes: [],
+      searchrest: '',
       error: false,
       api: {
         baseUrl: "http://localhost:8000/api/",
@@ -42,14 +43,15 @@ export default {
 
     goToSearchPage(typeName) {
 
-      this.store.searchrest = typeName
-      console.log(typeName)
-      this.$router.push({
-        name: 'search',
-        query: { type: typeName }
-      }).catch((error) => {
-        console.log("Errore nel routing:", error);  // Eventuali errori nel routing
-      });
+      this.searchrest = typeName,
+        localStorage.setItem('searchrest', typeName);
+      console.log(typeName),
+        this.$router.push({
+          name: 'search',
+          query: { type: typeName },
+        }).catch((error) => {
+          console.log("Errore nel routing:", error);  // Eventuali errori nel routing
+        });
     }
   },
 

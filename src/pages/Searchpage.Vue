@@ -27,10 +27,10 @@ export default {
   },
 
   methods: {
-    getRestaurantTypes() {
+    getRestaurant() {
       // Componing the url to make the API call
-      const url = this.api.baseUrl + this.api.endPoints.restaurant + this.store.searchrest;
-
+      const valore = localStorage.getItem('searchrest');
+      const url = this.api.baseUrl + this.api.endPoints.restaurant + valore;
       // API call
       axios
         .get(url)
@@ -44,8 +44,8 @@ export default {
     },
   },
 
-  created() {
-    this.getRestaurantTypes();
+  mounted() {
+    this.getRestaurant();
   },
 };
 </script>

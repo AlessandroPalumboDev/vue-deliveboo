@@ -4,5 +4,5 @@ export const store = reactive({
     
     endpoints: {
     },
-    searchrest:null,
+    
 });
