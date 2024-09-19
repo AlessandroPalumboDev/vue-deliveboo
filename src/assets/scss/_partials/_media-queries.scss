@@ -23,14 +23,6 @@ TABLET LAYOUT
     right: 0;
   }
 
-  .logo {
-    margin-left: 25px;
-  }
-
-  .logo3 {
-    margin-right: 20px;
-  }
-
   .card-container {
     margin-left: 40px;
     margin-right: 40px;
@@ -61,7 +53,8 @@ TABLET LAYOUT
     width: 25%;
   }
 
-  // Restaurant media
+  // restaurant media
+
   .card-sd {
     width: 70vw; /* Adattamento per tablet */
     height: 60vw;
@@ -90,22 +83,6 @@ DESKTOP LAYOUT
 
   .cart-active {
     right: 0;
-  }
-
-  .logo {
-    margin-left: 60px;
-  }
-
-  .logo2 {
-    margin-right: 20px;
-  }
-
-  .logo3 {
-    margin-right: 60px;
-  }
-
-  .nav-link-register {
-    margin-right: 0px;
   }
 
   .card-container {
@@ -167,7 +144,7 @@ DESKTOP LAYOUT
     font-size: 1.5em;
   }
 
-  // Restaurant media
+  // restaurant media
   .card-sd {
     width: 30vw; /* Adattamento per desktop */
     height: 25vw;

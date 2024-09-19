@@ -43,7 +43,7 @@ header {
   }
 
   .logo {
-    width: 190px;
+    width: 200px;
     transition: transform 0.3s ease;
     &:hover {
       transform: scale(1.05);
@@ -51,7 +51,7 @@ header {
   }
 
   .logo2 {
-    width: 70px;
+    width: 50px;
     transition: transform 0.3s ease;
     &:hover {
       transform: scale(1.05);
@@ -59,7 +59,7 @@ header {
   }
 
   .logo3 {
-    width: 35px;
+    width: 25px;
     transition: transform 0.3s ease;
     &:hover {
       transform: scale(1.05);
@@ -77,11 +77,14 @@ header {
     text-decoration: none;
     font-size: 28px;
     font-weight: bold;
-    margin: 15px;
     position: relative;
 
     &:hover {
       color: #350d01;
+    }
+
+    .logo2 {
+      bottom: 3px;
     }
   }
 
@@ -91,13 +94,18 @@ header {
     text-decoration: none;
     font-size: 28px;
     font-weight: bold;
-    margin: 15px;
     position: relative;
+    bottom: 5px;
+    margin-right: 10px;
 
     background-color: transparent;
     &:hover {
       color: #350d01;
     }
+  }
+
+  .img-container {
+    padding-left: 15px;
   }
 
   // Modal
