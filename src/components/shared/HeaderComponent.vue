@@ -44,18 +44,20 @@ export default {
 <template>
   <header class="header">
     <nav class="navbar">
-      <!-- LOGO -->
+      <!-- Logo -->
       <div class="navbar-left">
-        <router-link :to="{ name: 'home' }" class="nav-link">
-          <img
-            src="../../assets/img/header/logo3.png"
-            alt="Logo"
-            class="logo"
-          />
-        </router-link>
+        <div class="img-container">
+          <router-link :to="{ name: 'home' }" class="nav-link">
+            <img
+              src="../../assets/img/header/logo3.png"
+              alt="DeliveBoo Logo"
+              class="logo"
+            />
+          </router-link>
+        </div>
       </div>
 
-      <!-- BOTTONI -->
+      <!-- Bottoni -->
       <div class="navbar-right">
         <a href="#" class="nav-link" @click="toggleCart">
           <img
@@ -78,7 +80,7 @@ export default {
       </div>
     </nav>
 
-    <!-- MODAL -->
+    <!-- Modal -->
     <div :class="['modal', isHidden ? '' : 'modal-active']" ref="modal">
       <div class="modal-header">
         <a href="http://localhost:8000/">
@@ -87,7 +89,7 @@ export default {
       </div>
     </div>
 
-    <!-- CARRELLO -->
+    <!-- Carrello -->
     <div :class="['cart', isCartActive ? 'cart-active' : '']">
       <h3>Il tuo Carrello</h3>
       <ul class="cart-items">
@@ -120,7 +122,6 @@ export default {
 </template>
 
 <style scoped>
-
 .cart-count {
   background-color: red;
   color: white;
@@ -131,8 +132,6 @@ export default {
   top: 5px;
   right: 15px;
 }
-
-
 
 .cart-active {
   display: block;

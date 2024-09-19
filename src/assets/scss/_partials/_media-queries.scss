@@ -18,9 +18,17 @@ TABLET LAYOUT
     top: 80px;
     border-top-left-radius: 20px;
   }
- 
+
   .cart-active {
     right: 0;
+  }
+
+  .logo {
+    margin-left: 25px;
+  }
+
+  .logo3 {
+    margin-right: 20px;
   }
 
   .card-container {
@@ -53,8 +61,7 @@ TABLET LAYOUT
     width: 25%;
   }
 
-  // restaurant media
-
+  // Restaurant media
   .card-sd {
     width: 70vw; /* Adattamento per tablet */
     height: 60vw;
@@ -69,7 +76,6 @@ TABLET LAYOUT
   .card-text-sd {
     padding: 10px;
   }
-
 }
 
 /***************
@@ -84,6 +90,22 @@ DESKTOP LAYOUT
 
   .cart-active {
     right: 0;
+  }
+
+  .logo {
+    margin-left: 60px;
+  }
+
+  .logo2 {
+    margin-right: 20px;
+  }
+
+  .logo3 {
+    margin-right: 60px;
+  }
+
+  .nav-link-register {
+    margin-right: 0px;
   }
 
   .card-container {
@@ -145,7 +167,7 @@ DESKTOP LAYOUT
     font-size: 1.5em;
   }
 
-  // restaurant media 
+  // Restaurant media
   .card-sd {
     width: 30vw; /* Adattamento per desktop */
     height: 25vw;
@@ -160,5 +182,4 @@ DESKTOP LAYOUT
   .card-text-sd {
     padding: 15px;
   }
-
 }

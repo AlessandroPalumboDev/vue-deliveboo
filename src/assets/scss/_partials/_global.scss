@@ -22,8 +22,7 @@ body::before {
 
 // Header
 header {
-  height: 95px;
-  top: 0;
+  height: 100px;
   z-index: 1000;
   background-color: rgb(255, 165, 0);
   position: sticky;
@@ -42,16 +41,34 @@ header {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
   }
 
-  .logo {
-    width: 190px;
-    transition: transform 0.3s ease;
-    &:hover {
-      transform: scale(1.05);
+  .navbar-left {
+    width: 50%;
+    height: 100px;
+  }
+
+  .navbar-right {
+    width: 50%;
+    height: 100px;
+    text-align: end;
+    top: 10px;
+  }
+
+  .img-container {
+    width: 100%;
+
+    img {
+      width: 200px;
+      margin-left: 10px;
+      top: 5px;
+      transition: transform 0.3s ease;
+      &:hover {
+        transform: scale(1.05);
+      }
     }
   }
 
   .logo2 {
-    width: 70px;
+    width: 40px;
     transition: transform 0.3s ease;
     &:hover {
       transform: scale(1.05);
@@ -59,7 +76,7 @@ header {
   }
 
   .logo3 {
-    width: 35px;
+    width: 20px;
     transition: transform 0.3s ease;
     &:hover {
       transform: scale(1.05);
@@ -77,7 +94,6 @@ header {
     text-decoration: none;
     font-size: 28px;
     font-weight: bold;
-    margin: 15px;
     position: relative;
 
     &:hover {
@@ -91,7 +107,8 @@ header {
     text-decoration: none;
     font-size: 28px;
     font-weight: bold;
-    margin: 15px;
+    margin-top: 15px;
+    margin-right: 10px;
     position: relative;
 
     background-color: transparent;
@@ -533,11 +550,10 @@ footer {
       .btn-rest-sd {
         display: inline-block;
       }
-      .sd-card-name{
+      .sd-card-name {
         background-color: #1b1b1b;
-        color:#ffffff
+        color: #ffffff;
       }
-
     }
     .block-sd {
       display: block;
