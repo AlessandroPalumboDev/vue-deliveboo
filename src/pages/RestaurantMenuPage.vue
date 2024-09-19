@@ -49,6 +49,9 @@ export default {
     removeFromCart(item) {
       store.removeFromCart(item);
     },
+    checkCart() {
+      store.checkCart();
+    },
     checkIfMobile() {
       this.isMobile = window.innerWidth <= 768;
     },
@@ -176,7 +179,10 @@ export default {
               <span>{{ item.name }} (x{{ item.quantity }})</span>
               <span>€{{ (item.price * item.quantity).toFixed(2) }}</span>
             </div>
-            <button @click="removeFromCart(item)" class="remove-btn">
+            <button
+              @click="removeFromCart(item), checkCart()"
+              class="remove-btn"
+            >
               Rimuovi
             </button>
           </li>

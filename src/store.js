@@ -5,6 +5,7 @@ export const store = reactive({
   currentRestaurant: localStorage.getItem("currentRestaurant") || null, // Memorizza l'ID del ristorante corrente
 
   addToCart(item, restaurantId) {
+    this.checkCart();
     if (this.currentRestaurant && this.currentRestaurant !== restaurantId) {
       // Se il ristorante corrente è diverso da quello del carrello, mostra avviso
       return false;
@@ -33,7 +34,15 @@ export const store = reactive({
     } else {
       this.cart = this.cart.filter((cartItem) => cartItem.name !== item.name);
     }
+
     this.updateLocalStorage();
+  },
+
+  checkCart() {
+    if (this.cart.length < 1) {
+      this.currentRestaurant = null;
+      console.log(this.currentRestaurant);
+    }
   },
 
   removeAllFromCart(item) {
@@ -41,6 +50,7 @@ export const store = reactive({
     this.updateLocalStorage();
   },
 
+  // Svuota il carrello
   clearCart() {
     this.cart = [];
     this.currentRestaurant = null;
