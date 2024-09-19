@@ -22,7 +22,8 @@ body::before {
 
 // Header
 header {
-  height: 100px;
+  height: 95px;
+  top: 0;
   z-index: 1000;
   background-color: rgb(255, 165, 0);
   position: sticky;
@@ -41,34 +42,16 @@ header {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
   }
 
-  .navbar-left {
-    width: 50%;
-    height: 100px;
-  }
-
-  .navbar-right {
-    width: 50%;
-    height: 100px;
-    text-align: end;
-    top: 10px;
-  }
-
-  .img-container {
-    width: 100%;
-
-    img {
-      width: 200px;
-      margin-left: 10px;
-      top: 5px;
-      transition: transform 0.3s ease;
-      &:hover {
-        transform: scale(1.05);
-      }
+  .logo {
+    width: 190px;
+    transition: transform 0.3s ease;
+    &:hover {
+      transform: scale(1.05);
     }
   }
 
   .logo2 {
-    width: 40px;
+    width: 70px;
     transition: transform 0.3s ease;
     &:hover {
       transform: scale(1.05);
@@ -76,7 +59,7 @@ header {
   }
 
   .logo3 {
-    width: 20px;
+    width: 35px;
     transition: transform 0.3s ease;
     &:hover {
       transform: scale(1.05);
@@ -94,6 +77,7 @@ header {
     text-decoration: none;
     font-size: 28px;
     font-weight: bold;
+    margin: 15px;
     position: relative;
 
     &:hover {
@@ -107,8 +91,7 @@ header {
     text-decoration: none;
     font-size: 28px;
     font-weight: bold;
-    margin-top: 15px;
-    margin-right: 10px;
+    margin: 15px;
     position: relative;
 
     background-color: transparent;
