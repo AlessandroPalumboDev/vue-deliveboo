@@ -176,8 +176,8 @@ export default {
         <ul v-if="cart.length > 0">
           <li v-for="(item, index) in cart" :key="index" class="cart-item">
             <div class="cart-item-details">
-              <span>{{ item.name }} (x{{ item.quantity }})</span>
-              <span>€{{ (item.price * item.quantity).toFixed(2) }}</span>
+              <span>{{ item.quantity }}x {{ item.name }} </span>
+              <span> €{{ (item.price * item.quantity).toFixed(2) }}</span>
             </div>
             <button
               @click="removeFromCart(item), checkCart()"
