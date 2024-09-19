@@ -12,10 +12,14 @@ export default {
                 apipay: 'braintree/checkout'
             },
             name: '',
+            surname: '',
+            email_address: '',
+            delivery_address: '',
+            note: '',
+            total_price: '',
             cardNumber: '',
             expirationDate: '',
             cvv: '',
-
             errorMessage: '',
         };
     },
@@ -25,21 +29,27 @@ export default {
             this.errorMessage = '';
 
             // Validazione basica dei campi
-            if (!this.cardNumber || !this.expirationDate || !this.cvv) {
+            if (!this.cardNumber || !this.expirationDate || !this.cvv || !this.name || !this.surname || !this.email_address || !this.delivery_address || !this.total_price) {
                 this.errorMessage = 'Tutti i campi sono obbligatori';
                 this.loading = false;
                 return;
             }
 
             const url = this.api.baseUrl + this.api.apipay;
+
             // Invio dei dati al backend Laravel
             axios
                 .post(url, {
                     name: this.name,
+                    surname: this.surname,
+                    email_address: this.email_address,
+                    delivery_address: this.delivery_address,
+                    note: this.note,
+                    total_price: this.total_price,
                     cardNumber: this.cardNumber,
                     expirationDate: this.expirationDate,
                     cvv: this.cvv,
-                    amount: 10, // L'importo da addebitare
+                    amount: this.total_price, // L'importo da addebitare basato sul prezzo totale
                 })
                 .then((response) => {
                     console.log(response)
@@ -64,43 +74,79 @@ export default {
 </script>
 <template>
     <div class="payment-form">
-        <form @submit.prevent="submitPayment">
-            <div class="form-group">
-                <label for="name">nome</label>
-                <input type="text" v-model="name" id="name" placeholder="Inserisci il tuo nome" required />
-            </div>
+        <form @submit.prevent="submitPayment" class="container-pay">
+            <!-- Informazioni personali -->
+            <div class="payment-data">
+                <div class="form-group">
+                    <label for="name">Nome</label>
+                    <input type="text" v-model="name" id="name" placeholder="Inserisci il nome" required />
+                </div>
 
-            <div class="form-group">
-                <label for="cardNumber">Numero di Carta</label>
-                <input type="text" v-model="cardNumber" id="cardNumber" placeholder="Inserisci il numero della carta"
-                    maxlength="16" required />
-            </div>
+                <div class="form-group">
+                    <label for="surname">Cognome</label>
+                    <input type="text" v-model="surname" id="surname" placeholder="Inserisci il cognome" required />
+                </div>
 
-            <div class="form-group">
-                <label for="expirationDate">Data di Scadenza (MM/YY)</label>
-                <input type="text" v-model="expirationDate" id="expirationDate" placeholder="MM/YY" required />
-            </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" v-model="email_address" id="email" placeholder="Inserisci la tua email"
+                        required />
+                </div>
 
-            <div class="form-group">
-                <label for="cvv">CVV</label>
-                <input type="text" v-model="cvv" id="cvv" placeholder="CVV" required />
-            </div>
+                <div class="form-group">
+                    <label for="delivery_address">Indirizzo di consegna</label>
+                    <input type="text" v-model="delivery_address" id="delivery_address"
+                        placeholder="Inserisci l'indirizzo di consegna" required />
+                </div>
 
-            <button type="submit" :disabled="loading">
-                {{ loading ? 'Processando...' : 'Paga' }}
-            </button>
+                <div class="form-group" id="mg">
+                    <label for="note">Note</label>
+                    <textarea v-model="note" id="note" placeholder="Inserisci eventuali note"></textarea>
+                </div>
+
+
+                <!-- Informazioni di pagamento -->
+                <div class="form-group">
+                    <label for="cardNumber">Numero di Carta</label>
+                    <input type="text" v-model="cardNumber" id="cardNumber"
+                        placeholder="Inserisci il numero della carta" maxlength="16" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="expirationDate">Data di Scadenza (MM/YY)</label>
+                    <input type="text" v-model="expirationDate" id="expirationDate" placeholder="MM/YY" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="cvv">CVV</label>
+                    <input type="text" v-model="cvv" id="cvv" placeholder="CVV" required />
+                </div>
+            </div>
+            <div class="payment-button">
+                <button type="submit" :disabled="loading">
+                    {{ loading ? 'Processando...' : 'Paga' }}
+                </button>
+
+            </div>
 
             <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
         </form>
     </div>
 </template>
-<style scoped>
+
+
+<style lang="scss" scoped>
 .payment-form {
-    max-width: 400px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
     background-color: #f8f8f8;
     border-radius: 8px;
+
+    #note {
+        width: 100%;
+        height: 70px;
+    }
 }
 
 .form-group {

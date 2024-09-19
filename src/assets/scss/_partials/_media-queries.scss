@@ -69,8 +69,41 @@ TABLET LAYOUT
   .card-text-sd {
     padding: 10px;
   }
+  .container-pay {
+    display: flex;
+    flex-direction: column;
+  
+  
+    .payment-data {
+        width: 100%;
+    }
+  
+    #mg {
+        margin-bottom: 100px;
+    }
+  
+    .payment-button {
+        width: 100%;
+    }
+  }
 }
+.container-pay {
+  display: flex;
+  flex-direction: column;
 
+
+  .payment-data {
+      width: 100%;
+  }
+
+  #mg {
+      margin-bottom: 100px;
+  }
+
+  .payment-button {
+      width: 100%;
+  }
+}
 /***************
 DESKTOP LAYOUT
 ***************/
@@ -158,5 +191,21 @@ DESKTOP LAYOUT
 
   .card-text-sd {
     padding: 15px;
+  }
+  .container-pay {
+  flex-direction: row;
+    .payment-data {
+        width: 60%;
+    }
+  
+    #mg {
+        margin-bottom: 100px;
+    }
+  
+    .payment-button {
+        width: 40%;
+        margin-top: 50px;
+        margin-left: 20px;
+    }
   }
 }
