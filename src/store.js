@@ -43,7 +43,7 @@ export const store = reactive({
     const existingItem = this.cart.find(
       (cartItem) => cartItem.name === item.name
     );
-    if (existingItem && existingItem.quantity > 1) {
+    if (existingItem && existingItem.quantity >= 1) {
       existingItem.quantity++;
     } else {
       this.cart = this.cart.filter((cartItem) => cartItem.name !== item.name);
