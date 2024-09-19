@@ -142,7 +142,7 @@ export default {
       <div class="restaurant-info">
         <h1 class="title">{{ this.rest.business_name }}</h1>
         <span v-for="type in this.rest.types"
-          ><span class="type">{{ type.name + " " }}</span></span
+          ><span class="type">{{ type.name + ", " }}</span></span
         >
         <!-- <div v-for="type in this.rest.types">
           <span class="description">{{ type.description }}</span>
@@ -166,7 +166,7 @@ export default {
           <button @click="addToCart(item)" class="add-to-cart-btn">+</button>
         </div>
 
-        <button class="back-btn" v-if="isMobile" @click="toggleCart">
+        <button class="back-btn open-cart" v-if="isMobile" @click="toggleCart">
           {{ isCartActive ? "Chiudi Carrello" : "Apri Carrello" }}
         </button>
       </div>
@@ -204,13 +204,16 @@ export default {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  top: -60px;
 }
 
 .back-btn {
-  margin: 20px;
+  width: 20%;
+  margin-bottom: 60px;
   background-color: transparent;
   color: rgb(255, 166, 0);
-  font-size: 1.2em;
+  font-size: 12px;
+  font-weight: bold;
   border: 2px solid rgb(255, 166, 0);
   padding: 10px 20px;
   border-radius: 50px;
@@ -228,6 +231,7 @@ export default {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  padding-top: 20px;
   margin-bottom: 40px;
   transition: transform 0.3s ease;
   background: linear-gradient(
@@ -269,6 +273,7 @@ export default {
   color: rgb(255, 166, 0);
   margin: 10px 0;
   text-align: justify;
+  text-transform: capitalize;
   transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
@@ -298,6 +303,7 @@ export default {
   flex-direction: row;
   gap: 30px;
   margin: 0 auto;
+  padding-bottom: 60px;
 }
 
 .menu-items {
@@ -317,6 +323,7 @@ export default {
     background-color 0.3s ease;
   padding: 15px;
   align-items: center;
+  text-transform: capitalize;
 }
 
 .menu-item:hover {
@@ -352,9 +359,15 @@ export default {
 }
 
 .description-food {
+  padding-right: 15px;
   font-size: 0.9em;
   color: #888;
   word-wrap: break-word;
+}
+
+.open-cart {
+  margin-top: 20px;
+  margin-bottom: -80px;
 }
 
 .add-to-cart-btn {
@@ -492,6 +505,14 @@ export default {
 
 /* Media Queries */
 @media (max-width: 768px) {
+  .back-btn {
+    width: 41%;
+  }
+
+  .open-cart {
+    width: 100%;
+  }
+
   .restaurant-header {
     flex-direction: column;
     align-items: center;

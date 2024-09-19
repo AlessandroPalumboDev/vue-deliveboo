@@ -24,11 +24,11 @@ body::before {
 header {
   height: 95px;
   top: 0;
+  margin-bottom: 100px;
   z-index: 1000;
   background-color: rgb(255, 165, 0);
   position: sticky;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 100px;
   background: linear-gradient(
       to bottom,
       rgb(255, 166, 0),
@@ -68,6 +68,8 @@ header {
 }
 
 .navbar {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -293,6 +295,7 @@ button {
 }
 
 .cart-active {
+  width: 500px;
   bottom: 0;
   transform: translateY(0);
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
@@ -326,6 +329,10 @@ h4 {
 }
 
 // Jumbo section
+.jumbo {
+  max-width: 1400px;
+  margin: 0 auto;
+}
 .delivery {
   width: 80%;
 }
