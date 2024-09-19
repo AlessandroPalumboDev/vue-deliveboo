@@ -38,6 +38,21 @@ export const store = reactive({
     this.updateLocalStorage();
   },
 
+  // Incrementa la quantità di un singolo elemento
+  incrementQuantity(item) {
+    const existingItem = this.cart.find(
+      (cartItem) => cartItem.name === item.name
+    );
+    if (existingItem && existingItem.quantity > 1) {
+      existingItem.quantity++;
+    } else {
+      this.cart = this.cart.filter((cartItem) => cartItem.name !== item.name);
+    }
+    console.log(item.quantity);
+
+    this.updateLocalStorage();
+  },
+
   checkCart() {
     if (this.cart.length < 1) {
       this.currentRestaurant = null;

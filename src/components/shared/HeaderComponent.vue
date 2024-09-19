@@ -34,6 +34,9 @@ export default {
     removeAllFromCart(item) {
       store.removeAllFromCart(item); // Rimozione completa di un articolo
     },
+    incrementQuantity(item) {
+      store.incrementQuantity(item);
+    },
   },
   mounted() {
     store.syncCartFromStorage();
@@ -100,13 +103,15 @@ export default {
             <!-- Prezzo moltiplicato per la quantità -->
             <span>€{{ (item.price * item.quantity).toFixed(2) }}</span>
           </div>
-          <!-- Bottone per rimuovere singolarmente o completamente l'articolo -->
-          <button @click="removeFromCart(item)" class="remove-btn">
-            Rimuovi 1
-          </button>
-          <button @click="removeAllFromCart(item)" class="remove-btn">
-            Rimuovi tutto
-          </button>
+
+          <!-- Bottone per diminuire la quantità di un singolo elemento -->
+          <button @click="removeFromCart(item), checkCart()">-</button>
+
+          <!-- Bottone per aumentare la quantità di un singolo elemento -->
+          <button @click="incrementQuantity(item)">+</button>
+
+          <!-- Bottone per rimuovere tutte le quantità di quell'elemento -->
+          <button @click="removeAllFromCart(item), checkCart()">x</button>
         </li>
       </ul>
 

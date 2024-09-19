@@ -49,6 +49,12 @@ export default {
     removeFromCart(item) {
       store.removeFromCart(item);
     },
+    removeAllFromCart(item) {
+      store.removeAllFromCart(item);
+    },
+    incrementQuantity(item) {
+      store.incrementQuantity(item);
+    },
     checkCart() {
       store.checkCart();
     },
@@ -179,12 +185,15 @@ export default {
               <span>{{ item.quantity }}x {{ item.name }} </span>
               <span> €{{ (item.price * item.quantity).toFixed(2) }}</span>
             </div>
-            <button
-              @click="removeFromCart(item), checkCart()"
-              class="remove-btn"
-            >
-              Rimuovi
-            </button>
+
+            <!-- Bottone per diminuire la quantità di un singolo elemento -->
+            <button @click="removeFromCart(item), checkCart()">-</button>
+
+            <!-- Bottone per aumentare la quantità di un singolo elemento -->
+            <button @click="incrementQuantity(item)">+</button>
+
+            <!-- Bottone per rimuovere tutte le quantità di quell'elemento -->
+            <button @click="removeAllFromCart(item), checkCart()">x</button>
           </li>
         </ul>
         <p v-if="cart.length === 0">Il carrello è vuoto.</p>
