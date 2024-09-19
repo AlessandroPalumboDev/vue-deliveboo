@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomepageComponent from "./pages/HomepageComponent.vue";
 import SearchPage from "./pages/SearchPage.vue";
 import RestaurantMenuPage from "./pages/RestaurantMenuPage.vue";
+import PaymentComponent from "./pages/PaymentComponent.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -22,6 +23,11 @@ const router = createRouter({
       name: "restaurantMenu",
       component: RestaurantMenuPage,
       props: true,
+    },
+    {
+      path: "/payment",
+      name: "PaymentComponent",
+      component: PaymentComponent,
     },
   ],
 });
