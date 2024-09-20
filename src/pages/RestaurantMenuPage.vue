@@ -308,14 +308,12 @@ export default {
 }
 
 .back-btn-container {
+  align-self: flex-start;
   width: 25%;
   text-align: end;
-  line-height: 100px;
-  position: relative;
 
   button {
     width: 60%;
-    bottom: 100px;
   }
 }
 
@@ -539,7 +537,7 @@ span.description-food {
   opacity: 0;
 }
 
-/* Media Queries */
+// Media queries
 @media (max-width: 780px) {
   .back-btn {
     width: 41%;
@@ -565,40 +563,7 @@ span.description-food {
   .cart-toggle-btn {
     display: block;
   }
-}
 
-.cart-warning-modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgb(255, 166, 0);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-}
-
-.cart-warning-modal button {
-  background-color: #ff6600;
-  color: white;
-  border: none;
-  margin: 5px;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.cart-warning-modal button:hover {
-  background-color: #ff4500;
-}
-
-// Media queries
-@media (max-width: 780px) {
   .restaurant-header {
     display: block;
 
@@ -639,6 +604,36 @@ span.description-food {
         margin-bottom: 0px;
       }
     }
+  }
+
+  .cart-warning-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(255, 166, 0);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+
+  .cart-warning-modal button {
+    background-color: #ff6600;
+    color: white;
+    border: none;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .cart-warning-modal button:hover {
+    background-color: #ff4500;
   }
 }
 </style>
