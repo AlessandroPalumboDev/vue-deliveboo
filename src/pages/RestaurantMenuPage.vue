@@ -137,17 +137,20 @@ export default {
       <button @click="cancelClearCart">No, mantieni il carrello</button>
     </div>
 
-    <button class="back-btn" @click="goBack">← Torna Indietro</button>
-
     <section class="restaurant-header">
-      <img
-        :src="this.imageUrlDefault + this.rest.image_path"
-        alt="Banner del ristorante"
-        class="restaurant-banner"
-      />
+      <div class="img-container">
+        <img
+          :src="this.imageUrlDefault + this.rest.image_path"
+          alt="Banner del ristorante"
+          class="restaurant-banner"
+        />
+      </div>
       <div class="restaurant-info">
-        <h1 class="title capitalize">{{ this.rest.business_name }}</h1>
+        <h2 class="title capitalize">{{ this.rest.business_name }}</h2>
         <p class="address">{{ this.rest.address }}</p>
+      </div>
+      <div class="back-btn-container">
+        <button class="back-btn" @click="goBack">← Torna Indietro</button>
       </div>
     </section>
     <div class="content">
@@ -249,6 +252,14 @@ export default {
   color: white;
 }
 
+.img-container {
+  width: 50%;
+
+  img {
+    width: 350px;
+  }
+}
+
 .restaurant-header {
   display: flex;
   flex-direction: row;
@@ -266,17 +277,31 @@ export default {
 }
 
 .restaurant-banner {
-  width: 40%;
-  max-width: 400px;
   height: auto;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .restaurant-info {
+  width: 25%;
   margin-left: 20px;
   text-align: left;
   flex: 1;
+
+  p {
+    color: rgba(224, 224, 224, 0.774);
+    font-weight: bold;
+  }
+}
+
+.back-btn-container {
+  width: 25%;
+  text-align: end;
+
+  button {
+    width: 60%;
+    bottom: 60px;
+  }
 }
 
 .title {
