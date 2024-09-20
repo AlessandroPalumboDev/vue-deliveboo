@@ -64,7 +64,7 @@ export default {
     },
     cartTo(price) {
       this.cart_total = price;
-      localStorage.setItem('cart_total', price)
+      localStorage.setItem("cart_total", price);
       this.$router
         .push({
           name: "PaymentComponent",
@@ -126,7 +126,6 @@ export default {
     },
   },
   mounted() {
-
     this.checkIfMobile();
     window.addEventListener("resize", this.checkIfMobile);
     store.syncCartFromStorage();
@@ -150,19 +149,34 @@ export default {
       <button @click="cancelClearCart">No, mantieni il carrello</button>
     </div>
 
-    <button class="back-btn" @click="goBack">← Torna Indietro</button>
-
     <section class="restaurant-header">
-      <img :src="this.imageUrlDefault + this.rest.image_path" alt="Banner del ristorante" class="restaurant-banner" />
+      <div class="img-container">
+        <img
+          :src="this.imageUrlDefault + this.rest.image_path"
+          alt="Banner del ristorante"
+          class="restaurant-banner"
+        />
+      </div>
       <div class="restaurant-info">
-        <h1 class="title capitalize">{{ this.rest.business_name }}</h1>
+        <h2 class="title capitalize">{{ this.rest.business_name }}</h2>
         <p class="address">{{ this.rest.address }}</p>
+      </div>
+      <div class="back-btn-container">
+        <button class="back-btn" @click="goBack">← Torna Indietro</button>
       </div>
     </section>
     <div class="content">
       <div class="menu-items">
-        <div v-for="item in this.restaurantMenu" :key="index" class="menu-item capitalize">
-          <img :src="imageUrlDefault + item.cover_image" alt="Immagine del piatto" class="menu-item-image" />
+        <div
+          v-for="item in this.restaurantMenu"
+          :key="index"
+          class="menu-item capitalize"
+        >
+          <img
+            :src="imageUrlDefault + item.cover_image"
+            alt="Immagine del piatto"
+            class="menu-item-image"
+          />
           <div class="menu-item-details">
             <h4 class="title-food">{{ item.name }}</h4>
             <p class="description-food">{{ item.ingredients }}</p>
@@ -189,7 +203,10 @@ export default {
 
             <div class="btn-container">
               <!-- Bottone per diminuire la quantità di un singolo elemento -->
-              <button class="minus-btn" @click="removeFromCart(item), checkCart()">
+              <button
+                class="minus-btn"
+                @click="removeFromCart(item), checkCart()"
+              >
                 &minus;
               </button>
 
@@ -199,7 +216,10 @@ export default {
               </button>
 
               <!-- Bottone per rimuovere tutte le quantità di quell'elemento -->
-              <button class="remove-btn" @click="removeAllFromCart(item), checkCart()">
+              <button
+                class="remove-btn"
+                @click="removeAllFromCart(item), checkCart()"
+              >
                 x
               </button>
             </div>
@@ -244,6 +264,14 @@ export default {
   color: white;
 }
 
+.img-container {
+  width: 50%;
+
+  img {
+    width: 350px;
+  }
+}
+
 .restaurant-header {
   display: flex;
   flex-direction: row;
@@ -251,25 +279,41 @@ export default {
   justify-content: space-between;
   padding-top: 20px;
   margin-bottom: 40px;
-  background: linear-gradient(to bottom,
+  background: linear-gradient(
+      to bottom,
       rgba(255, 255, 255, 0.453),
-      rgba(81, 8, 8, 0.094)),
+      rgba(81, 8, 8, 0.094)
+    ),
     rgba(84, 17, 17, 0);
   border-radius: 10px;
 }
 
 .restaurant-banner {
-  width: 40%;
-  max-width: 400px;
   height: auto;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .restaurant-info {
+  width: 25%;
   margin-left: 20px;
   text-align: left;
   flex: 1;
+
+  p {
+    color: rgba(224, 224, 224, 0.774);
+    font-weight: bold;
+  }
+}
+
+.back-btn-container {
+  width: 25%;
+  text-align: end;
+
+  button {
+    width: 60%;
+    bottom: 60px;
+  }
 }
 
 .title {
@@ -397,9 +441,11 @@ span.description-food {
 
 .cart {
   flex: 1;
-  background: linear-gradient(to bottom,
+  background: linear-gradient(
+      to bottom,
       rgb(255, 166, 0),
-      rgba(255, 166, 1, 0.425)),
+      rgba(255, 166, 1, 0.425)
+    ),
     rgba(255, 166, 0, 0%);
   padding: 20px;
   border-radius: 12px;
