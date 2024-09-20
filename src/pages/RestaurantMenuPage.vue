@@ -147,15 +147,8 @@ export default {
       />
       <div class="restaurant-info">
         <h1 class="title">{{ this.rest.business_name }}</h1>
-        <span v-for="type in this.rest.types"
-          ><span class="type">{{ type.name + ", " }}</span></span
-        >
-        <!-- <div v-for="type in this.rest.types">
-          <span class="description">{{ type.description }}</span>
-        </div> -->
       </div>
     </section>
-
     <div class="content">
       <div class="menu-items">
         <div v-for="item in this.restaurantMenu" :key="index" class="menu-item">
@@ -166,8 +159,8 @@ export default {
           />
           <div class="menu-item-details">
             <h4 class="title-food">{{ item.name }}</h4>
-            <p class="description-food">€{{ item.price }}</p>
-            <span class="description-food">{{ item.ingredients }}</span>
+            <p class="description-food">{{ item.ingredients }}</p>
+            <span class="description-food">€{{ item.price }}</span>
           </div>
           <button @click="addToCart(item)" class="add-to-cart-btn">+</button>
         </div>
@@ -242,7 +235,6 @@ export default {
   justify-content: space-between;
   padding-top: 20px;
   margin-bottom: 40px;
-  transition: transform 0.3s ease;
   background: linear-gradient(
       to bottom,
       rgba(255, 255, 255, 0.453),
@@ -252,22 +244,12 @@ export default {
   border-radius: 10px;
 }
 
-.restaurant-header:hover {
-  transform: translateY(-5px);
-}
-
 .restaurant-banner {
   width: 40%;
   max-width: 400px;
   height: auto;
-  border-radius: 12px;
+  border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, filter 0.3s ease;
-}
-
-.restaurant-banner:hover {
-  transform: scale(1.02);
-  filter: brightness(1.1);
 }
 
 .restaurant-info {
@@ -283,16 +265,10 @@ export default {
   margin: 10px 0;
   text-align: justify;
   text-transform: capitalize;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .title-food {
   text-align: justify;
-}
-
-.title:hover {
-  color: #ff4500;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .description {
@@ -326,7 +302,7 @@ export default {
   display: flex;
   flex-direction: row;
   background-color: #ffffffc9;
-  border-radius: 12px;
+  border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease,
     background-color 0.3s ease;
@@ -345,13 +321,8 @@ export default {
   width: 100px;
   height: 100px;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 10px;
   margin-right: 15px;
-  transition: transform 0.3s ease;
-}
-
-.menu-item-image:hover {
-  transform: scale(1.1);
 }
 
 .menu-item-details {
@@ -372,6 +343,17 @@ export default {
   font-size: 0.9em;
   color: #888;
   word-wrap: break-word;
+}
+
+p.description-food {
+  font-weight: bold;
+}
+
+span.description-food {
+  padding-top: 10px;
+  text-align: center;
+  font-weight: bold;
+  color: black;
 }
 
 .open-cart {
@@ -513,7 +495,7 @@ export default {
 }
 
 /* Media Queries */
-@media (max-width: 768px) {
+@media (max-width: 780px) {
   .back-btn {
     width: 41%;
   }

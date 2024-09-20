@@ -72,18 +72,17 @@ TABLET LAYOUT
   .container-pay {
     display: flex;
     flex-direction: column;
-  
-  
+
     .payment-data {
-        width: 100%;
+      width: 100%;
     }
-  
+
     #mg {
-        margin-bottom: 100px;
+      margin-bottom: 100px;
     }
-  
+
     .payment-button {
-        width: 100%;
+      width: 100%;
     }
   }
 }
@@ -91,17 +90,16 @@ TABLET LAYOUT
   display: flex;
   flex-direction: column;
 
-
   .payment-data {
-      width: 100%;
+    width: 100%;
   }
 
   #mg {
-      margin-bottom: 100px;
+    margin-bottom: 100px;
   }
 
   .payment-button {
-      width: 100%;
+    width: 100%;
   }
 }
 /***************
@@ -193,19 +191,19 @@ DESKTOP LAYOUT
     padding: 15px;
   }
   .container-pay {
-  flex-direction: row;
+    flex-direction: row;
     .payment-data {
-        width: 60%;
+      width: 60%;
     }
-  
+
     #mg {
-        margin-bottom: 100px;
+      margin-bottom: 100px;
     }
-  
+
     .payment-button {
-        width: 40%;
-        margin-top: 50px;
-        margin-left: 20px;
+      width: 40%;
+      margin-top: 50px;
+      margin-left: 20px;
     }
   }
 }
