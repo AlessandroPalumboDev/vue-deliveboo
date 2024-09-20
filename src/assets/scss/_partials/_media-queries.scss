@@ -86,32 +86,31 @@ TABLET LAYOUT
     }
   }
 }
-.payment-form{
- 
+.payment-form {
   width: 80vw;
-.container-pay {
-  display: flex;
-  flex-direction: column;
-
-  .payment-data {
-    width: 100%;
-  }
-
-  #mg {
-    margin-bottom: 100px;
-  }
-
-  .payment-button {
-    width: 100%;
+  .container-pay {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+
+    .payment-data {
+      width: 100%;
+    }
+
+    #mg {
+      margin-bottom: 100px;
+    }
+
+    .payment-button {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
   }
-}
 }
 /***************
 DESKTOP LAYOUT
 ***************/
-@media (min-width: 768px) {
+@media (min-width: 780px) {
   .cart {
     width: 700px;
     right: -500px;
@@ -196,78 +195,83 @@ DESKTOP LAYOUT
   .card-text-sd {
     padding: 15px;
   }
-  .payment-form{
-
+  .payment-form {
     width: 80vw;
-  .container-pay {
+    .container-pay {
+      flex-direction: row;
+      .payment-data {
+        width: 60%;
+      }
 
-    flex-direction: row;
-    .payment-data {
-      width: 60%;
-    }
+      #mg {
+        margin-bottom: 100px;
+      }
 
-    #mg {
-      margin-bottom: 100px;
-    }
-
-    .payment-button {
-      display: flex;
-      flex-direction: column;
-      justify-content: start;
-      align-items: center;
-      width: 30%;
-      min-width: 250px ;
-      margin-top: 30px;
-      margin-left: 20px;
-      padding-top: 30px;
-      background-color: rgb(60, 60, 60);
-      #price-list{
-        overflow-y: auto; 
-        overflow-x: hidden;
-        background-color: #333;
-        box-shadow: 0rem 0.5rem 1rem 0rem rgb(242, 183, 132);
-        border-radius: 5px;
-        max-height: 500px;
-        &::-webkit-scrollbar {
-          width: 8px; // Larghezza della scrollbar
-      }
-  
-      &::-webkit-scrollbar-thumb {
-          background-color: #888; // Colore della scrollbar
-          border-radius: 10px; // Arrotonda la scrollbar
-          border: 2px solid #1c1c1c; // Spazio tra la scrollbar e il contenuto
-      }
-  
-      &::-webkit-scrollbar-thumb:hover {
-          background-color: #555; // Colore della scrollbar al passaggio del mouse
-      }
-  
-      &::-webkit-scrollbar-track {
-          background-color: #333; // Colore del tracciato della scrollbar
-      }
-  
-      }
-      div{
+      .payment-button {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        margin: 10px 0px;
-        width: 80%;
-        .prod{
-          display: flex;
-          justify-content: space-between;
-          min-width: 200px;
-          max-width: 250px;
-          padding: 5px;
-          border-bottom: 1px solid grey;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+        width: 30%;
+        min-width: 250px;
+        margin-top: 30px;
+        margin-left: 20px;
+        padding-top: 30px;
+        background-color: rgb(60, 60, 60);
+        #price-list {
+          overflow-y: auto;
+          overflow-x: hidden;
+          background-color: #333;
+          box-shadow: 0rem 0.5rem 1rem 0rem rgb(242, 183, 132);
+          border-radius: 5px;
+          max-height: 500px;
+          &::-webkit-scrollbar {
+            width: 8px; // Larghezza della scrollbar
+          }
+
+          &::-webkit-scrollbar-thumb {
+            background-color: #888; // Colore della scrollbar
+            border-radius: 10px; // Arrotonda la scrollbar
+            border: 2px solid #1c1c1c; // Spazio tra la scrollbar e il contenuto
+          }
+
+          &::-webkit-scrollbar-thumb:hover {
+            background-color: #555; // Colore della scrollbar al passaggio del mouse
+          }
+
+          &::-webkit-scrollbar-track {
+            background-color: #333; // Colore del tracciato della scrollbar
+          }
         }
-        h3{
-         
-          display: inline-block;
+        div {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          margin: 10px 0px;
+          width: 80%;
+          .prod {
+            display: flex;
+            justify-content: space-between;
+            min-width: 200px;
+            max-width: 250px;
+            padding: 5px;
+            border-bottom: 1px solid grey;
+          }
+          h3 {
+            display: inline-block;
+          }
         }
       }
-      
     }
   }
 }
+
+/***********************
+MOBILE + TABLET LAYOUT
+***********************/
+@media (max-width: 780px) {
+  .content {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }

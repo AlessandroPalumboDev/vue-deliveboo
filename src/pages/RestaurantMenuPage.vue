@@ -311,6 +311,7 @@ export default {
   width: 25%;
   text-align: end;
   line-height: 100px;
+  position: relative;
 
   button {
     width: 60%;
@@ -597,7 +598,7 @@ span.description-food {
 }
 
 // Media queries
-@media (max-width: 480px) {
+@media (max-width: 780px) {
   .restaurant-header {
     display: block;
 
@@ -605,6 +606,15 @@ span.description-food {
       width: 100%;
       padding-left: 20px;
       padding-right: 20px;
+
+      .restaurant-banner {
+        max-width: 100%;
+      }
+    }
+
+    .content {
+      padding-left: 40px;
+      padding-right: 40px;
     }
 
     .restaurant-info {
