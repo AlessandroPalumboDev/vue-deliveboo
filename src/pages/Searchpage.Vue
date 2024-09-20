@@ -85,16 +85,8 @@ export default {
     <button class="back-btn" @click="goBack()">← Torna Indietro</button>
     <div class="card-restaurant">
       <!-- Single card -->
-      <div
-        v-for="restaurant in restaurants"
-        :key="restaurant.id"
-        class="card-sd"
-        @click="getMenu(restaurant)"
-      >
-        <img
-          :src="this.imageUrlDefault + restaurant.image_path"
-          :alt="restaurant.name"
-        />
+      <div v-for="restaurant in restaurants" :key="restaurant.id" class="card-sd" @click="getMenu(restaurant)">
+        <img :src="this.imageUrlDefault + restaurant.image_path" :alt="restaurant.name" />
         <div class="sd-card-name">
           <h2>{{ restaurant.business_name }}</h2>
         </div>

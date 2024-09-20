@@ -7,6 +7,8 @@ export default {
         return {
             dropinInstance: null,
             loading: false,
+            cart: [],
+            cart_total: 0,
             api: {
                 baseUrl: "http://localhost:8000/api/",
                 apipay: 'braintree/checkout'
@@ -23,6 +25,7 @@ export default {
             errorMessage: '',
         };
     },
+
     methods: {
         submitPayment() {
             this.loading = true;
@@ -69,7 +72,21 @@ export default {
                     this.loading = false;
                 });
         },
+        getCart() {
+            const cart = JSON.parse(localStorage.getItem("cart"));
+            this.cart = cart;
+            console.log(this.cart);
+        },
+        getTotal() {
+            const price_t = localStorage.getItem('cart_total');
+            this.cart_total = price_t;
+
+        },
     },
+    mounted() {
+        this.getCart();
+        this.getTotal();
+    }
 };
 </script>
 <template>
@@ -124,9 +141,20 @@ export default {
             </div>
             <div class="payment-button">
                 <button type="submit" :disabled="loading">
-                    {{ loading ? 'Processando...' : 'Paga' }}
+                    {{ loading ? 'Processando...' : 'Acquista' }}
                 </button>
+                <div id="price-list">
+                    <div v-for="item in this.cart" class="prod">
+                        <h3>{{ item.name }}</h3>
+                        <h3>{{ item.quantity }}</h3>
+                    </div>
+                </div>
+                <div id="price">
+                    <div>
+                        <h2>totale: €{{ this.cart_total }}</h2>
 
+                    </div>
+                </div>
             </div>
 
             <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
@@ -137,10 +165,11 @@ export default {
 
 <style lang="scss" scoped>
 .payment-form {
-    max-width: 1200px;
-    margin: 0 auto;
+
+    margin: 100px auto;
     padding: 20px;
-    background-color: #f8f8f8;
+    background-color: #f8f8f813;
+    box-shadow: 0rem 0.5rem 1rem 0rem rgba(0, 0, 0, 0.878);
     border-radius: 8px;
 
     #note {
@@ -167,9 +196,9 @@ input {
 }
 
 button {
-    width: 100%;
+    width: 70%;
     padding: 12px;
-    background-color: #28a745;
+    margin-bottom: 20px;
     color: white;
     border: none;
     border-radius: 4px;

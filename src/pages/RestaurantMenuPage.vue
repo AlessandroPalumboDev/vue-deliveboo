@@ -6,6 +6,7 @@ export default {
   data() {
     return {
       restaurantMenu: [],
+      cart_total: 0,
       currentRestaurantId: null,
       showCartWarning: false,
       pendingItem: null,
@@ -61,6 +62,17 @@ export default {
     checkIfMobile() {
       this.isMobile = window.innerWidth <= 768;
     },
+    cartTo(price) {
+      this.cart_total = price;
+      localStorage.setItem('cart_total', price)
+      this.$router
+        .push({
+          name: "PaymentComponent",
+        })
+        .catch((error) => {
+          console.log("Errore nel routing:", error); // Eventuali errori nel routing
+        });
+    },
     toggleCart() {
       this.isCartActive = !this.isCartActive;
     },
@@ -114,6 +126,7 @@ export default {
     },
   },
   mounted() {
+
     this.checkIfMobile();
     window.addEventListener("resize", this.checkIfMobile);
     store.syncCartFromStorage();
@@ -140,27 +153,15 @@ export default {
     <button class="back-btn" @click="goBack">← Torna Indietro</button>
 
     <section class="restaurant-header">
-      <img
-        :src="this.imageUrlDefault + this.rest.image_path"
-        alt="Banner del ristorante"
-        class="restaurant-banner"
-      />
+      <img :src="this.imageUrlDefault + this.rest.image_path" alt="Banner del ristorante" class="restaurant-banner" />
       <div class="restaurant-info">
         <h1 class="title capitalize">{{ this.rest.business_name }}</h1>
       </div>
     </section>
     <div class="content">
       <div class="menu-items">
-        <div
-          v-for="item in this.restaurantMenu"
-          :key="index"
-          class="menu-item capitalize"
-        >
-          <img
-            :src="imageUrlDefault + item.cover_image"
-            alt="Immagine del piatto"
-            class="menu-item-image"
-          />
+        <div v-for="item in this.restaurantMenu" :key="index" class="menu-item capitalize">
+          <img :src="imageUrlDefault + item.cover_image" alt="Immagine del piatto" class="menu-item-image" />
           <div class="menu-item-details">
             <h4 class="title-food">{{ item.name }}</h4>
             <p class="description-food">{{ item.ingredients }}</p>
@@ -187,10 +188,7 @@ export default {
 
             <div class="btn-container">
               <!-- Bottone per diminuire la quantità di un singolo elemento -->
-              <button
-                class="minus-btn"
-                @click="removeFromCart(item), checkCart()"
-              >
+              <button class="minus-btn" @click="removeFromCart(item), checkCart()">
                 &minus;
               </button>
 
@@ -200,10 +198,7 @@ export default {
               </button>
 
               <!-- Bottone per rimuovere tutte le quantità di quell'elemento -->
-              <button
-                class="remove-btn"
-                @click="removeAllFromCart(item), checkCart()"
-              >
+              <button class="remove-btn" @click="removeAllFromCart(item), checkCart()">
                 x
               </button>
             </div>
@@ -212,7 +207,7 @@ export default {
         <p v-if="cart.length === 0">Il carrello è vuoto.</p>
         <div class="cart-footer" v-if="cart.length > 0">
           <p>Totale: €{{ cartTotal }}</p>
-          <button>Checkout</button>
+          <button @click="cartTo(cartTotal)">Checkout</button>
         </div>
       </div>
     </div>
@@ -255,11 +250,9 @@ export default {
   justify-content: space-between;
   padding-top: 20px;
   margin-bottom: 40px;
-  background: linear-gradient(
-      to bottom,
+  background: linear-gradient(to bottom,
       rgba(255, 255, 255, 0.453),
-      rgba(81, 8, 8, 0.094)
-    ),
+      rgba(81, 8, 8, 0.094)),
     rgba(84, 17, 17, 0);
   border-radius: 10px;
 }
@@ -403,11 +396,9 @@ span.description-food {
 
 .cart {
   flex: 1;
-  background: linear-gradient(
-      to bottom,
+  background: linear-gradient(to bottom,
       rgb(255, 166, 0),
-      rgba(255, 166, 1, 0.425)
-    ),
+      rgba(255, 166, 1, 0.425)),
     rgba(255, 166, 0, 0%);
   padding: 20px;
   border-radius: 12px;
@@ -538,6 +529,7 @@ span.description-food {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
 }
+
 .cart-warning-modal button {
   background-color: #ff6600;
   color: white;
@@ -550,6 +542,7 @@ span.description-food {
   margin-bottom: 20px;
   text-align: center;
 }
+
 .cart-warning-modal button:hover {
   background-color: #ff4500;
 }
