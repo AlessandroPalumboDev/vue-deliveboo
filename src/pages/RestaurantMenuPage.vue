@@ -211,7 +211,7 @@ export default {
         </ul>
         <p v-if="cart.length === 0">Il carrello è vuoto.</p>
         <div class="cart-footer" v-if="cart.length > 0">
-          <span>Totale: €{{ cartTotal }}</span>
+          <p>Totale: €{{ cartTotal }}</p>
           <button>Checkout</button>
         </div>
       </div>
@@ -432,7 +432,9 @@ span.description-food {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 10px;
   margin-bottom: 15px;
+  border-bottom: 1px solid #ff6600;
 }
 
 .cart-item-details {
@@ -441,13 +443,11 @@ span.description-food {
 
 .cart-footer {
   margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 
-  span {
+  p {
     font-size: 1.4em;
     font-weight: bold;
+    margin-bottom: 15px;
   }
 }
 

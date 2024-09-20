@@ -188,7 +188,7 @@ export default {
 
 .cart-footer {
   padding: 10px;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid #b1b1b1;
 }
 
 .cart-close-btn {
