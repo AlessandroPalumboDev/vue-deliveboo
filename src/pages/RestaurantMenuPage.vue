@@ -146,12 +146,16 @@ export default {
         class="restaurant-banner"
       />
       <div class="restaurant-info">
-        <h1 class="title">{{ this.rest.business_name }}</h1>
+        <h1 class="title capitalize">{{ this.rest.business_name }}</h1>
       </div>
     </section>
     <div class="content">
       <div class="menu-items">
-        <div v-for="item in this.restaurantMenu" :key="index" class="menu-item">
+        <div
+          v-for="item in this.restaurantMenu"
+          :key="index"
+          class="menu-item capitalize"
+        >
           <img
             :src="imageUrlDefault + item.cover_image"
             alt="Immagine del piatto"
@@ -174,23 +178,25 @@ export default {
         <h3>Il tuo ordine</h3>
         <ul v-if="cart.length > 0">
           <li v-for="(item, index) in cart" :key="index" class="cart-item">
-            <div class="cart-item-details">
+            <div class="cart-item-details capitalize">
               <span>{{ item.quantity }}x {{ item.name }}</span>
-              <span> €{{ (item.price * item.quantity).toFixed(2) }}</span>
+              <div>
+                <span> €{{ (item.price * item.quantity).toFixed(2) }}</span>
+              </div>
             </div>
 
-            <div>
+            <div class="btn-container">
               <!-- Bottone per diminuire la quantità di un singolo elemento -->
               <button
                 class="minus-btn"
                 @click="removeFromCart(item), checkCart()"
               >
-                -
+                &minus;
               </button>
 
               <!-- Bottone per aumentare la quantità di un singolo elemento -->
               <button class="plus-btn" @click="incrementQuantity(item)">
-                +
+                &plus;
               </button>
 
               <!-- Bottone per rimuovere tutte le quantità di quell'elemento -->
@@ -278,7 +284,6 @@ export default {
   color: rgb(255, 166, 0);
   margin: 10px 0;
   text-align: justify;
-  text-transform: capitalize;
 }
 
 .title-food {
@@ -322,7 +327,6 @@ export default {
     background-color 0.3s ease;
   padding: 15px;
   align-items: center;
-  text-transform: capitalize;
 }
 
 .menu-item:hover {
@@ -437,24 +441,24 @@ span.description-food {
 
 .minus-btn,
 .plus-btn {
-  width: 10px;
-  height: 30px;
-  border-radius: 50%;
-  padding: 0px 15px;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.603);
+    color: #ff6600;
+  }
 }
 
 .remove-btn {
-  background-color: transparent;
+  background-color: rgba(39, 34, 34, 0.705);
   color: #ff6600;
   border: none;
   cursor: pointer;
   font-size: 1em;
-  text-decoration: underline;
   transition: color 0.3s ease;
 }
 
 .remove-btn:hover {
-  color: #ff4500;
+  color: white;
+  background-color: #ff6600;
 }
 
 .cart-footer {

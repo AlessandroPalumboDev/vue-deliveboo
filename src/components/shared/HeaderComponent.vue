@@ -118,13 +118,18 @@ export default {
 
           <div class="btn-container">
             <!-- Bottone per diminuire la quantità di un singolo elemento -->
-            <button @click="removeFromCart(item), checkCart()">-</button>
+            <button @click="removeFromCart(item), checkCart()">&minus;</button>
 
             <!-- Bottone per aumentare la quantità di un singolo elemento -->
-            <button @click="incrementQuantity(item)">+</button>
+            <button @click="incrementQuantity(item)">&plus;</button>
 
             <!-- Bottone per rimuovere tutte le quantità di quell'elemento -->
-            <button @click="removeAllFromCart(item), checkCart()">x</button>
+            <button
+              class="remove-btn"
+              @click="removeAllFromCart(item), checkCart()"
+            >
+              x
+            </button>
           </div>
         </li>
       </ul>
@@ -141,6 +146,10 @@ export default {
 </template>
 
 <style scoped>
+.cart {
+  background-color: #e2dede;
+}
+
 .cart-count {
   background-color: red;
   color: white;
@@ -170,15 +179,6 @@ export default {
   text-transform: capitalize;
 }
 
-.btn-container button {
-  border-radius: 40px;
-
-  &:nth-child(2) {
-    margin-left: 5px;
-    margin-right: 5px;
-  }
-}
-
 .cart-footer {
   padding: 10px;
   border-top: 1px solid #ccc;
@@ -196,11 +196,11 @@ export default {
 }
 
 .cart-close-btn:hover {
-  background-color: #ff4500;
+  background-color: #ff1100;
 }
 
 .cart-count {
-  background-color: red;
+  background-color: rgb(255, 0, 0);
   color: white;
   border-radius: 50%;
   padding: 3px 8px;
@@ -211,10 +211,16 @@ export default {
 }
 
 .remove-btn {
-  background-color: transparent;
-  color: #ff4500;
+  background-color: rgba(39, 34, 34, 1);
+  color: #ff6600;
   border: none;
   cursor: pointer;
-  text-decoration: underline;
+  font-size: 1em;
+  transition: color 0.3s ease;
+}
+
+.remove-btn:hover {
+  color: white;
+  background-color: #ff6600;
 }
 </style>

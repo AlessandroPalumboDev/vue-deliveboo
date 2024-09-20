@@ -30,3 +30,16 @@ li {
 .hidden {
   display: none;
 }
+
+.btn-container button {
+  border-radius: 40px;
+
+  &:nth-child(2) {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
