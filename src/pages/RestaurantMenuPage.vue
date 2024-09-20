@@ -156,6 +156,7 @@ export default {
       <img :src="this.imageUrlDefault + this.rest.image_path" alt="Banner del ristorante" class="restaurant-banner" />
       <div class="restaurant-info">
         <h1 class="title capitalize">{{ this.rest.business_name }}</h1>
+        <p class="address">{{ this.rest.address }}</p>
       </div>
     </section>
     <div class="content">

@@ -93,11 +93,13 @@ export default {
     </nav>
 
     <!-- Modal -->
-    <div :class="['modal', isHidden ? '' : 'modal-active']" ref="modal">
-      <div class="modal-header">
-        <a href="http://localhost:8000/">
-          <h3>Area Riservata</h3>
-        </a>
+    <div class="modal-container">
+      <div :class="['modal', isHidden ? '' : 'modal-active']" ref="modal">
+        <div class="modal-header">
+          <a href="http://localhost:8000/">
+            <h3>Area Riservata</h3>
+          </a>
+        </div>
       </div>
     </div>
 
@@ -215,5 +217,10 @@ export default {
   position: absolute;
   top: 5px;
   right: 15px;
+}
+
+.modal-container {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 </style>
