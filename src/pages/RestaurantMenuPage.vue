@@ -439,28 +439,6 @@ span.description-food {
   font-size: 1.1em;
 }
 
-.minus-btn,
-.plus-btn {
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.603);
-    color: #ff6600;
-  }
-}
-
-.remove-btn {
-  background-color: rgba(39, 34, 34, 0.705);
-  color: #ff6600;
-  border: none;
-  cursor: pointer;
-  font-size: 1em;
-  transition: color 0.3s ease;
-}
-
-.remove-btn:hover {
-  color: white;
-  background-color: #ff6600;
-}
-
 .cart-footer {
   margin-top: 20px;
   display: flex;

@@ -118,10 +118,17 @@ export default {
 
           <div class="btn-container">
             <!-- Bottone per diminuire la quantità di un singolo elemento -->
-            <button @click="removeFromCart(item), checkCart()">&minus;</button>
+            <button
+              class="minus-btn"
+              @click="removeFromCart(item), checkCart()"
+            >
+              &minus;
+            </button>
 
             <!-- Bottone per aumentare la quantità di un singolo elemento -->
-            <button @click="incrementQuantity(item)">&plus;</button>
+            <button class="plus-btn" @click="incrementQuantity(item)">
+              &plus;
+            </button>
 
             <!-- Bottone per rimuovere tutte le quantità di quell'elemento -->
             <button
@@ -196,7 +203,7 @@ export default {
 }
 
 .cart-close-btn:hover {
-  background-color: #ff1100;
+  background-color: #ff1e00;
 }
 
 .cart-count {
@@ -208,19 +215,5 @@ export default {
   position: absolute;
   top: 5px;
   right: 15px;
-}
-
-.remove-btn {
-  background-color: rgba(39, 34, 34, 1);
-  color: #ff6600;
-  border: none;
-  cursor: pointer;
-  font-size: 1em;
-  transition: color 0.3s ease;
-}
-
-.remove-btn:hover {
-  color: white;
-  background-color: #ff6600;
 }
 </style>

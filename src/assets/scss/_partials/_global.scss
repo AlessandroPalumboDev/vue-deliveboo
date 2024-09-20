@@ -218,7 +218,6 @@ button {
   padding: 10px 15px;
   cursor: pointer;
   border-radius: 5px;
-  font-size: 16px;
 }
 
 .btn-register {
@@ -231,6 +230,35 @@ button {
   transition: background-color 0.3s ease;
   &:hover {
     background-color: #ff4500;
+  }
+}
+
+.minus-btn,
+.plus-btn {
+  transition: background-color 0.2s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.603);
+    color: #ff6600;
+    transform: scale(1.03);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.remove-btn {
+  background-color: rgba(39, 34, 34, 0.705);
+  color: #ff6600;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    color: white;
+    background-color: #ff6600;
+    transform: scale(1.03);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
 }
 // END buttons
