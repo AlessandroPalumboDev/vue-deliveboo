@@ -125,19 +125,19 @@ export default {
 }
 
 .restaurant-card {
-  background-color: #1a1a1a;
   border-radius: 10px;
   overflow: hidden;
   width: 100%;
   max-width: 280px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.5s ease-in-out, background-color 0.3s ease-in-out;
+  transition-delay: 0.1s;
   cursor: pointer;
-}
 
-.restaurant-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  &:hover {
+    background-color: rgba(0, 0, 0, 1);
+    transform: scale(1.05);
+  }
 }
 
 .restaurant-image-wrapper {
@@ -149,11 +149,6 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.restaurant-card:hover .restaurant-image {
-  transform: scale(1.1);
 }
 
 .restaurant-name {
@@ -161,7 +156,7 @@ export default {
   font-size: 1.4em;
   text-align: center;
   padding: 15px 10px;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.5);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   margin: 0;

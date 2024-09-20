@@ -250,7 +250,7 @@ export default {
   margin-bottom: 60px;
   background-color: transparent;
   color: rgb(255, 166, 0);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: bold;
   border: 2px solid rgb(255, 166, 0);
   padding: 10px 20px;
@@ -409,6 +409,7 @@ p.description-food {
 span.description-food {
   padding-top: 10px;
   text-align: center;
+  font-size: 16px;
   font-weight: bold;
   color: black;
 }
@@ -580,6 +581,10 @@ span.description-food {
     .content {
       padding-left: 40px;
       padding-right: 40px;
+
+      ul {
+        height: 50px;
+      }
     }
 
     .restaurant-info {

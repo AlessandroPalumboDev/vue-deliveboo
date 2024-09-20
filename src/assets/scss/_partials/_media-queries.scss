@@ -5,7 +5,6 @@ TABLET LAYOUT
 @media (min-width: 480px) {
   .cart {
     bottom: auto;
-    height: calc(100vh - 80px);
     right: -350px;
     left: auto;
     max-width: 450px;
@@ -53,8 +52,7 @@ TABLET LAYOUT
     width: 25%;
   }
 
-  // restaurant media
-
+  // Restaurant media
   .card-sd {
     width: 70vw; /* Adattamento per tablet */
     height: 60vw;

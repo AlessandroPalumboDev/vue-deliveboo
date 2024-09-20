@@ -177,7 +177,7 @@ export default {
 .cart-items {
   list-style: none;
   padding: 10px;
-  max-height: 200px;
+  height: 400px;
   overflow-y: auto;
 }
 
