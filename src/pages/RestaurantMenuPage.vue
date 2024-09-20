@@ -6,6 +6,7 @@ export default {
   data() {
     return {
       restaurantMenu: [],
+      cart_total: 0,
       currentRestaurantId: null,
       showCartWarning: false,
       pendingItem: null,
@@ -60,6 +61,17 @@ export default {
     },
     checkIfMobile() {
       this.isMobile = window.innerWidth <= 768;
+    },
+    cartTo(price) {
+      this.cart_total = price;
+      localStorage.setItem("cart_total", price);
+      this.$router
+        .push({
+          name: "PaymentComponent",
+        })
+        .catch((error) => {
+          console.log("Errore nel routing:", error); // Eventuali errori nel routing
+        });
     },
     toggleCart() {
       this.isCartActive = !this.isCartActive;
@@ -137,17 +149,20 @@ export default {
       <button @click="cancelClearCart">No, mantieni il carrello</button>
     </div>
 
-    <button class="back-btn" @click="goBack">← Torna Indietro</button>
-
     <section class="restaurant-header">
-      <img
-        :src="this.imageUrlDefault + this.rest.image_path"
-        alt="Banner del ristorante"
-        class="restaurant-banner"
-      />
+      <div class="img-container">
+        <img
+          :src="this.imageUrlDefault + this.rest.image_path"
+          alt="Banner del ristorante"
+          class="restaurant-banner"
+        />
+      </div>
       <div class="restaurant-info">
-        <h1 class="title capitalize">{{ this.rest.business_name }}</h1>
+        <h2 class="title capitalize">{{ this.rest.business_name }}</h2>
         <p class="address">{{ this.rest.address }}</p>
+      </div>
+      <div class="back-btn-container">
+        <button class="back-btn" @click="goBack">← Torna Indietro</button>
       </div>
     </section>
     <div class="content">
@@ -213,7 +228,7 @@ export default {
         <p v-if="cart.length === 0">Il carrello è vuoto.</p>
         <div class="cart-footer" v-if="cart.length > 0">
           <p>Totale: €{{ cartTotal }}</p>
-          <button>Checkout</button>
+          <button @click="cartTo(cartTotal)">Checkout</button>
         </div>
       </div>
     </div>
@@ -249,6 +264,14 @@ export default {
   color: white;
 }
 
+.img-container {
+  width: 50%;
+
+  img {
+    width: 350px;
+  }
+}
+
 .restaurant-header {
   display: flex;
   flex-direction: row;
@@ -266,17 +289,31 @@ export default {
 }
 
 .restaurant-banner {
-  width: 40%;
-  max-width: 400px;
   height: auto;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .restaurant-info {
+  width: 25%;
   margin-left: 20px;
   text-align: left;
   flex: 1;
+
+  p {
+    color: rgba(224, 224, 224, 0.774);
+    font-weight: bold;
+  }
+}
+
+.back-btn-container {
+  width: 25%;
+  text-align: end;
+
+  button {
+    width: 60%;
+    bottom: 60px;
+  }
 }
 
 .title {
@@ -539,6 +576,7 @@ span.description-food {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
 }
+
 .cart-warning-modal button {
   background-color: #ff6600;
   color: white;
@@ -551,6 +589,7 @@ span.description-food {
   margin-bottom: 20px;
   text-align: center;
 }
+
 .cart-warning-modal button:hover {
   background-color: #ff4500;
 }

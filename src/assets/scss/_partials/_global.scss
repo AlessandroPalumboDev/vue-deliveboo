@@ -135,7 +135,7 @@ header {
 
   &.modal-active {
     display: block;
-    opacity: 0.9;
+    opacity: 1;
     transform: translateY(0);
     animation: slideDown 0.3s ease-in-out;
 
@@ -261,7 +261,7 @@ button {
 
   &:hover {
     color: white;
-    background-color: #ff6600;
+    background-color: #ff1100;
     transform: scale(1.03);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
@@ -500,7 +500,6 @@ h4 {
 // END Main section
 
 // Footer
-
 footer {
   padding-bottom: 40px;
 }
@@ -511,6 +510,14 @@ footer {
 
   li {
     width: 30%;
+
+    img {
+      transition: 0.2s ease-in-out;
+
+      &:hover {
+        transform: scale(1.06);
+      }
+    }
   }
 
   img {
