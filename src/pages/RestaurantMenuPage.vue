@@ -265,10 +265,11 @@ export default {
 }
 
 .img-container {
-  width: 50%;
+  width: 40%;
+  object-fit: cover;
 
   img {
-    width: 350px;
+    width: 100%;
   }
 }
 
@@ -296,7 +297,7 @@ export default {
 
 .restaurant-info {
   width: 25%;
-  margin-left: 20px;
+  padding-left: 40px;
   text-align: left;
   flex: 1;
 
@@ -309,10 +310,11 @@ export default {
 .back-btn-container {
   width: 25%;
   text-align: end;
+  line-height: 100px;
 
   button {
     width: 60%;
-    bottom: 60px;
+    bottom: 100px;
   }
 }
 
@@ -592,5 +594,41 @@ span.description-food {
 
 .cart-warning-modal button:hover {
   background-color: #ff4500;
+}
+
+// Media queries
+@media (max-width: 480px) {
+  .restaurant-header {
+    display: block;
+
+    .img-container {
+      width: 100%;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .restaurant-info {
+      width: 100%;
+      text-align: center;
+      padding-left: 0px;
+
+      h2 {
+        text-align: center;
+      }
+    }
+
+    .back-btn-container {
+      width: 100%;
+      line-height: 0px;
+      margin-top: 40px;
+      text-align: center;
+
+      button {
+        width: 40%;
+        bottom: 0px;
+        margin-bottom: 0px;
+      }
+    }
+  }
 }
 </style>

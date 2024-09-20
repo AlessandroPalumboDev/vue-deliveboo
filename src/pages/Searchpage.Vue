@@ -66,7 +66,7 @@ export default {
   <main class="search-page">
     <h1 class="restaurant-type-title">{{ restaurantType }}</h1>
     <button class="back-btn" @click="goBack()">← Torna Indietro</button>
-    
+
     <!-- cards -->
     <div class="restaurant-grid">
       <div
@@ -89,8 +89,6 @@ export default {
 </template>
 
 <style scoped>
-
-
 .restaurant-type-title {
   font-size: 3em;
   text-align: center;
@@ -99,9 +97,8 @@ export default {
   font-weight: bold;
 }
 
-
 .back-btn {
-  display: block; 
+  display: block;
   margin: 20px auto;
   background-color: transparent;
   color: rgb(255, 166, 0);
@@ -114,10 +111,9 @@ export default {
 }
 
 .back-btn:hover {
-  background-color: #ff6600; 
+  background-color: #ff6600;
   color: white;
 }
-
 
 .restaurant-grid {
   display: grid;
@@ -127,7 +123,6 @@ export default {
   justify-items: center;
   align-items: start;
 }
-
 
 .restaurant-card {
   background-color: #1a1a1a;
