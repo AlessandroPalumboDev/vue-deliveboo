@@ -175,18 +175,32 @@ export default {
         <ul v-if="cart.length > 0">
           <li v-for="(item, index) in cart" :key="index" class="cart-item">
             <div class="cart-item-details">
-              <span>{{ item.quantity }}x {{ item.name }} </span>
+              <span>{{ item.quantity }}x {{ item.name }}</span>
               <span> €{{ (item.price * item.quantity).toFixed(2) }}</span>
             </div>
 
-            <!-- Bottone per diminuire la quantità di un singolo elemento -->
-            <button @click="removeFromCart(item), checkCart()">-</button>
+            <div>
+              <!-- Bottone per diminuire la quantità di un singolo elemento -->
+              <button
+                class="minus-btn"
+                @click="removeFromCart(item), checkCart()"
+              >
+                -
+              </button>
 
-            <!-- Bottone per aumentare la quantità di un singolo elemento -->
-            <button @click="incrementQuantity(item)">+</button>
+              <!-- Bottone per aumentare la quantità di un singolo elemento -->
+              <button class="plus-btn" @click="incrementQuantity(item)">
+                +
+              </button>
 
-            <!-- Bottone per rimuovere tutte le quantità di quell'elemento -->
-            <button @click="removeAllFromCart(item), checkCart()">x</button>
+              <!-- Bottone per rimuovere tutte le quantità di quell'elemento -->
+              <button
+                class="remove-btn"
+                @click="removeAllFromCart(item), checkCart()"
+              >
+                x
+              </button>
+            </div>
           </li>
         </ul>
         <p v-if="cart.length === 0">Il carrello è vuoto.</p>
@@ -421,6 +435,14 @@ span.description-food {
   font-size: 1.1em;
 }
 
+.minus-btn,
+.plus-btn {
+  width: 10px;
+  height: 30px;
+  border-radius: 50%;
+  padding: 0px 15px;
+}
+
 .remove-btn {
   background-color: transparent;
   color: #ff6600;
@@ -440,11 +462,11 @@ span.description-food {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
 
-.cart-footer span {
-  font-size: 1.4em;
-  font-weight: bold;
+  span {
+    font-size: 1.4em;
+    font-weight: bold;
+  }
 }
 
 .cart-footer button {
@@ -457,12 +479,12 @@ span.description-food {
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease,
     box-shadow 0.3s ease;
-}
 
-.cart-footer button:hover {
-  background-color: #ff4500;
-  transform: scale(1.05);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  &:hover {
+    background-color: #ff4500;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
 }
 
 /* Mobile */

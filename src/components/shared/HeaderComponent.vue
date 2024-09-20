@@ -22,18 +22,27 @@ export default {
     },
   },
   methods: {
+    // Capitalizing the first letter of a string
+    capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    },
+
     toggleCart() {
       this.isCartActive = !this.isCartActive;
     },
+
     modalAppearance() {
       this.isHidden = !this.isHidden;
     },
+
     removeFromCart(item) {
       store.removeFromCart(item);
     },
+
     removeAllFromCart(item) {
       store.removeAllFromCart(item); // Rimozione completa di un articolo
     },
+
     incrementQuantity(item) {
       store.incrementQuantity(item);
     },
@@ -99,19 +108,24 @@ export default {
         <li v-for="(item, index) in cart" :key="index" class="cart-item">
           <div class="cart-item-details">
             <!-- Nome prodotto e quantità -->
-            <span>{{ item.name }} (x{{ item.quantity }})</span>
+            <span>{{ item.quantity }}x {{ item.name }}</span>
+
             <!-- Prezzo moltiplicato per la quantità -->
-            <span>€{{ (item.price * item.quantity).toFixed(2) }}</span>
+            <div>
+              <span>€{{ (item.price * item.quantity).toFixed(2) }}</span>
+            </div>
           </div>
 
-          <!-- Bottone per diminuire la quantità di un singolo elemento -->
-          <button @click="removeFromCart(item), checkCart()">-</button>
+          <div class="btn-container">
+            <!-- Bottone per diminuire la quantità di un singolo elemento -->
+            <button @click="removeFromCart(item), checkCart()">-</button>
 
-          <!-- Bottone per aumentare la quantità di un singolo elemento -->
-          <button @click="incrementQuantity(item)">+</button>
+            <!-- Bottone per aumentare la quantità di un singolo elemento -->
+            <button @click="incrementQuantity(item)">+</button>
 
-          <!-- Bottone per rimuovere tutte le quantità di quell'elemento -->
-          <button @click="removeAllFromCart(item), checkCart()">x</button>
+            <!-- Bottone per rimuovere tutte le quantità di quell'elemento -->
+            <button @click="removeAllFromCart(item), checkCart()">x</button>
+          </div>
         </li>
       </ul>
 
@@ -153,6 +167,16 @@ export default {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
+  text-transform: capitalize;
+}
+
+.btn-container button {
+  border-radius: 40px;
+
+  &:nth-child(2) {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
 }
 
 .cart-footer {

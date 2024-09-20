@@ -37,39 +37,40 @@ export default {
         .get(url)
         .then((response) => {
           this.restaurants = response.data.results.data;
-          console.log(this.restaurants)
-
+          console.log(this.restaurants);
         })
         .catch((error) => console.log(error));
       console.log(this.restaurants.image_path);
     },
     goBack() {
-      this.$router.push({
-        name: 'home',
-      }).catch((error) => {
-        console.log("Errore nel routing:", error);  // Eventuali errori nel routing
-      });
+      this.$router
+        .push({
+          name: "home",
+        })
+        .catch((error) => {
+          console.log("Errore nel routing:", error); // Eventuali errori nel routing
+        });
     },
     getMenu(rest) {
       // id
       let restID = rest.id;
 
       this.rest_ID = restID;
-      localStorage.setItem('rest_ID', restID);
+      localStorage.setItem("rest_ID", restID);
 
       // obj
 
       this.rest_show = rest;
-      localStorage.setItem('rest_show', JSON.stringify(rest));
+      localStorage.setItem("rest_show", JSON.stringify(rest));
 
-      this.$router.push({
-        name: 'restaurantMenu',
-      }).catch((error) => {
-        console.log("Errore nel routing:", error);  // Eventuali errori nel routing
-      });
-
-    }
-
+      this.$router
+        .push({
+          name: "restaurantMenu",
+        })
+        .catch((error) => {
+          console.log("Errore nel routing:", error); // Eventuali errori nel routing
+        });
+    },
   },
 
   mounted() {
@@ -83,34 +84,28 @@ export default {
     <!-- Restaurant types -->
     <button class="back-btn" @click="goBack()">← Torna Indietro</button>
     <div class="card-restaurant">
-
-
       <!-- Single card -->
-
-      <div v-for="restaurant in restaurants" :key="restaurant.id" class="card-sd " @click="getMenu(restaurant)">
-
-        <img :src="this.imageUrlDefault + restaurant.image_path" :alt="restaurant.name" />
+      <div
+        v-for="restaurant in restaurants"
+        :key="restaurant.id"
+        class="card-sd"
+        @click="getMenu(restaurant)"
+      >
+        <img
+          :src="this.imageUrlDefault + restaurant.image_path"
+          :alt="restaurant.name"
+        />
         <div class="sd-card-name">
           <h2>{{ restaurant.business_name }}</h2>
         </div>
-        <!-- <div class="card-text-sd">
-          <div><span>indirizzo: </span><span>{{ restaurant.address }}</span></div>
-          <div class="block-sd"><span>tipologia: </span><span v-for="restaurant in restaurant.types">{{
-            restaurant.name + ', '
-              }}</span></div>
-
-
-
-        </div> -->
-
       </div>
       <!-- END Single card -->
     </div>
   </main>
 </template>
+
 <style scoped>
 .back-btn {
-
   margin: 20px;
   background-color: transparent;
   color: rgb(255, 166, 0);
