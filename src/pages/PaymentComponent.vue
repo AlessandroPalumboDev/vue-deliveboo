@@ -1,38 +1,35 @@
 <script>
-import dropin from "braintree-web-drop-in";
 import axios from "axios";
 
 export default {
   data() {
     return {
-      dropinInstance: null,
-      loading: false,
       cart: [],
       cart_total: 0,
       api: {
         baseUrl: "http://localhost:8000/api/",
         apipay: "braintree/checkout",
-        api_db: "",
+        api_save_order: "save-order", // Nuova rotta API
       },
       name: "",
       surname: "",
       email_address: "",
       delivery_address: "",
+      delivery_time: "",
       note: "",
       total_price: "",
       cardNumber: "",
       expirationDate: "",
       cvv: "",
       errorMessage: "",
+      loading: false,
     };
   },
-
   methods: {
-    submitPayment() {
+    async submitPayment() {
       this.loading = true;
       this.errorMessage = "";
 
-      // Validazione basica dei campi
       if (
         !this.cardNumber ||
         !this.expirationDate ||
@@ -41,6 +38,7 @@ export default {
         !this.surname ||
         !this.email_address ||
         !this.delivery_address ||
+        !this.delivery_time ||
         !this.total_price
       ) {
         this.errorMessage = "Tutti i campi sono obbligatori";
@@ -48,79 +46,70 @@ export default {
         return;
       }
 
-      const url = this.api.baseUrl + this.api.apipay;
-      const url_db = this.api.baseUrl + "save-order";
+      try {
+        // Prepara i piatti del carrello
+        const plates = this.cart.map((item) => ({
+          plate_id: item.id,
+          quantity: item.quantity,
+        }));
 
-      // Prepara i piatti del carrello
-      const plates = this.cart.map((item) => ({
-        plate_id: item.id, // Assicurati che 'id' sia la chiave corretta per il piatto
-        quantity: item.quantity,
-      }));
+        const valore_id = localStorage.getItem("rest_ID");
 
-      // Invio dei dati al backend Laravel
-      axios
-        .post(url, {
-          //   name: this.name,
-          //   surname: this.surname,
-          //   email_address: this.email_address,
-          //   delivery_address: this.delivery_address,
-          //   note: this.note,
-          //   total_price: this.total_price,
-          //   plates: plates, // Invia i piatti
-          cardNumber: this.cardNumber,
-          expirationDate: this.expirationDate,
-          cvv: this.cvv,
-          amount: this.total_price,
-        })
-        .then((response) => {
-          if (response.data.success) {
-            console.log(url);
-            alert(
-              "Pagamento completato con successo! ID transazione: " +
-                response.data.transaction_id
-            );
-          } else {
-            this.errorMessage =
-              "Errore nel pagamento: " + response.data.message;
+        // Invio dei dati al backend per salvare l'ordine e la tabella pivot
+        const saveOrderResponse = await axios.post(
+          this.api.baseUrl + this.api.api_save_order,
+          {
+            restaurant_id: valore_id,
+            name: this.name,
+            surname: this.surname,
+            email_address: this.email_address,
+            delivery_address: this.delivery_address,
+            delivery_time: this.delivery_time,
+            note: this.note,
+            total_price: this.total_price,
+            plates: plates,
           }
-          this.loading = false;
-        })
-        .catch((error) => {
-          this.errorMessage = "Errore durante il pagamento. Riprovare.";
-          console.error("Errore:", error);
-          this.loading = false;
-        });
+        );
 
-      axios
-        .post(url_db, {
-          name: this.name,
-          surname: this.surname,
-          email_address: this.email_address,
-          delivery_address: this.delivery_address,
-          note: this.note,
-          total_price: this.total_price,
-          plates: plates, // Invia i piatti
-        })
-        .then((response) => {
-          console.log("Dati salvati nel database:", response.data);
-        })
-        .catch((error) => {
-          console.error("Errore nel salvare i dati:", error);
-        });
+        if (!saveOrderResponse.data.success) {
+          throw new Error(saveOrderResponse.data.message);
+        }
+
+        // Invio dei dati di pagamento
+        const paymentResponse = await axios.post(
+          this.api.baseUrl + this.api.apipay,
+          {
+            cardNumber: this.cardNumber,
+            expirationDate: this.expirationDate,
+            cvv: this.cvv,
+            amount: this.total_price,
+          }
+        );
+
+        if (paymentResponse.data.success) {
+          alert(
+            "Pagamento completato con successo! ID transazione: " +
+              paymentResponse.data.transaction_id
+          );
+        } else {
+          this.errorMessage =
+            "Errore nel pagamento: " + paymentResponse.data.message;
+        }
+      } catch (error) {
+        this.errorMessage = "Errore durante il pagamento. Riprovare.";
+        console.error("Errore:", error);
+      } finally {
+        this.loading = false;
+      }
     },
-
     getCart() {
       const cart = JSON.parse(localStorage.getItem("cart"));
       this.cart = cart;
-      console.log(this.cart);
     },
     getTotal() {
       const price_t = localStorage.getItem("cart_total");
       this.cart_total = price_t;
       this.total_price = price_t;
-    },
-    clearCart() {
-      store.clearCart();
     },
   },
   mounted() {
@@ -129,6 +118,7 @@ export default {
   },
 };
 </script>
+
 <template>
   <div class="payment-form">
     <form @submit.prevent="submitPayment" class="container-pay">
@@ -174,6 +164,17 @@ export default {
             v-model="delivery_address"
             id="delivery_address"
             placeholder="Inserisci l'indirizzo di consegna"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="delivery_time">Orario di consegna</label>
+          <input
+            type="time"
+            v-model="delivery_time"
+            id="delivery_time"
+            placeholder="Inserisci l' orario di consegna"
             required
           />
         </div>
