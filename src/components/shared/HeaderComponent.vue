@@ -146,7 +146,10 @@ export default {
       <div class="cart-footer">
         <!-- Totale del carrello -->
         <p v-if="cart.length > 0">Totale: €{{ cartTotal }}</p>
-        <button @click="toggleCart" class="cart-close-btn">Chiudi</button>
+        <div class="buttons-container d-flex justify-between">
+          <button class="back-to-menu">Torna al menù del ristorante</button>
+          <button @click="toggleCart" class="cart-close-btn">Chiudi</button>
+        </div>
       </div>
 
       <p v-if="cart.length === 0">Il carrello è vuoto.</p>
@@ -193,19 +196,21 @@ export default {
   border-top: 1px solid #b1b1b1;
 }
 
-.cart-close-btn {
-  background-color: #ff6600;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 100%;
-  text-align: center;
-}
+.buttons-container {
+  padding-top: 20px;
 
-.cart-close-btn:hover {
-  background-color: #ff1e00;
+  button {
+    font-size: 14px;
+  }
+
+  .back-to-menu {
+    width: 60%;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #ff9100;
+    }
+  }
 }
 
 .cart-count {
