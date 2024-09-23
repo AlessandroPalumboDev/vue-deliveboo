@@ -200,7 +200,6 @@ export default {
 .cart-items {
   list-style: none;
   padding: 10px;
-  height: 500px;
   overflow-y: auto;
 }
 
