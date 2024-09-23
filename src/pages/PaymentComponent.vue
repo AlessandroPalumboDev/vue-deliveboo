@@ -46,8 +46,9 @@ export default {
         return;
       }
 
+      console.log("Delivery Time:", this.delivery_time); // Aggiunto per debug
+
       try {
-        // Prepara i piatti del carrello
         const plates = this.cart.map((item) => ({
           plate_id: item.id,
           quantity: item.quantity,
@@ -55,20 +56,23 @@ export default {
 
         const valore_id = localStorage.getItem("rest_ID");
 
-        // Invio dei dati al backend per salvare l'ordine e la tabella pivot
+        const orderData = {
+          restaurant_id: valore_id,
+          name: this.name,
+          surname: this.surname,
+          email_address: this.email_address,
+          delivery_address: this.delivery_address,
+          delivery_time: this.delivery_time,
+          note: this.note,
+          total_price: this.total_price,
+          plates: plates,
+        };
+
+        console.log("Order Data:", orderData); // Aggiunto per debug
+
         const saveOrderResponse = await axios.post(
           this.api.baseUrl + this.api.api_save_order,
-          {
-            restaurant_id: valore_id,
-            name: this.name,
-            surname: this.surname,
-            email_address: this.email_address,
-            delivery_address: this.delivery_address,
-            delivery_time: this.delivery_time,
-            note: this.note,
-            total_price: this.total_price,
-            plates: plates,
-          }
+          orderData
         );
 
         if (!saveOrderResponse.data.success) {
@@ -228,19 +232,16 @@ export default {
                     </div>
                 </div>
                 <div id="price">
-                    <div>
+                 
                         <h2>Totale: €{{ this.cart_total }}</h2>
-
+                        <button type="submit" :disabled="loading">
+            {{ loading ? "Processando..." : "Acquista" }}
+          </button>
                     </div>
-                    <button type="submit" :disabled="loading">
-                    {{ loading ? 'Processando...' : 'Acquista' }}
-                </button>
-                </div>
             </div>
-
-            <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
-        </form>
-    </div>
+      <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
+    </form>
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -254,10 +255,10 @@ export default {
     transition: all 0.3s ease-in-out;
     font-family: 'Roboto', sans-serif;
 
-    &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-    }
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  }
 
     #note {
         width: 100%;
@@ -278,9 +279,9 @@ export default {
 }
 
 .payment-data {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 
     .form-group {
         flex: 1;
@@ -298,17 +299,17 @@ label {
 
 input,
 textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 16px;
-    transition: all 0.3s ease;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: all 0.3s ease;
 
-    &:focus {
-        border-color: #ff6600;
-        box-shadow: 0 0 8px rgba(255, 102, 0, 0.2);
-    }
+  &:focus {
+    border-color: #ff6600;
+    box-shadow: 0 0 8px rgba(255, 102, 0, 0.2);
+  }
 }
 
 button {
@@ -323,24 +324,34 @@ button {
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
 
-    &:hover {
-        background-color: #ff4d00;
-        transform: translateY(-2px);
-    }
+  &:hover {
+    background-color: #ff4d00;
+    transform: translateY(-2px);
+  }
 
-    &:disabled {
-        background-color: #ccc;
-        cursor: not-allowed;
-        transform: none;
-    }
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    transform: none;
+  }
 }
 
 .payment-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+
+  #price-list {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    margin-top: 20px;
+    gap: 10px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 
     #price-list {
         width: 100%;
@@ -365,6 +376,7 @@ button {
             color: #000000;
         }
     }
+  }
 
     #price {
         font-size: 22px;
@@ -376,44 +388,45 @@ button {
             margin-bottom: 20px;
         }
     }
-}
+  }
+
 
 .error-message {
-    color: red;
-    font-weight: bold;
-    margin-top: 16px;
-    text-align: center;
+  color: red;
+  font-weight: bold;
+  margin-top: 16px;
+  text-align: center;
 }
 
 /* Animazioni e tocchi visivi */
 input,
 textarea {
-    background-color: #fafafa;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  background-color: #fafafa;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 
-    &:hover {
-        background-color: #f0f0f0;
-    }
+  &:hover {
+    background-color: #f0f0f0;
+  }
 }
 
 textarea {
-    &:focus {
-        border-color: #00bfa5;
-        box-shadow: 0 0 10px rgba(0, 191, 165, 0.15);
-    }
+  &:focus {
+    border-color: #00bfa5;
+    box-shadow: 0 0 10px rgba(0, 191, 165, 0.15);
+  }
 }
 
 button {
-    box-shadow: 0 4px 15px rgba(255, 102, 0, 0.2);
+  box-shadow: 0 4px 15px rgba(255, 102, 0, 0.2);
 
-    &:hover {
-        box-shadow: 0 6px 20px rgba(255, 77, 0, 0.3);
-    }
+  &:hover {
+    box-shadow: 0 6px 20px rgba(255, 77, 0, 0.3);
+  }
 }
 
 .payment-form:hover {
-    border-color: #f9f9f9;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  border-color: #f9f9f9;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
 #recap {

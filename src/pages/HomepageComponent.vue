@@ -88,7 +88,7 @@ export default {
             </div>
             <div class="d-flex justify-center">
               <h2 class="delivery">
-                I piatti dalle migliori cucine del mondo ovunque, anche a
+                I piatti dalle migliori cucine del mondo. Ovunque, anche a
                 domicilio
               </h2>
             </div>
