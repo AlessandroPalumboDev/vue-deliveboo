@@ -72,6 +72,10 @@ export const store = reactive({
     localStorage.removeItem("cart");
     localStorage.removeItem("currentRestaurant");
   },
+  clearCheckout() {
+    this.cart = [];
+    localStorage.removeItem("cart");
+  },
 
   updateLocalStorage() {
     localStorage.setItem("cart", JSON.stringify(this.cart));

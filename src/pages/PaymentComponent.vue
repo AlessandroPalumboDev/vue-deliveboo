@@ -1,5 +1,6 @@
 <script>
 import axios from "axios";
+import { store } from "../store.js";
 
 export default {
   data() {
@@ -131,6 +132,7 @@ export default {
           if (!saveOrderResponse.data.success) {
             throw new Error(saveOrderResponse.data.message);
           }
+          this.clearCheckout();
         } else {
           this.errorMessage =
             "Errore nel pagamento:" + paymentResponse.data.message;
@@ -151,8 +153,8 @@ export default {
       this.cart_total = price_t;
       this.total_price = price_t;
     },
-    clearCart() {
-      store.clearCart();
+    clearCheckout() {
+      store.clearCheckout();
     },
   },
   mounted() {
