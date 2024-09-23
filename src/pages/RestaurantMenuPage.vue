@@ -141,13 +141,16 @@ export default {
   <div class="restaurant-menu-page">
     <!-- Avviso di cambio ristorante -->
     <div v-if="showCartWarning" class="cart-warning-modal">
-      <p>
-        Hai già elementi nel carrello di un altro ristorante. Vuoi svuotare il
-        carrello?
-      </p>
-      <button @click="confirmClearCart">Sì, svuota il carrello</button>
-      <button @click="cancelClearCart">No, mantieni il carrello</button>
-    </div>
+  <p class="cart-warning-text">
+    Hai già elementi nel carrello di un altro ristorante. Vuoi svuotare il
+    carrello?
+  </p>
+  <div class="cart-warning-buttons">
+    <button class="confirm-btn" @click="confirmClearCart">Sì, svuota il carrello</button>
+    <button class="cancel-btn" @click="cancelClearCart">No, mantieni il carrello</button>
+  </div>
+</div>
+
 
     <section class="restaurant-header">
       <div class="img-container">
@@ -654,4 +657,88 @@ span.description-food {
     background-color: #ff4500;
   }
 }
+
+.cart-warning-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, #ffffff, #f8f8f8);
+  border-radius: 15px;
+  padding: 25px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2), 0 12px 24px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  z-index: 1000;
+  animation: bounceIn 0.5s ease-out;
+}
+
+.cart-warning-text {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 20px;
+  line-height: 1.5;
+  font-family: 'Roboto', sans-serif;
+}
+
+.cart-warning-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.confirm-btn,
+.cancel-btn {
+  width: 48%;
+  padding: 12px 0;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+
+.confirm-btn {
+  background-color: #ff6600;
+  color: white;
+  box-shadow: 0 4px 10px rgba(255, 102, 0, 0.3);
+}
+
+.confirm-btn:hover {
+  background-color: #ff1e00;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(255, 102, 0, 0.5);
+}
+
+.cancel-btn {
+  background-color: #e2e2e2;
+  color: #333;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.cancel-btn:hover {
+  background-color: #c1c1c1;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Animazione di comparsa */
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -40%) scale(0.9);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+
 </style>
