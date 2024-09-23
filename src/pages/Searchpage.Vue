@@ -117,7 +117,8 @@ export default {
 
 .restaurant-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(3, minmax(250px, 0fr));
+  justify-content: center;
   gap: 30px;
   padding: 40px;
   justify-items: center;
