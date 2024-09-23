@@ -1,10 +1,15 @@
+[v-cloak] {
+  display: none;
+}
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  scrollbar-width: none;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 166, 0, 0.562) rgba(255, 166, 0, 0.253);
 }
 
-[v-cloak] {
-  display: none;
+html {
+  scrollbar-color: rgb(255, 166, 0) rgba(0, 0, 0, 0.904);
 }
