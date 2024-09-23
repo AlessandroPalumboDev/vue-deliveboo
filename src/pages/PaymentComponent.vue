@@ -218,6 +218,8 @@ export default {
                 </div>
             </div>
             <div class="payment-button">
+
+                <h2 id="recap">Recap del tuo ordine:</h2>
                
                 <div id="price-list">
                     <div v-for="item in this.cart" class="prod">
@@ -227,7 +229,7 @@ export default {
                 </div>
                 <div id="price">
                     <div>
-                        <h2>totale: €{{ this.cart_total }}</h2>
+                        <h2>Totale: €{{ this.cart_total }}</h2>
 
                     </div>
                     <button type="submit" :disabled="loading">
@@ -243,10 +245,10 @@ export default {
 
 <style lang="scss" scoped>
 .payment-form {
-    max-width: 600px;
+    max-width: 800px;
     margin: 80px auto;
     padding: 30px;
-    background: white;
+    background-color: #f8f8f813;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
     transition: all 0.3s ease-in-out;
@@ -259,7 +261,7 @@ export default {
 
     #note {
         width: 100%;
-        height: 100px;
+        height: 50px;
         padding: 10px;
         border: 1px solid #ddd;
         border-radius: 6px;
@@ -272,7 +274,7 @@ export default {
 .container-pay {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 40px;
 }
 
 .payment-data {
@@ -282,7 +284,7 @@ export default {
 
     .form-group {
         flex: 1;
-        min-width: 250px;
+        min-width: 350px;
     }
 }
 
@@ -290,8 +292,8 @@ label {
     display: block;
     font-weight: 600;
     margin-bottom: 6px;
-    color: #000000;
-    font-size: 14px;
+    color: #ffffff;
+    font-size: 19px;
 }
 
 input,
@@ -313,7 +315,7 @@ button {
     width: 100%;
     padding: 15px;
     background-color: #ff6600;
-    color: white;
+    color: rgb(255, 255, 255);
     border: none;
     border-radius: 8px;
     font-size: 18px;
@@ -345,27 +347,33 @@ button {
         display: flex;
         flex-direction: column;
         gap: 10px;
-        background-color: #f9f9f9;
+        background: linear-gradient(
+          to bottom,
+          rgb(255, 166, 0),
+          rgb(255, 166, 1)
+        ),
+        rgba(255, 166, 0, 0%);
         padding: 15px;
         border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    
 
         .prod {
             display: flex;
             justify-content: space-between;
             font-size: 16px;
             font-weight: 500;
-            color: #555;
+            color: #000000;
         }
     }
 
     #price {
         font-size: 22px;
         font-weight: bold;
-        color: #333;
+        color: #ffffff;
+      
 
         h2 {
-            margin: 0;
+            margin-bottom: 20px;
         }
     }
 }
@@ -406,6 +414,11 @@ button {
 .payment-form:hover {
     border-color: #f9f9f9;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+#recap {
+   color: black;
+   font-size: 40px;
 }
 
 </style>
