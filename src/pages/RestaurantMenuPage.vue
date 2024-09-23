@@ -166,28 +166,34 @@ export default {
       </div>
     </section>
     <div class="content">
-      <div class="menu-items">
-        <div
-          v-for="item in this.restaurantMenu"
-          :key="index"
-          class="menu-item capitalize"
-        >
-          <img
-            :src="imageUrlDefault + item.cover_image"
-            alt="Immagine del piatto"
-            class="menu-item-image"
-          />
-          <div class="menu-item-details">
-            <h4 class="title-food">{{ item.name }}</h4>
-            <p class="description-food">{{ item.ingredients }}</p>
-            <span class="description-food">€{{ item.price }}</span>
+      <div class="menu-items-container">
+        <div class="menu-items">
+          <div
+            v-for="item in this.restaurantMenu"
+            :key="index"
+            class="menu-item capitalize"
+          >
+            <img
+              :src="imageUrlDefault + item.cover_image"
+              alt="Immagine del piatto"
+              class="menu-item-image"
+            />
+            <div class="menu-item-details">
+              <h4 class="title-food">{{ item.name }}</h4>
+              <p class="description-food">{{ item.ingredients }}</p>
+              <span class="description-food">€{{ item.price }}</span>
+            </div>
+            <button @click="addToCart(item)" class="add-to-cart-btn">+</button>
           </div>
-          <button @click="addToCart(item)" class="add-to-cart-btn">+</button>
-        </div>
 
-        <button class="back-btn open-cart" v-if="isMobile" @click="toggleCart">
-          {{ isCartActive ? "Chiudi Carrello" : "Apri Carrello" }}
-        </button>
+          <button
+            class="back-btn open-cart"
+            v-if="isMobile"
+            @click="toggleCart"
+          >
+            {{ isCartActive ? "Chiudi Carrello" : "Apri Carrello" }}
+          </button>
+        </div>
       </div>
 
       <div class="cart" v-if="!isMobile">
@@ -278,7 +284,6 @@ export default {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding-top: 20px;
   margin-bottom: 40px;
   background: linear-gradient(
       to bottom,
@@ -346,10 +351,26 @@ export default {
   flex-direction: row;
   gap: 30px;
   margin: 0 auto;
-  padding-bottom: 60px;
+  padding-left: 20px;
+  padding-right: 20px;
+  max-height: 600px;
+  border-radius: 10px;
+
+  ul {
+    height: 50px;
+  }
+}
+
+.menu-items-container {
+  width: 65%;
+  overflow-y: auto;
+  border-radius: 10px;
 }
 
 .menu-items {
+  width: 97%;
+  height: 100%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -442,6 +463,8 @@ span.description-food {
 }
 
 .cart {
+  max-height: 600px;
+  margin-right: 10px;
   flex: 1;
   background: linear-gradient(
       to bottom,
@@ -450,16 +473,10 @@ span.description-food {
     ),
     rgba(255, 166, 0, 0%);
   padding: 20px;
-  border-radius: 12px;
+  border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.cart:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .cart h3 {
@@ -551,10 +568,15 @@ span.description-food {
   .restaurant-header {
     flex-direction: column;
     align-items: center;
+    padding-top: 20px;
   }
 
-  .menu-items {
-    grid-template-columns: 1fr;
+  .menu-items-container {
+    width: 100%;
+
+    .menu-items {
+      grid-template-columns: 1fr;
+    }
   }
 
   .cart {
@@ -575,15 +597,6 @@ span.description-food {
 
       .restaurant-banner {
         max-width: 100%;
-      }
-    }
-
-    .content {
-      padding-left: 40px;
-      padding-right: 40px;
-
-      ul {
-        height: 50px;
       }
     }
 
