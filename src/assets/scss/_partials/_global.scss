@@ -205,7 +205,6 @@ header {
   background-color: transparent;
   border: none;
   font-size: 24px;
-  cursor: pointer;
   position: absolute;
   top: 15px;
   right: 15px;
@@ -226,7 +225,6 @@ button {
   color: white;
   border: none;
   padding: 10px 20px;
-  cursor: pointer;
   border-radius: 5px;
   transition: background-color 0.3s ease;
   &:hover {
@@ -251,7 +249,6 @@ button {
   background-color: rgba(39, 34, 34, 0.705);
   color: #ff6600;
   border: none;
-  cursor: pointer;
   transition: background-color 0.2s ease, transform 0.2s ease,
     box-shadow 0.2s ease;
 
@@ -309,18 +306,15 @@ button {
 }
 
 .cart-close-btn {
+  width: 35%;
   background-color: #ff6600;
   color: white;
   border: none;
-  padding: 8px 12px;
-  margin-top: 10px;
-  cursor: pointer;
   border-radius: 5px;
-  font-size: 16px;
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #ff660073;
+    background-color: #ff1e00;
   }
 }
 
@@ -421,7 +415,6 @@ h4 {
   color: white;
   border: none;
   padding: 10px;
-  cursor: pointer;
   font-size: 18px;
   border-radius: 50%;
 }
@@ -581,6 +574,7 @@ footer {
     &:hover {
       background-color: rgba(0, 0, 0, 0.819);
       transform: scale(1.05);
+
       .btn-rest-sd {
         display: inline-block;
       }
@@ -589,12 +583,15 @@ footer {
         color: #ffffff;
       }
     }
+
     .block-sd {
       display: block;
     }
+
     .inline-sd {
       display: inline;
     }
+
     .sd-card-name {
       position: absolute;
       top: 40px;
@@ -603,25 +600,30 @@ footer {
       background-color: #ffffff82;
       color: #1b1b1b;
     }
+
     .card-text-sd {
       padding: 10px 10px;
     }
+
     img {
       width: 100%;
       height: 100%;
       border-radius: 8px;
       object-fit: cover;
     }
+
     .btn-rest-sd {
       position: absolute;
       display: none;
       right: 10px;
       bottom: 10px;
       transition: transform 0.225s ease, background-color 0.225s ease;
+
       &:hover {
         background-color: rgba(0, 0, 0, 0.819);
         transform: scale(1.05);
       }
+
       background: linear-gradient(
         to bottom,
         rgb(255, 165, 0),
@@ -630,4 +632,4 @@ footer {
     }
   }
 }
-// end restaurant search
+// End restaurant search
