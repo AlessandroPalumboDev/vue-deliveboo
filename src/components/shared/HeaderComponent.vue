@@ -158,7 +158,12 @@ export default {
         <!-- Totale del carrello -->
         <p v-if="cart.length > 0">Totale: €{{ cartTotal }}</p>
         <div class="buttons-container d-flex justify-between">
-          <button @click="cartTo(cartTotal), toggleCart()">Checkout</button>
+          <button
+            v-if="cart.length > 0"
+            @click="cartTo(cartTotal), toggleCart()"
+          >
+            Checkout
+          </button>
           <button @click="toggleCart" class="cart-close-btn">Chiudi</button>
         </div>
       </div>

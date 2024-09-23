@@ -26,6 +26,41 @@ export default {
     };
   },
   methods: {
+    formatExpirationDate(event) {
+      const input = event.target.value.replace(/\D/g, ""); // Rimuovi caratteri non numerici
+      let formatted = "";
+
+      if (input.length > 2) {
+        formatted = `${input.slice(0, 2)}/${input.slice(2, 4)}`;
+      } else {
+        formatted = input;
+      }
+
+      this.expirationDate = formatted; // Aggiorna il valore
+    },
+
+    validateExpiryDate(expiryDate) {
+      const regex = /^(0[1-9]|1[0-2])\/?([0-9]{2})$/;
+      if (!regex.test(expiryDate)) {
+        return false; // Formato non valido
+      }
+
+      const [month, year] = expiryDate.split("/");
+      const currentYear = new Date().getFullYear() % 100;
+      const currentMonth = new Date().getMonth() + 1;
+
+      const expiryYear = parseInt(year, 10);
+
+      if (
+        expiryYear < currentYear ||
+        (expiryYear === currentYear && month < currentMonth)
+      ) {
+        return false; // Carta scaduta
+      }
+
+      return true; // Carta valida
+    },
+
     async submitPayment() {
       this.loading = true;
       this.errorMessage = "";
@@ -46,7 +81,13 @@ export default {
         return;
       }
 
-      console.log("Delivery Time:", this.delivery_time); // Aggiunto per debug
+      // Validazione della data di scadenza
+      if (!this.validateExpiryDate(this.expirationDate)) {
+        this.errorMessage =
+          "Data di scadenza non valida. Usa il formato MM/YY.";
+        this.loading = false;
+        return;
+      }
 
       try {
         const plates = this.cart.map((item) => ({
@@ -68,18 +109,6 @@ export default {
           plates: plates,
         };
 
-        console.log("Order Data:", orderData); // Aggiunto per debug
-
-        const saveOrderResponse = await axios.post(
-          this.api.baseUrl + this.api.api_save_order,
-          orderData
-        );
-
-        if (!saveOrderResponse.data.success) {
-          throw new Error(saveOrderResponse.data.message);
-        }
-
-        // Invio dei dati di pagamento
         const paymentResponse = await axios.post(
           this.api.baseUrl + this.api.apipay,
           {
@@ -95,9 +124,16 @@ export default {
             "Pagamento completato con successo! ID transazione: " +
               paymentResponse.data.transaction_id
           );
+          const saveOrderResponse = await axios.post(
+            this.api.baseUrl + this.api.api_save_order,
+            orderData
+          );
+          if (!saveOrderResponse.data.success) {
+            throw new Error(saveOrderResponse.data.message);
+          }
         } else {
           this.errorMessage =
-            "Errore nel pagamento: " + paymentResponse.data.message;
+            "Errore nel pagamento:" + paymentResponse.data.message;
         }
       } catch (error) {
         this.errorMessage = "Errore durante il pagamento. Riprovare.";
@@ -114,6 +150,9 @@ export default {
       const price_t = localStorage.getItem("cart_total");
       this.cart_total = price_t;
       this.total_price = price_t;
+    },
+    clearCart() {
+      store.clearCart();
     },
   },
   mounted() {
@@ -213,69 +252,76 @@ export default {
             id="expirationDate"
             placeholder="MM/YY"
             required
+            @input="formatExpirationDate"
           />
         </div>
 
-                <div class="form-group">
-                    <label for="cvv">CVV</label>
-                    <input type="text" v-model="cvv" id="cvv" placeholder="CVV" required />
-                </div>
-            </div>
-            <div class="payment-button">
+        <div class="form-group">
+          <label for="cvv">CVV</label>
+          <input
+            type="text"
+            v-model="cvv"
+            id="cvv"
+            placeholder="CVV"
+            required
+          />
+        </div>
+      </div>
+      <div class="payment-button">
+        <h2 id="recap">Recap del tuo ordine:</h2>
 
-                <h2 id="recap">Recap del tuo ordine:</h2>
-               
-                <div id="price-list">
-                    <div v-for="item in this.cart" class="prod">
-                        <h3>{{ item.name }}</h3>
-                        <h3>x{{ item.quantity }}</h3>
-                    </div>
-                </div>
-                <div id="price">
-                 
-                        <h2>Totale: €{{ this.cart_total }}</h2>
-                        <button type="submit" :disabled="loading">
+        <div id="price-list">
+          <div v-for="item in this.cart" class="prod">
+            <h3>{{ item.name }}</h3>
+            <h3>x{{ item.quantity }}</h3>
+          </div>
+        </div>
+        <div id="price">
+          <h2>Totale: €{{ this.cart_total }}</h2>
+          <button type="submit" :disabled="loading">
             {{ loading ? "Processando..." : "Acquista" }}
           </button>
-                    </div>
-            </div>
-      <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
+        </div>
+        <p v-if="errorMessage" class="error-message errore">
+          {{ errorMessage }}
+        </p>
+      </div>
     </form>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .payment-form {
-    max-width: 800px;
-    margin: 80px auto;
-    padding: 30px;
-    background-color: #f8f8f813;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    border-radius: 15px;
-    transition: all 0.3s ease-in-out;
-    font-family: 'Roboto', sans-serif;
+  max-width: 800px;
+  margin: 80px auto;
+  padding: 30px;
+  background-color: #f8f8f813;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  transition: all 0.3s ease-in-out;
+  font-family: "Roboto", sans-serif;
 
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
   }
 
-    #note {
-        width: 100%;
-        height: 50px;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 6px;
-        font-size: 14px;
-        transition: all 0.3s ease;
-        resize: none;
-    }
+  #note {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    resize: none;
+  }
 }
 
 .container-pay {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
 
 .payment-data {
@@ -283,18 +329,18 @@ export default {
   flex-wrap: wrap;
   gap: 20px;
 
-    .form-group {
-        flex: 1;
-        min-width: 350px;
-    }
+  .form-group {
+    flex: 1;
+    min-width: 350px;
+  }
 }
 
 label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 6px;
-    color: #ffffff;
-    font-size: 19px;
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #ffffff;
+  font-size: 19px;
 }
 
 input,
@@ -313,16 +359,16 @@ textarea {
 }
 
 button {
-    width: 100%;
-    padding: 15px;
-    background-color: #ff6600;
-    color: rgb(255, 255, 255);
-    border: none;
-    border-radius: 8px;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%;
+  padding: 15px;
+  background-color: #ff6600;
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 
   &:hover {
     background-color: #ff4d00;
@@ -354,42 +400,35 @@ button {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 
     #price-list {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        background: linear-gradient(
-          to bottom,
-          rgb(255, 166, 0),
-          rgb(255, 166, 1)
-        ),
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: linear-gradient(to bottom, rgb(255, 166, 0), rgb(255, 166, 1)),
         rgba(255, 166, 0, 0%);
-        padding: 15px;
-        border-radius: 10px;
-    
+      padding: 15px;
+      border-radius: 10px;
 
-        .prod {
-            display: flex;
-            justify-content: space-between;
-            font-size: 16px;
-            font-weight: 500;
-            color: #000000;
-        }
+      .prod {
+        display: flex;
+        justify-content: space-between;
+        font-size: 16px;
+        font-weight: 500;
+        color: #000000;
+      }
     }
   }
 
-    #price {
-        font-size: 22px;
-        font-weight: bold;
-        color: #ffffff;
-      
+  #price {
+    font-size: 22px;
+    font-weight: bold;
+    color: #ffffff;
 
-        h2 {
-            margin-bottom: 20px;
-        }
+    h2 {
+      margin-bottom: 20px;
     }
   }
-
+}
 
 .error-message {
   color: red;
@@ -430,8 +469,12 @@ button {
 }
 
 #recap {
-   color: black;
-   font-size: 40px;
+  color: black;
+  font-size: 40px;
 }
-
+.errore {
+  background-color: #000000;
+  padding: 15px;
+  border-radius: 10px;
+}
 </style>
