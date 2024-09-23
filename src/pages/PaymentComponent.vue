@@ -132,7 +132,7 @@ export default {
           if (!saveOrderResponse.data.success) {
             throw new Error(saveOrderResponse.data.message);
           }
-          this.clearCheckout();
+          this.clearCart();
         } else {
           this.errorMessage =
             "Errore nel pagamento:" + paymentResponse.data.message;
@@ -153,8 +153,8 @@ export default {
       this.cart_total = price_t;
       this.total_price = price_t;
     },
-    clearCheckout() {
-      store.clearCheckout();
+    clearCart() {
+      store.clearCart();
     },
   },
   mounted() {
