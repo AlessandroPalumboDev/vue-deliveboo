@@ -191,15 +191,12 @@ export default {
             </div>
             <button @click="addToCart(item)" class="add-to-cart-btn">+</button>
           </div>
-
-          <button
-            class="back-btn open-cart"
-            v-if="isMobile"
-            @click="toggleCart"
-          >
-            {{ isCartActive ? "Chiudi Carrello" : "Apri Carrello" }}
-          </button>
         </div>
+      </div>
+      <div>
+        <button class="back-btn open-cart" v-if="isMobile" @click="toggleCart">
+          {{ isCartActive ? "Chiudi Carrello" : "Apri Carrello" }}
+        </button>
       </div>
 
       <div class="cart" v-if="!isMobile">
@@ -361,12 +358,13 @@ export default {
   margin: 0 auto;
   padding-left: 20px;
   padding-right: 20px;
-  max-height: 600px;
   border-radius: 10px;
 }
 
 .menu-items-container {
   width: 65%;
+  max-height: 400px;
+  margin-bottom: 20px;
   overflow-y: auto;
   border-radius: 10px;
 }
@@ -559,7 +557,7 @@ span.description-food {
   opacity: 0;
 }
 
-// Media queries
+// Media queries fino a desktop
 @media (max-width: 780px) {
   .back-btn {
     width: 41%;
@@ -573,6 +571,10 @@ span.description-food {
     flex-direction: column;
     align-items: center;
     padding-top: 20px;
+  }
+
+  .content {
+    display: block;
   }
 
   .menu-items-container {
@@ -656,6 +658,13 @@ span.description-food {
 
   .cart-warning-modal button:hover {
     background-color: #ff4500;
+  }
+}
+
+@media (min-width: 780px) {
+  .menu-items-container {
+    max-height: 600px;
+    margin-bottom: 0px;
   }
 }
 
