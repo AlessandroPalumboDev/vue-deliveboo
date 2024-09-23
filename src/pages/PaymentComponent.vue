@@ -120,7 +120,6 @@ export default {
     this.getCart();
     this.getTotal();
   },
-
 };
 </script>
 
@@ -195,11 +194,15 @@ export default {
 
         <!-- Informazioni di pagamento -->
         <div class="form-group">
-            <div class="cardsname">
-                <label for="cardNumber">Numero di Carta</label>
-                <img class="cards" src=".././assets/img/card/card.jpg" alt="carte" />
-            </div>
-        
+          <div class="cardsname">
+            <label for="cardNumber">Numero di Carta</label>
+            <img
+              class="cards"
+              src=".././assets/img/card/card.jpg"
+              alt="carte"
+            />
+          </div>
+
           <input
             type="text"
             v-model="cardNumber"
@@ -221,7 +224,6 @@ export default {
           />
         </div>
 
-<<<<<<< HEAD
         <div class="form-group">
           <label for="cvv">CVV</label>
           <input
@@ -233,59 +235,32 @@ export default {
           />
         </div>
       </div>
-      <div class="payment-button">
-        <h2 id="recap">Recap del tuo ordine:</h2>
-
-        <div id="price-list">
-          <div v-for="item in this.cart" class="prod">
-            <h3>{{ item.name }}</h3>
-            <h3>x{{ item.quantity }}</h3>
+      <div class="right-section">
+        <div class="payment-button">
+          <h2 id="recap">Riepilogo del tuo ordine:</h2>
+          <div id="price-list">
+            <div v-for="item in this.cart" class="prod">
+              <h3>{{ item.name }}</h3>
+              <h3>x{{ item.quantity }}</h3>
+            </div>
           </div>
+          <h2 id="total">Totale: €{{ this.cart_total }}</h2>
+          <img
+            src=".././assets/img/header/logo3.png"
+            alt="DeliveBoo Logo"
+            class="logo"
+          />
         </div>
+
         <div id="price">
-          <h2>Totale: €{{ this.cart_total }}</h2>
-          <button type="submit" :disabled="loading">
+          <button class="purchase" type="submit" :disabled="loading">
             {{ loading ? "Processando..." : "Acquista" }}
+          </button>
+          <button type="button" @click="goBack" class="back-btn">
+            Torna indietro
           </button>
         </div>
       </div>
-=======
-                <div class="form-group">
-                    <label for="cvv">CVV</label>
-                    <input type="text" v-model="cvv" id="cvv" placeholder="CVV" required />
-                </div>
-            </div>
-        <div class="right-section">
-            
-            <div class="payment-button">
-   
-              <h2 id="recap">Riepilogo del tuo ordine:</h2>        
-                <div id="price-list">
-                    <div v-for="item in this.cart" class="prod">
-                        <h3>{{ item.name }}</h3>
-                        <h3>x{{ item.quantity }}</h3>
-                        
-                    </div>
-                </div>
-                <h2 id="total">Totale: €{{ this.cart_total }}</h2>
-                <img
-              src=".././assets/img/header/logo3.png"
-              alt="DeliveBoo Logo"
-              class="logo"
-            />
-            </div>
-
-
-            <div id="price">               
-                   
-                    <button class="purchase" type="submit" :disabled="loading">
-                     {{ loading ? "Processando..." : "Acquista" }}
-                    </button>
-                    <button type="button" @click="goBack" class="back-btn">Torna indietro</button>
-
-            </div>
-        </div>
->>>>>>> main
       <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
     </form>
   </div>
@@ -303,7 +278,6 @@ export default {
   font-family: "Roboto", sans-serif;
 
   &:hover {
-  
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
   }
 
@@ -400,38 +374,13 @@ button {
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 
-<<<<<<< HEAD
-    #price-list {
-      width: 100%;
+    .prod {
       display: flex;
-      flex-direction: column;
-      gap: 10px;
-      background: linear-gradient(to bottom, rgb(255, 166, 0), rgb(255, 166, 1)),
-        rgba(255, 166, 0, 0%);
-      padding: 15px;
-      border-radius: 10px;
-
-      .prod {
-        display: flex;
-        justify-content: space-between;
-        font-size: 16px;
-        font-weight: 500;
-        color: #000000;
-      }
+      justify-content: space-between;
+      font-size: 16px;
+      font-weight: 500;
+      color: #000000;
     }
-=======
-  
-    
-
-        .prod {
-            display: flex;
-            justify-content: space-between;
-            font-size: 16px;
-            font-weight: 500;
-            color: #000000;
-        }
-    
->>>>>>> main
   }
 
   #price {
@@ -470,38 +419,31 @@ textarea {
   }
 }
 
-
 .payment-form:hover {
   border-color: #f9f9f9;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
 #recap {
-<<<<<<< HEAD
-  color: black;
+  color: rgb(255, 255, 255);
   font-size: 40px;
 }
-=======
-   color: rgb(255, 255, 255);
-   font-size: 40px;
-}
-
 
 #total {
-    color: white;
-    margin-bottom: 20px;
-} 
+  color: white;
+  margin-bottom: 20px;
+}
 
 .cardsname {
-  display: flex;        
-  align-items: center;   
-  gap: 8px;            
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .cards {
-  width: 100px;         
-  height: auto;  
-  margin-bottom: 8px;        
+  width: 100px;
+  height: auto;
+  margin-bottom: 8px;
 }
 
 .back-btn {
@@ -522,8 +464,8 @@ textarea {
   color: white;
 }
 
-.purchase{
-    display: block;
+.purchase {
+  display: block;
   margin-top: 20px;
   background-color: transparent;
   color: rgb(255, 255, 255);
@@ -534,7 +476,4 @@ textarea {
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
-
-
->>>>>>> main
 </style>

@@ -99,6 +99,8 @@ export default {
           this.restaurantType = response.data.restaurant.type;
         })
         .catch((error) => console.log(error));
+
+      console.log(this.restaurantMenu);
     },
 
     confirmClearCart() {
