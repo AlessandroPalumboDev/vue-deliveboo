@@ -46,6 +46,17 @@ export default {
     incrementQuantity(item) {
       store.incrementQuantity(item);
     },
+    cartTo(price) {
+      this.cart_total = price;
+      localStorage.setItem("cart_total", price);
+      this.$router
+        .push({
+          name: "PaymentComponent",
+        })
+        .catch((error) => {
+          console.log("Errore nel routing:", error); // Eventuali errori nel routing
+        });
+    },
   },
   mounted() {
     store.syncCartFromStorage();
@@ -147,7 +158,7 @@ export default {
         <!-- Totale del carrello -->
         <p v-if="cart.length > 0">Totale: €{{ cartTotal }}</p>
         <div class="buttons-container d-flex justify-between">
-          <button class="back-to-menu">Torna al menù del ristorante</button>
+          <button @click="cartTo(cartTotal), toggleCart()">Checkout</button>
           <button @click="toggleCart" class="cart-close-btn">Chiudi</button>
         </div>
       </div>
