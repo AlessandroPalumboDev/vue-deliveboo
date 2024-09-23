@@ -92,7 +92,7 @@ export default {
       <div
         v-for="restaurant in restaurants"
         :key="restaurant.id"
-        class="restaurant-card"
+        class="restaurant-card capitalize"
         @click="getMenu(restaurant)"
       >
         <div class="restaurant-image-wrapper">
