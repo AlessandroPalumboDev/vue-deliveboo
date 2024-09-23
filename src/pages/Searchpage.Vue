@@ -11,12 +11,13 @@ export default {
       restaurants: [],
       rest_show: [],
       rest_ID: null,
-      restaurantType: "", // Memorizza il tipo di ristorante
+      restaurantType: "",
       error: false,
       api: {
         baseUrl: "http://localhost:8000/api/",
         endPoints: {
           restaurant: "restaurants?type=",
+          page: "restaurants?page=",
         },
       },
       imageUrlDefault: "http://localhost:8000/storage/",
@@ -24,15 +25,22 @@ export default {
   },
 
   methods: {
-    getRestaurant() {
+    getRestaurant(pageUrl = null) {
       const valore = localStorage.getItem("searchrest");
-      this.restaurantType = valore.charAt(0).toUpperCase() + valore.slice(1); // Capitalizzazione
-      const url = this.api.baseUrl + this.api.endPoints.restaurant + valore;
+      this.restaurantType = valore.charAt(0).toUpperCase() + valore.slice(1);
+
+      let url = pageUrl
+        ? pageUrl
+        : this.api.baseUrl + this.api.endPoints.restaurant + valore;
 
       axios
         .get(url)
         .then((response) => {
-          this.restaurants = response.data.results.data;
+          const results = response.data.results;
+          this.restaurants = results.data;
+          this.currentPage = results.current_page;
+          this.nextPageUrl = results.next_page_url;
+          this.prevPageUrl = results.prev_page_url;
         })
         .catch((error) => console.log(error));
     },
@@ -53,6 +61,18 @@ export default {
       this.$router
         .push({ name: "restaurantMenu" })
         .catch((error) => console.log("Errore nel routing:", error));
+    },
+
+    nextPage() {
+      if (this.nextPageUrl) {
+        this.getRestaurant(this.nextPageUrl);
+      }
+    },
+
+    prevPage() {
+      if (this.prevPageUrl) {
+        this.getRestaurant(this.prevPageUrl);
+      }
     },
   },
 
@@ -85,10 +105,17 @@ export default {
         <h2 class="restaurant-name">{{ restaurant.business_name }}</h2>
       </div>
     </div>
+
+    <!-- Pagination Buttons -->
+    <h3 class="numero-pagina">Pagina {{ currentPage }}</h3>
+    <div class="pagination-buttons">
+      <button @click="prevPage" v-if="prevPageUrl">← Prev</button>
+      <button @click="nextPage" v-if="nextPageUrl">Next →</button>
+    </div>
   </main>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .restaurant-type-title {
   font-size: 3em;
   text-align: center;
@@ -117,7 +144,8 @@ export default {
 
 .restaurant-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(3, minmax(250px, 0fr));
+  justify-content: center;
   gap: 30px;
   padding: 40px;
   justify-items: center;
@@ -160,5 +188,29 @@ export default {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   margin: 0;
+}
+//Ale
+.numero-pagina {
+  color: rgb(255, 166, 0);
+}
+.pagination-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  button {
+    background-color: transparent;
+    color: rgb(255, 166, 0);
+    font-size: 1.2em;
+    border: 2px solid rgb(255, 166, 0);
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    &:hover {
+      background-color: #ff6600;
+      color: white;
+    }
+  }
 }
 </style>

@@ -141,16 +141,19 @@ export default {
   <div class="restaurant-menu-page">
     <!-- Avviso di cambio ristorante -->
     <div v-if="showCartWarning" class="cart-warning-modal">
-  <p class="cart-warning-text">
-    Hai già elementi nel carrello di un altro ristorante. Vuoi svuotare il
-    carrello?
-  </p>
-  <div class="cart-warning-buttons">
-    <button class="confirm-btn" @click="confirmClearCart">Sì, svuota il carrello</button>
-    <button class="cancel-btn" @click="cancelClearCart">No, mantieni il carrello</button>
-  </div>
-</div>
-
+      <p class="cart-warning-text">
+        Hai già elementi nel carrello di un altro ristorante. Vuoi svuotare il
+        carrello?
+      </p>
+      <div class="cart-warning-buttons">
+        <button class="confirm-btn" @click="confirmClearCart">
+          Sì, svuota il carrello
+        </button>
+        <button class="cancel-btn" @click="cancelClearCart">
+          No, mantieni il carrello
+        </button>
+      </div>
+    </div>
 
     <section class="restaurant-header">
       <div class="img-container">
@@ -188,52 +191,51 @@ export default {
             </div>
             <button @click="addToCart(item)" class="add-to-cart-btn">+</button>
           </div>
-
-          <button
-            class="back-btn open-cart"
-            v-if="isMobile"
-            @click="toggleCart"
-          >
-            {{ isCartActive ? "Chiudi Carrello" : "Apri Carrello" }}
-          </button>
         </div>
+      </div>
+      <div>
+        <button class="back-btn open-cart" v-if="isMobile" @click="toggleCart">
+          {{ isCartActive ? "Chiudi Carrello" : "Apri Carrello" }}
+        </button>
       </div>
 
       <div class="cart" v-if="!isMobile">
-        <h3>Il tuo ordine</h3>
-        <ul v-if="cart.length > 0">
-          <li v-for="(item, index) in cart" :key="index" class="cart-item">
-            <div class="cart-item-details capitalize">
-              <span>{{ item.quantity }}x {{ item.name }}</span>
-              <div>
-                <span> €{{ (item.price * item.quantity).toFixed(2) }}</span>
+        <div class="orders-container">
+          <h3>Il tuo ordine</h3>
+          <ul v-if="cart.length > 0">
+            <li v-for="(item, index) in cart" :key="index" class="cart-item">
+              <div class="cart-item-details capitalize">
+                <span>{{ item.quantity }}x {{ item.name }}</span>
+                <div>
+                  <span> €{{ (item.price * item.quantity).toFixed(2) }}</span>
+                </div>
               </div>
-            </div>
 
-            <div class="btn-container">
-              <!-- Bottone per diminuire la quantità di un singolo elemento -->
-              <button
-                class="minus-btn"
-                @click="removeFromCart(item), checkCart()"
-              >
-                &minus;
-              </button>
+              <div class="btn-container">
+                <!-- Bottone per diminuire la quantità di un singolo elemento -->
+                <button
+                  class="minus-btn"
+                  @click="removeFromCart(item), checkCart()"
+                >
+                  &minus;
+                </button>
 
-              <!-- Bottone per aumentare la quantità di un singolo elemento -->
-              <button class="plus-btn" @click="incrementQuantity(item)">
-                &plus;
-              </button>
+                <!-- Bottone per aumentare la quantità di un singolo elemento -->
+                <button class="plus-btn" @click="incrementQuantity(item)">
+                  &plus;
+                </button>
 
-              <!-- Bottone per rimuovere tutte le quantità di quell'elemento -->
-              <button
-                class="remove-btn"
-                @click="removeAllFromCart(item), checkCart()"
-              >
-                x
-              </button>
-            </div>
-          </li>
-        </ul>
+                <!-- Bottone per rimuovere tutte le quantità di quell'elemento -->
+                <button
+                  class="remove-btn"
+                  @click="removeAllFromCart(item), checkCart()"
+                >
+                  x
+                </button>
+              </div>
+            </li>
+          </ul>
+        </div>
         <p v-if="cart.length === 0">Il carrello è vuoto.</p>
         <div class="cart-footer" v-if="cart.length > 0">
           <p>Totale: €{{ cartTotal }}</p>
@@ -356,16 +358,13 @@ export default {
   margin: 0 auto;
   padding-left: 20px;
   padding-right: 20px;
-  max-height: 600px;
   border-radius: 10px;
-
-  ul {
-    height: 50px;
-  }
 }
 
 .menu-items-container {
   width: 65%;
+  max-height: 400px;
+  margin-bottom: 20px;
   overflow-y: auto;
   border-radius: 10px;
 }
@@ -509,23 +508,23 @@ span.description-food {
     font-weight: bold;
     margin-bottom: 15px;
   }
-}
 
-.cart-footer button {
-  background-color: #ff6600;
-  color: white;
-  padding: 10px 20px;
-  font-size: 1.2em;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease,
-    box-shadow 0.3s ease;
+  button {
+    background-color: #ff6600;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease,
+      box-shadow 0.3s ease;
 
-  &:hover {
-    background-color: #ff4500;
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    &:hover {
+      background-color: #ff4500;
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
   }
 }
 
@@ -558,7 +557,7 @@ span.description-food {
   opacity: 0;
 }
 
-// Media queries
+// Media queries fino a desktop
 @media (max-width: 780px) {
   .back-btn {
     width: 41%;
@@ -572,6 +571,10 @@ span.description-food {
     flex-direction: column;
     align-items: center;
     padding-top: 20px;
+  }
+
+  .content {
+    display: block;
   }
 
   .menu-items-container {
@@ -658,6 +661,13 @@ span.description-food {
   }
 }
 
+@media (min-width: 780px) {
+  .menu-items-container {
+    max-height: 600px;
+    margin-bottom: 0px;
+  }
+}
+
 .cart-warning-modal {
   position: fixed;
   top: 50%;
@@ -679,7 +689,7 @@ span.description-food {
   color: #333;
   margin-bottom: 20px;
   line-height: 1.5;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .cart-warning-buttons {
@@ -739,6 +749,4 @@ span.description-food {
     transform: translate(-50%, -50%) scale(1);
   }
 }
-
-
 </style>
