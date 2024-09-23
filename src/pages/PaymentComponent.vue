@@ -233,7 +233,15 @@ export default {
 
         <!-- Informazioni di pagamento -->
         <div class="form-group">
-          <label for="cardNumber">Numero di Carta</label>
+          <div class="cardsname">
+            <label for="cardNumber">Numero di Carta</label>
+            <img
+              class="cards"
+              src=".././assets/img/card/card.jpg"
+              alt="carte"
+            />
+          </div>
+
           <input
             type="text"
             v-model="cardNumber"
@@ -267,25 +275,33 @@ export default {
           />
         </div>
       </div>
-      <div class="payment-button">
-        <h2 id="recap">Recap del tuo ordine:</h2>
-
-        <div id="price-list">
-          <div v-for="item in this.cart" class="prod">
-            <h3>{{ item.name }}</h3>
-            <h3>x{{ item.quantity }}</h3>
+      <div class="right-section">
+        <div class="payment-button">
+          <h2 id="recap">Riepilogo del tuo ordine:</h2>
+          <div id="price-list">
+            <div v-for="item in this.cart" class="prod">
+              <h3>{{ item.name }}</h3>
+              <h3>x{{ item.quantity }}</h3>
+            </div>
           </div>
+          <h2 id="total">Totale: €{{ this.cart_total }}</h2>
+          <img
+            src=".././assets/img/header/logo3.png"
+            alt="DeliveBoo Logo"
+            class="logo"
+          />
         </div>
+
         <div id="price">
-          <h2>Totale: €{{ this.cart_total }}</h2>
-          <button type="submit" :disabled="loading">
+          <button class="purchase" type="submit" :disabled="loading">
             {{ loading ? "Processando..." : "Acquista" }}
           </button>
+          <button type="button" @click="goBack" class="back-btn">
+            Torna indietro
+          </button>
         </div>
-        <p v-if="errorMessage" class="error-message errore">
-          {{ errorMessage }}
-        </p>
       </div>
+      <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
     </form>
   </div>
 </template>
@@ -302,7 +318,6 @@ export default {
   font-family: "Roboto", sans-serif;
 
   &:hover {
-    transform: translateY(-5px);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
   }
 
@@ -394,28 +409,17 @@ button {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    background-color: #f9f9f9;
+    background-color: #d2911a;
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 
-    #price-list {
-      width: 100%;
+    .prod {
       display: flex;
-      flex-direction: column;
-      gap: 10px;
-      background: linear-gradient(to bottom, rgb(255, 166, 0), rgb(255, 166, 1)),
-        rgba(255, 166, 0, 0%);
-      padding: 15px;
-      border-radius: 10px;
-
-      .prod {
-        display: flex;
-        justify-content: space-between;
-        font-size: 16px;
-        font-weight: 500;
-        color: #000000;
-      }
+      justify-content: space-between;
+      font-size: 16px;
+      font-weight: 500;
+      color: #000000;
     }
   }
 
@@ -455,26 +459,61 @@ textarea {
   }
 }
 
-button {
-  box-shadow: 0 4px 15px rgba(255, 102, 0, 0.2);
-
-  &:hover {
-    box-shadow: 0 6px 20px rgba(255, 77, 0, 0.3);
-  }
-}
-
 .payment-form:hover {
   border-color: #f9f9f9;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
 #recap {
-  color: black;
+  color: rgb(255, 255, 255);
   font-size: 40px;
 }
-.errore {
-  background-color: #000000;
-  padding: 15px;
-  border-radius: 10px;
+
+#total {
+  color: white;
+  margin-bottom: 20px;
+}
+
+.cardsname {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cards {
+  width: 100px;
+  height: auto;
+  margin-bottom: 8px;
+}
+
+.back-btn {
+  display: block;
+  margin-top: 20px;
+  background-color: transparent;
+  color: rgb(255, 255, 255);
+  font-size: 1.2em;
+  border: 2px solid rgb(255, 255, 255);
+
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.back-btn:hover {
+  background-color: #626262;
+  color: white;
+}
+
+.purchase {
+  display: block;
+  margin-top: 20px;
+  background-color: transparent;
+  color: rgb(255, 255, 255);
+  font-size: 1.2em;
+  border: 2px solid rgb(255, 152, 8);
+
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 </style>
