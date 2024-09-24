@@ -79,8 +79,7 @@ export default {
       }
 
       if (!this.validateExpiryDate(this.expirationDate)) {
-        this.errorMessage =
-          "Data di scadenza non valida. Usa il formato MM/YY.";
+        this.errorMessage = "Data di scadenza non valida.";
         this.loading = false;
         return;
       }
@@ -158,6 +157,17 @@ export default {
     },
     clearCart() {
       store.clearCart();
+    },
+    goBack() {
+      const restaurantId = localStorage.getItem("rest_ID");
+
+      if (restaurantId) {
+        this.$router
+          .push({ name: "restaurantMenu", params: { id: restaurantId } })
+          .catch((error) => console.log("Errore nel routing:", error));
+      } else {
+        console.error("Nessun ristorante ID trovato.");
+      }
     },
   },
   mounted() {
@@ -301,10 +311,10 @@ export default {
           <button class="purchase" type="submit" :disabled="loading">
             {{ loading ? "Processando..." : "Acquista" }}
           </button>
-          <button type="button" @click="goBack" class="back-btn">
-            Torna indietro
-          </button>
         </div>
+        <button type="button" @click="goBack()" class="back-btn">
+          Torna indietro
+        </button>
       </div>
     </form>
     <!-- Modale di pagamento riuscito -->
