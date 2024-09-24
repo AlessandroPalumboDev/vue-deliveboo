@@ -346,7 +346,7 @@ export default {
 
   #note {
     width: 100%;
-    height: 50px;
+    height: 80px;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 6px;
@@ -363,6 +363,7 @@ export default {
 }
 
 .payment-data {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -397,8 +398,8 @@ textarea {
 }
 
 button {
-  width: 100%;
-  padding: 15px;
+  margin: 0 auto;
+  width: 95%;
   background-color: #ff6600;
   color: rgb(255, 255, 255);
   border: none;
@@ -434,6 +435,7 @@ button {
     gap: 10px;
     background-color: #d2911a;
     padding: 15px;
+    margin-bottom: 10px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 
@@ -563,7 +565,7 @@ textarea {
 
 button {
   margin-top: 20px;
-  padding: 10px 20px;
+  padding: 8px 20px;
   background-color: #ff6600;
   color: rgb(255, 255, 255);
   border: none;
@@ -573,5 +575,21 @@ button {
 
 button:hover {
   background-color: #ff4d00;
+}
+
+// Media queries
+@media (max-width: 780px) {
+  .logo {
+    display: none;
+  }
+
+  .payment-data {
+    // display: block;
+    gap: 20px;
+
+    .form-group {
+      min-width: 285px;
+    }
+  }
 }
 </style>

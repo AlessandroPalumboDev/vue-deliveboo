@@ -111,8 +111,8 @@ export default {
     <!-- Pagination Buttons -->
     <h3 class="numero-pagina">Pagina {{ currentPage }}</h3>
     <div class="pagination-buttons">
-      <button @click="prevPage" v-if="prevPageUrl">← Prev</button>
-      <button @click="nextPage" v-if="nextPageUrl">Next →</button>
+      <button @click="prevPage" v-if="prevPageUrl">← Prec</button>
+      <button @click="nextPage" v-if="nextPageUrl">Succ →</button>
     </div>
   </main>
 </template>
@@ -197,6 +197,7 @@ export default {
   border-bottom-right-radius: 10px;
   margin: 0;
 }
+
 //Ale
 .numero-pagina {
   color: rgb(255, 166, 0);
