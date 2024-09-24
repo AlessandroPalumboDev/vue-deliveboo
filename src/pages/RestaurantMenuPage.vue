@@ -180,6 +180,7 @@ export default {
             v-for="item in this.restaurantMenu"
             :key="index"
             class="menu-item capitalize"
+            v-show="item.is_visible"
           >
             <img
               :src="imageUrlDefault + item.cover_image"

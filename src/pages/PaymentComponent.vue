@@ -1,5 +1,7 @@
 <script>
 import axios from "axios";
+import { store } from "../store.js";
+// import router from "../router.js";
 
 export default {
   data() {
@@ -9,7 +11,7 @@ export default {
       api: {
         baseUrl: "http://localhost:8000/api/",
         apipay: "braintree/checkout",
-        api_save_order: "save-order", // Nuova rotta API
+        api_save_order: "save-order",
       },
       name: "",
       surname: "",
@@ -23,44 +25,39 @@ export default {
       cvv: "",
       errorMessage: "",
       loading: false,
+      showModal: false, // Variabile per mostrare la modale di pagamento riuscito
+      transactionId: "", // Per salvare l'ID della transazione
     };
   },
   methods: {
     formatExpirationDate(event) {
-      const input = event.target.value.replace(/\D/g, ""); // Rimuovi caratteri non numerici
+      const input = event.target.value.replace(/\D/g, "");
       let formatted = "";
-
       if (input.length > 2) {
         formatted = `${input.slice(0, 2)}/${input.slice(2, 4)}`;
       } else {
         formatted = input;
       }
-
-      this.expirationDate = formatted; // Aggiorna il valore
+      this.expirationDate = formatted;
     },
-
     validateExpiryDate(expiryDate) {
       const regex = /^(0[1-9]|1[0-2])\/?([0-9]{2})$/;
       if (!regex.test(expiryDate)) {
-        return false; // Formato non valido
+        return false;
       }
-
       const [month, year] = expiryDate.split("/");
       const currentYear = new Date().getFullYear() % 100;
       const currentMonth = new Date().getMonth() + 1;
-
       const expiryYear = parseInt(year, 10);
 
       if (
         expiryYear < currentYear ||
         (expiryYear === currentYear && month < currentMonth)
       ) {
-        return false; // Carta scaduta
+        return false;
       }
-
-      return true; // Carta valida
+      return true;
     },
-
     async submitPayment() {
       this.loading = true;
       this.errorMessage = "";
@@ -81,7 +78,6 @@ export default {
         return;
       }
 
-      // Validazione della data di scadenza
       if (!this.validateExpiryDate(this.expirationDate)) {
         this.errorMessage =
           "Data di scadenza non valida. Usa il formato MM/YY.";
@@ -120,17 +116,20 @@ export default {
         );
 
         if (paymentResponse.data.success) {
-          alert(
-            "Pagamento completato con successo! ID transazione: " +
-            paymentResponse.data.transaction_id
-          );
+          this.transactionId = paymentResponse.data.transaction_id;
+
+          // Mostra la modale al posto dell'alert
+          this.showModal = true;
+
           const saveOrderResponse = await axios.post(
             this.api.baseUrl + this.api.api_save_order,
             orderData
           );
+
           if (!saveOrderResponse.data.success) {
             throw new Error(saveOrderResponse.data.message);
           }
+          this.clearCart();
         } else {
           this.errorMessage =
             "Errore nel pagamento:" + paymentResponse.data.message;
@@ -141,6 +140,12 @@ export default {
       } finally {
         this.loading = false;
       }
+    },
+    redirectToHome() {
+      this.showModal = false;
+      this.$router
+        .push({ name: "home" })
+        .catch((error) => console.log("Errore nel routing:", error));
     },
     getCart() {
       const cart = JSON.parse(localStorage.getItem("cart"));
@@ -243,8 +248,17 @@ export default {
           </button>
         </div>
       </div>
-      <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
     </form>
+    <!-- Modale di pagamento riuscito -->
+    <div v-if="showModal" class="modal-overlay">
+      <div class="modal-content">
+        <h2>Pagamento completato con successo!</h2>
+        <p>ID transazione: {{ transactionId }}</p>
+        <button @click="redirectToHome">Torna alla Home</button>
+      </div>
+    </div>
+
+    <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
   </div>
 </template>
 
@@ -457,5 +471,40 @@ textarea {
   border-radius: 50px;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+// MODALE
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: rgb(243, 175, 27);
+  color: #000000;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #ff6600;
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ff4d00;
 }
 </style>

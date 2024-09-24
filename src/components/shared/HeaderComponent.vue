@@ -158,13 +158,17 @@ export default {
         <!-- Totale del carrello -->
         <p v-if="cart.length > 0">Totale: €{{ cartTotal }}</p>
         <div class="buttons-container d-flex justify-between">
-          <button
-            v-if="cart.length > 0"
-            @click="cartTo(cartTotal), toggleCart()"
-          >
-            Checkout
-          </button>
-          <button @click="toggleCart" class="cart-close-btn">Chiudi</button>
+          <div class="check-out-container">
+            <button
+              v-if="cart.length > 0"
+              @click="cartTo(cartTotal), toggleCart()"
+            >
+              Checkout
+            </button>
+          </div>
+          <div class="close-container">
+            <button @click="toggleCart" class="cart-close-btn">Chiudi</button>
+          </div>
         </div>
       </div>
 
@@ -194,9 +198,9 @@ export default {
 }
 
 .cart-items {
+  max-height: 300px;
   list-style: none;
   padding: 10px;
-  height: 500px;
   overflow-y: auto;
 }
 
@@ -216,17 +220,22 @@ export default {
   padding-top: 20px;
 
   button {
+    width: 70%;
     font-size: 14px;
   }
 
-  .back-to-menu {
-    width: 60%;
+  .check-out-container {
+    width: 50%;
     transition: background-color 0.3s ease;
 
-    &:hover {
+    & button:hover {
       background-color: #ff9100;
     }
   }
+}
+
+.close-container {
+  width: 50%;
 }
 
 .cart-count {
