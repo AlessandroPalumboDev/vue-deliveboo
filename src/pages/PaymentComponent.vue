@@ -122,7 +122,7 @@ export default {
         if (paymentResponse.data.success) {
           alert(
             "Pagamento completato con successo! ID transazione: " +
-              paymentResponse.data.transaction_id
+            paymentResponse.data.transaction_id
           );
           const saveOrderResponse = await axios.post(
             this.api.baseUrl + this.api.api_save_order,
@@ -169,110 +169,56 @@ export default {
       <div class="payment-data">
         <div class="form-group">
           <label for="name">Nome</label>
-          <input
-            type="text"
-            v-model="name"
-            id="name"
-            placeholder="Inserisci il nome"
-            required
-          />
+          <input type="text" v-model="name" id="name" placeholder="Inserisci il nome" required />
         </div>
 
         <div class="form-group">
           <label for="surname">Cognome</label>
-          <input
-            type="text"
-            v-model="surname"
-            id="surname"
-            placeholder="Inserisci il cognome"
-            required
-          />
+          <input type="text" v-model="surname" id="surname" placeholder="Inserisci il cognome" required />
         </div>
 
         <div class="form-group">
           <label for="email">Email</label>
-          <input
-            type="email"
-            v-model="email_address"
-            id="email"
-            placeholder="Inserisci la tua email"
-            required
-          />
+          <input type="email" v-model="email_address" id="email" placeholder="Inserisci la tua email" required />
         </div>
 
         <div class="form-group">
           <label for="delivery_address">Indirizzo di consegna</label>
-          <input
-            type="text"
-            v-model="delivery_address"
-            id="delivery_address"
-            placeholder="Inserisci l'indirizzo di consegna"
-            required
-          />
+          <input type="text" v-model="delivery_address" id="delivery_address"
+            placeholder="Inserisci l'indirizzo di consegna" required />
         </div>
 
         <div class="form-group">
           <label for="delivery_time">Orario di consegna</label>
-          <input
-            type="time"
-            v-model="delivery_time"
-            id="delivery_time"
-            placeholder="Inserisci l' orario di consegna"
-            required
-          />
+          <input type="time" v-model="delivery_time" id="delivery_time" placeholder="Inserisci l' orario di consegna"
+            required />
         </div>
 
         <div class="form-group" id="mg">
           <label for="note">Note</label>
-          <textarea
-            v-model="note"
-            id="note"
-            placeholder="Inserisci eventuali note"
-          ></textarea>
+          <textarea v-model="note" id="note" placeholder="Inserisci eventuali note"></textarea>
         </div>
 
         <!-- Informazioni di pagamento -->
         <div class="form-group">
           <div class="cardsname">
             <label for="cardNumber">Numero di Carta</label>
-            <img
-              class="cards"
-              src=".././assets/img/card/card.jpg"
-              alt="carte"
-            />
+            <img class="cards" src=".././assets/img/card/card.jpg" alt="carte" />
           </div>
 
-          <input
-            type="text"
-            v-model="cardNumber"
-            id="cardNumber"
-            placeholder="Inserisci il numero della carta"
-            maxlength="16"
-            required
-          />
+          <input type="text" v-model="cardNumber" id="cardNumber" placeholder="Inserisci il numero della carta"
+            maxlength="16" required />
         </div>
 
         <div class="form-group">
           <label for="expirationDate">Data di Scadenza (MM/YY)</label>
-          <input
-            type="text"
-            v-model="expirationDate"
-            id="expirationDate"
-            placeholder="MM/YY"
-            required
-            @input="formatExpirationDate"
-          />
+          <input type="text" v-model="expirationDate" id="expirationDate" placeholder="MM/YY" required
+            @input="formatExpirationDate" />
         </div>
 
         <div class="form-group">
           <label for="cvv">CVV</label>
-          <input
-            type="text"
-            v-model="cvv"
-            id="cvv"
-            placeholder="CVV"
-            required
-          />
+          <input type="text" v-model="cvv" id="cvv" placeholder="CVV" maxlength="3" required />
         </div>
       </div>
       <div class="right-section">
@@ -285,11 +231,7 @@ export default {
             </div>
           </div>
           <h2 id="total">Totale: €{{ this.cart_total }}</h2>
-          <img
-            src=".././assets/img/header/logo3.png"
-            alt="DeliveBoo Logo"
-            class="logo"
-          />
+          <img src=".././assets/img/header/logo3.png" alt="DeliveBoo Logo" class="logo" />
         </div>
 
         <div id="price">

@@ -9,6 +9,7 @@ export default {
       currentIndex: 0,
       store,
       restaurantTypes: [],
+      isLoading: true,
       searchrest: "",
       error: false,
       api: {
@@ -32,15 +33,23 @@ export default {
       // Componing the url to make the API call
       const url = this.api.baseUrl + this.api.endPoints.restaurantsList;
 
-      // API call
+
       axios
         .get(url)
         .then((response) => {
+
           this.restaurantTypes = response.data.types;
+          this.isLoading = false;
+
+
         })
         .catch((error) => console.log(error));
+      this.isLoading = false;
     },
 
+    loading() {
+      this.isLoading = true;
+    },
     goToSearchPage(typeName) {
       (this.searchrest = typeName),
         localStorage.setItem("searchrest", typeName);
@@ -69,10 +78,12 @@ export default {
       }
     },
   },
-
-  created() {
+  mounted() {
     this.getRestaurantTypes();
+    this.loading();
+
   },
+
 };
 </script>
 
@@ -95,17 +106,16 @@ export default {
 
             <!-- Restaurant types -->
             <div class="card-container">
+              <!-- loading dot -->
+              <div v-if="isLoading" class="loading-dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
               <!-- Carousel wrapper -->
-              <div
-                class="carousel-wrapper"
-                :style="{ transform: `translateX(-${currentIndex * 100}%)` }"
-              >
+              <div class="carousel-wrapper" :style="{ transform: `translateX(-${currentIndex * 100}%)` }">
                 <!-- Single card -->
-                <div
-                  v-for="type in restaurantTypes"
-                  :key="type.id"
-                  class="card"
-                >
+                <div v-for="type in restaurantTypes" :key="type.id" class="card">
                   <div class="card-box">
                     <div class="card-body" @click="goToSearchPage(type.name)">
                       <img :src="imageUrlDefault + type.image_path" alt="" />
@@ -137,10 +147,7 @@ export default {
                   <p>Vedrai in quali ristoranti lo puoi trovare</p>
                 </div>
                 <div class="small-card">
-                  <img
-                    src="../assets/img/small-card/shopping-cart.svg"
-                    alt=""
-                  />
+                  <img src="../assets/img/small-card/shopping-cart.svg" alt="" />
                   <h4>Metti ciò che desideri nel carrello</h4>
                   <p>Puoi scegliere tra diversi metodi di pagamento</p>
                 </div>
