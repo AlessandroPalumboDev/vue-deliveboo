@@ -215,26 +215,30 @@ export default {
               </div>
 
               <div class="btn-container">
-                <!-- Bottone per diminuire la quantità di un singolo elemento -->
-                <button
-                  class="minus-btn"
-                  @click="removeFromCart(item), checkCart()"
-                >
-                  &minus;
-                </button>
+                <div class="min-plus-container">
+                  <!-- Bottone per diminuire la quantità di un singolo elemento -->
+                  <button
+                    class="minus-btn"
+                    @click="removeFromCart(item), checkCart()"
+                  >
+                    &minus;
+                  </button>
 
-                <!-- Bottone per aumentare la quantità di un singolo elemento -->
-                <button class="plus-btn" @click="incrementQuantity(item)">
-                  &plus;
-                </button>
+                  <!-- Bottone per aumentare la quantità di un singolo elemento -->
+                  <button class="plus-btn" @click="incrementQuantity(item)">
+                    &plus;
+                  </button>
+                </div>
 
                 <!-- Bottone per rimuovere tutte le quantità di quell'elemento -->
-                <button
-                  class="remove-btn"
-                  @click="removeAllFromCart(item), checkCart()"
-                >
-                  x
-                </button>
+                <div class="remove-btn-container">
+                  <button
+                    class="remove-btn"
+                    @click="removeAllFromCart(item), checkCart()"
+                  >
+                    x
+                  </button>
+                </div>
               </div>
             </li>
           </ul>
@@ -750,6 +754,27 @@ span.description-food {
   100% {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1200px) {
+  .cart {
+    margin-left: -45px;
+  }
+
+  .min-plus-container {
+    display: flex;
+    margin-bottom: 5px;
+  }
+
+  .remove-btn-container button {
+    width: 100%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .btn-container {
+    display: flex;
   }
 }
 </style>
