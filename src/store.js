@@ -57,6 +57,7 @@ export const store = reactive({
     if (this.cart.length < 1) {
       this.currentRestaurant = null;
       console.log(this.currentRestaurant);
+      this.updateLocalStorage();
     }
   },
 

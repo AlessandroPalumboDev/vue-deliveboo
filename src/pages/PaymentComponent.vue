@@ -91,9 +91,10 @@ export default {
         }));
 
         const valore_id = localStorage.getItem("rest_ID");
+        const ristoGiusto = localStorage.getItem("currentRestaurant");
 
         const orderData = {
-          restaurant_id: valore_id,
+          restaurant_id: ristoGiusto,
           name: this.name,
           surname: this.surname,
           email_address: this.email_address,
@@ -159,7 +160,7 @@ export default {
       store.clearCart();
     },
     goBack() {
-      const restaurantId = localStorage.getItem("rest_ID");
+      const restaurantId = localStorage.getItem("currentRestaurant");
 
       if (restaurantId) {
         this.$router
@@ -312,9 +313,7 @@ export default {
             {{ loading ? "Processando..." : "Acquista" }}
           </button>
         </div>
-        <button type="button" @click="goBack()" class="back-btn">
-          Torna indietro
-        </button>
+        <button type="button" @click="goBack" class="back-btn">Indietro</button>
       </div>
     </form>
     <!-- Modale di pagamento riuscito -->
