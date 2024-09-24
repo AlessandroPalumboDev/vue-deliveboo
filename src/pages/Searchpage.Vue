@@ -88,21 +88,23 @@ export default {
     <button class="back-btn" @click="goBack()">← Torna Indietro</button>
 
     <!-- cards -->
-    <div class="restaurant-grid">
-      <div
-        v-for="restaurant in restaurants"
-        :key="restaurant.id"
-        class="restaurant-card capitalize"
-        @click="getMenu(restaurant)"
-      >
-        <div class="restaurant-image-wrapper">
-          <img
-            :src="this.imageUrlDefault + restaurant.image_path"
-            :alt="restaurant.business_name"
-            class="restaurant-image"
-          />
+    <div class="container">
+      <div class="restaurant-grid">
+        <div
+          v-for="restaurant in restaurants"
+          :key="restaurant.id"
+          class="restaurant-card capitalize"
+          @click="getMenu(restaurant)"
+        >
+          <div class="restaurant-image-wrapper">
+            <img
+              :src="this.imageUrlDefault + restaurant.image_path"
+              :alt="restaurant.business_name"
+              class="restaurant-image"
+            />
+          </div>
+          <h2 class="restaurant-name">{{ restaurant.business_name }}</h2>
         </div>
-        <h2 class="restaurant-name">{{ restaurant.business_name }}</h2>
       </div>
     </div>
 
@@ -116,6 +118,10 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+.container {
+  display: flex;
+  justify-content: center;
+}
 .restaurant-type-title {
   font-size: 3em;
   text-align: center;
@@ -143,12 +149,13 @@ export default {
 }
 
 .restaurant-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(250px, 0fr));
+  max-width: 1200px;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  justify-items: center;
   gap: 30px;
   padding: 40px;
-  justify-items: center;
   align-items: start;
 }
 
