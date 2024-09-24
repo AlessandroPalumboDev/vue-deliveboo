@@ -63,8 +63,14 @@ export default {
       this.isMobile = window.innerWidth <= 768;
     },
     cartTo(price) {
+      let cart = JSON.parse(localStorage.getItem("cart"));
+      store.currentRestaurant = cart[0].restaurant_id;
+      console.log(store.currentRestaurant);
+
       this.cart_total = price;
       localStorage.setItem("cart_total", price);
+      // localStorage.setItem("cart_total", price);
+      this.updateLocalStorage();
       this.$router
         .push({
           name: "PaymentComponent",
@@ -125,6 +131,9 @@ export default {
 
     goBack() {
       this.$router.back();
+    },
+    updateLocalStorage() {
+      store.updateLocalStorage();
     },
   },
   mounted() {

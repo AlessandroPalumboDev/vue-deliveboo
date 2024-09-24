@@ -22,6 +22,7 @@ const router = createRouter({
       path: "/menu/",
       name: "restaurantMenu",
       component: RestaurantMenuPage,
+      // props: (route) => ({ id: localStorage.getItem("currentRestaurant") }),
       props: true,
     },
     {
