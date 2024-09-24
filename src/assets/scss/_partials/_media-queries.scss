@@ -194,26 +194,26 @@ DESKTOP LAYOUT
     padding: 15px;
   }
 
-  // PAYMENT 
+  // PAYMENT
   .payment-form {
-    max-width: 1400px; 
+    max-width: 1400px;
     margin: auto;
-  
+
     .container-pay {
       display: flex;
       flex-direction: row;
-  
+
       .payment-data {
-        width: 90%; 
+        width: 90%;
       }
-  
+
       .payment-button {
         display: flex;
         flex-direction: column;
-        justify-content: space-between; 
+        justify-content: space-between;
         align-items: center;
         width: 100%;
-        max-width: 400px; 
+        max-width: 400px;
         margin-left: 0;
         padding: 30px;
         background: linear-gradient(
@@ -223,9 +223,9 @@ DESKTOP LAYOUT
         );
         border-radius: 15px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        height: 527px; 
+        height: 527px;
         margin-bottom: 265px;
-  
+
         // Lista prodotti
         #price-list {
           overflow-y: auto;
@@ -233,27 +233,26 @@ DESKTOP LAYOUT
           background: transparent;
           box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
           border-radius: 8px;
-          flex-grow: 1; 
-         
-  
+          flex-grow: 1;
+
           &::-webkit-scrollbar {
             width: 6px;
           }
-  
+
           &::-webkit-scrollbar-thumb {
             background-color: #bbb;
             border-radius: 10px;
             border: 2px solid #f7f7f7;
           }
-  
+
           &::-webkit-scrollbar-thumb:hover {
             background-color: #999;
           }
-  
+
           &::-webkit-scrollbar-track {
             background-color: #fafafa;
           }
-  
+
           .prod {
             display: flex;
             justify-content: space-between;
@@ -265,14 +264,14 @@ DESKTOP LAYOUT
             color: #333;
           }
         }
-  
+
         div {
           display: flex;
           flex-direction: column;
           align-items: center;
-          margin:  0px;
+          margin: 0px;
           width: 100%;
-  
+
           h3 {
             display: inline-block;
             font-size: 14px;
@@ -280,22 +279,21 @@ DESKTOP LAYOUT
             margin: 0;
             color: #000000;
           }
-  
+
           h2 {
             color: #000000;
           }
-  
+
           .prod h3:last-child {
             color: #000000;
           }
         }
-  
-       
+
         h2 {
-          margin-top: auto; 
-          margin-bottom: 20px; 
+          margin-top: auto;
+          margin-bottom: 20px;
         }
-  
+
         button {
           width: 100%;
           max-width: 300px;
@@ -309,13 +307,13 @@ DESKTOP LAYOUT
           transition: background-color 0.3s ease, transform 0.2s ease;
           box-shadow: 0 4px 8px rgba(255, 102, 0, 0.3);
           margin-top: 20px;
-  
+
           &:hover {
             background-color: #ff4d00;
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(255, 77, 0, 0.4);
           }
-  
+
           &:disabled {
             background-color: #ccc;
             cursor: not-allowed;
@@ -325,25 +323,22 @@ DESKTOP LAYOUT
       }
     }
     #price {
-   
-    
-
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
       border-radius: 8px;
-      flex-grow: 1; 
-}
-#recap, #total {
-  color: #000000;
-}
-#recap {
-  font-size: 25px;
-}
-#total {
-  font-size: 20px;
-}
+      flex-grow: 1;
+    }
+    #recap,
+    #total {
+      color: #000000;
+    }
+    #recap {
+      font-size: 25px;
+    }
+    #total {
+      font-size: 20px;
+    }
   }
-  
-}  
+}
 
 /***********************
 MOBILE + TABLET LAYOUT
@@ -352,5 +347,12 @@ MOBILE + TABLET LAYOUT
   .content {
     padding-left: 20px;
     padding-right: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .restaurant-grid {
+    max-height: 600px;
+    overflow-y: auto;
   }
 }
