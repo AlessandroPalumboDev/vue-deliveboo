@@ -197,6 +197,7 @@ export default {
   border-bottom-right-radius: 10px;
   margin: 0;
 }
+
 //Ale
 .numero-pagina {
   color: rgb(255, 166, 0);

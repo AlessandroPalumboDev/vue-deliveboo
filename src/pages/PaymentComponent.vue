@@ -398,8 +398,8 @@ textarea {
 }
 
 button {
-  width: 100%;
-  padding: 15px;
+  margin: 0 auto;
+  width: 95%;
   background-color: #ff6600;
   color: rgb(255, 255, 255);
   border: none;
@@ -565,7 +565,7 @@ textarea {
 
 button {
   margin-top: 20px;
-  padding: 10px 20px;
+  padding: 8px 20px;
   background-color: #ff6600;
   color: rgb(255, 255, 255);
   border: none;
