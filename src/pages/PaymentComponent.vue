@@ -364,6 +364,7 @@ export default {
 }
 
 .payment-data {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -581,6 +582,15 @@ button:hover {
 @media (max-width: 780px) {
   .logo {
     display: none;
+  }
+
+  .payment-data {
+    // display: block;
+    gap: 20px;
+
+    .form-group {
+      min-width: 285px;
+    }
   }
 }
 </style>

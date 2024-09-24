@@ -71,10 +71,6 @@ TABLET LAYOUT
     display: flex;
     flex-direction: column;
 
-    .payment-data {
-      width: 100%;
-    }
-
     #mg {
       margin-bottom: 100px;
     }
@@ -89,10 +85,6 @@ TABLET LAYOUT
   .container-pay {
     display: flex;
     flex-direction: column;
-
-    .payment-data {
-      width: 100%;
-    }
 
     #mg {
       margin-bottom: 100px;
@@ -357,6 +349,9 @@ MOBILE + TABLET LAYOUT
   .content {
     padding-left: 20px;
     padding-right: 20px;
+  }
+
+  .payment-data {
   }
 }
 
