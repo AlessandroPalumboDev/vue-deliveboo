@@ -126,6 +126,7 @@ export default {
   font-size: 3em;
   text-align: center;
   margin-top: 20px;
+  padding-bottom: 20px;
   color: #ffffff;
   font-weight: bold;
 }
@@ -135,9 +136,9 @@ export default {
   margin: 20px auto;
   background-color: transparent;
   color: rgb(255, 166, 0);
-  font-size: 1.2em;
+  font-size: 16px;
   border: 2px solid rgb(255, 166, 0);
-  padding: 10px 20px;
+  padding: 8px 20px;
   border-radius: 50px;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -208,9 +209,9 @@ export default {
   button {
     background-color: transparent;
     color: rgb(255, 166, 0);
-    font-size: 1.2em;
+    font-size: 16px;
     border: 2px solid rgb(255, 166, 0);
-    padding: 10px 20px;
+    padding: 8px 20px;
     border-radius: 50px;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
