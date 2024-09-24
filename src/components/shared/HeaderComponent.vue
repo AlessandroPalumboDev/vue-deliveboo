@@ -198,6 +198,7 @@ export default {
 }
 
 .cart-items {
+  max-height: 300px;
   list-style: none;
   padding: 10px;
   overflow-y: auto;

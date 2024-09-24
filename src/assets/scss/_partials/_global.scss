@@ -294,7 +294,6 @@ button {
 
   .cart-footer {
     text-align: center;
-    margin-top: 20px;
   }
 }
 
@@ -666,5 +665,41 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 .menu-items-container::-webkit-scrollbar-thumb:hover {
+  background: #ff7b00; /* Colore della scrollbar quando si passa il mouse */
+}
+
+.cart-items::-webkit-scrollbar {
+  width: 8px; /* Larghezza della scrollbar */
+  background: transparent;
+}
+
+.cart-items::-webkit-scrollbar-track {
+  background: transparent; /* Colore dello sfondo della scrollbar */
+}
+
+.cart-items::-webkit-scrollbar-thumb {
+  background: rgb(255, 140, 0); /* Colore della scrollbar */
+  border-radius: 10px; /* Raggio per arrotondare gli angoli */
+}
+
+.cart-items::-webkit-scrollbar-thumb:hover {
+  background: #ff7b00; /* Colore della scrollbar quando si passa il mouse */
+}
+
+.cart::-webkit-scrollbar {
+  width: 8px; /* Larghezza della scrollbar */
+  background: transparent;
+}
+
+.cart::-webkit-scrollbar-track {
+  background: transparent; /* Colore dello sfondo della scrollbar */
+}
+
+.cart::-webkit-scrollbar-thumb {
+  background: rgb(255, 140, 0); /* Colore della scrollbar */
+  border-radius: 10px; /* Raggio per arrotondare gli angoli */
+}
+
+.cart::-webkit-scrollbar-thumb:hover {
   background: #ff7b00; /* Colore della scrollbar quando si passa il mouse */
 }
