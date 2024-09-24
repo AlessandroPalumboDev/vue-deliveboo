@@ -283,7 +283,7 @@ export default {
       <div class="right-section">
         <div class="payment-button">
           <h2 id="recap">Riepilogo del tuo ordine:</h2>
-          <div id="price-list">
+          <div id="price-list" class="capitalize">
             <div v-for="item in this.cart" class="prod">
               <h3>{{ item.name }}</h3>
               <h3>x{{ item.quantity }}</h3>
