@@ -82,7 +82,6 @@ export default {
   },
 
   mounted() {
-
     this.getRestaurant();
     this.loading();
   },
@@ -102,11 +101,18 @@ export default {
     <!-- cards -->
     <div class="container">
       <div class="restaurant-grid">
-        <div v-for="restaurant in restaurants" :key="restaurant.id" class="restaurant-card capitalize"
-          @click="getMenu(restaurant)">
+        <div
+          v-for="restaurant in restaurants"
+          :key="restaurant.id"
+          class="restaurant-card capitalize"
+          @click="getMenu(restaurant)"
+        >
           <div class="restaurant-image-wrapper">
-            <img :src="this.imageUrlDefault + restaurant.image_path" :alt="restaurant.business_name"
-              class="restaurant-image" />
+            <img
+              :src="this.imageUrlDefault + restaurant.image_path"
+              :alt="restaurant.business_name"
+              class="restaurant-image"
+            />
           </div>
           <h2 class="restaurant-name">{{ restaurant.business_name }}</h2>
         </div>
