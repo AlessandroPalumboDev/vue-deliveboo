@@ -193,7 +193,9 @@ export default {
         </div>
       </div>
       <div>
-
+        <!-- <button class="back-btn open-cart" v-if="isMobile" @click="toggleCart">
+          {{ isCartActive ? "Chiudi Carrello" : "Apri Carrello" }}
+        </button> -->
       </div>
 
       <div class="cart" v-if="!isMobile">
