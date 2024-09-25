@@ -159,11 +159,7 @@ export default {
 
     <section class="restaurant-header">
       <div class="img-container">
-        <img
-          :src="this.imageUrlDefault + this.rest.image_path"
-          alt="Banner del ristorante"
-          class="restaurant-banner"
-        />
+        <img :src="this.imageUrlDefault + this.rest.image_path" alt="Banner del ristorante" class="restaurant-banner" />
       </div>
       <div class="restaurant-info">
         <h2 class="title capitalize">{{ this.rest.business_name }}</h2>
@@ -176,17 +172,8 @@ export default {
     <div class="content">
       <div class="menu-items-container">
         <div class="menu-items">
-          <div
-            v-for="item in this.restaurantMenu"
-            :key="index"
-            class="menu-item capitalize"
-            v-show="item.is_visible"
-          >
-            <img
-              :src="imageUrlDefault + item.cover_image"
-              alt="Immagine del piatto"
-              class="menu-item-image"
-            />
+          <div v-for="item in this.restaurantMenu" :key="index" class="menu-item capitalize" v-show="item.is_visible">
+            <img :src="imageUrlDefault + item.cover_image" alt="Immagine del piatto" class="menu-item-image" />
             <div class="menu-item-details">
               <h4 class="title-food">{{ item.name }}</h4>
               <p class="description-food">{{ item.ingredients }}</p>
@@ -197,9 +184,7 @@ export default {
         </div>
       </div>
       <div>
-        <button class="back-btn open-cart" v-if="isMobile" @click="toggleCart">
-          {{ isCartActive ? "Chiudi Carrello" : "Apri Carrello" }}
-        </button>
+
       </div>
 
       <div class="cart" v-if="!isMobile">
@@ -216,10 +201,7 @@ export default {
 
               <div class="btn-container">
                 <!-- Bottone per diminuire la quantità di un singolo elemento -->
-                <button
-                  class="minus-btn"
-                  @click="removeFromCart(item), checkCart()"
-                >
+                <button class="minus-btn" @click="removeFromCart(item), checkCart()">
                   &minus;
                 </button>
 
@@ -229,10 +211,7 @@ export default {
                 </button>
 
                 <!-- Bottone per rimuovere tutte le quantità di quell'elemento -->
-                <button
-                  class="remove-btn"
-                  @click="removeAllFromCart(item), checkCart()"
-                >
+                <button class="remove-btn" @click="removeAllFromCart(item), checkCart()">
                   x
                 </button>
               </div>
@@ -293,11 +272,9 @@ export default {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 40px;
-  background: linear-gradient(
-      to bottom,
+  background: linear-gradient(to bottom,
       rgba(255, 255, 255, 0.453),
-      rgba(81, 8, 8, 0.094)
-    ),
+      rgba(81, 8, 8, 0.094)),
     rgba(84, 17, 17, 0);
   border-radius: 10px;
 }
@@ -422,6 +399,7 @@ export default {
 }
 
 .description-food {
+
   padding-right: 15px;
   font-size: 0.9em;
   color: #888;
@@ -468,14 +446,13 @@ span.description-food {
 }
 
 .cart {
+  min-width: 295px;
   max-height: 600px;
   margin-right: 10px;
   flex: 1;
-  background: linear-gradient(
-      to bottom,
+  background: linear-gradient(to bottom,
       rgb(255, 166, 0),
-      rgba(255, 166, 1, 0.425)
-    ),
+      rgba(255, 166, 1, 0.425)),
     rgba(255, 166, 0, 0%);
   padding: 20px;
   border-radius: 10px;
@@ -743,10 +720,12 @@ span.description-food {
     opacity: 0;
     transform: translate(-50%, -40%) scale(0.9);
   }
+
   60% {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1.05);
   }
+
   100% {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);

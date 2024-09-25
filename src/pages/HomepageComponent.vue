@@ -9,6 +9,8 @@ export default {
       currentIndex: 0,
       store,
       restaurantTypes: [],
+      tempRestaurantTypes: [],
+      loadingcount: 0,
       isLoading: true,
       searchrest: "",
       error: false,
@@ -38,10 +40,9 @@ export default {
         .get(url)
         .then((response) => {
 
-          this.restaurantTypes = response.data.types;
+          this.tempRestaurantTypes = response.data.types;
+          this.restaurantTypes = [...this.tempRestaurantTypes];
           this.isLoading = false;
-
-
         })
         .catch((error) => console.log(error));
       this.isLoading = false;
@@ -115,7 +116,8 @@ export default {
               <!-- Carousel wrapper -->
               <div class="carousel-wrapper" :style="{ transform: `translateX(-${currentIndex * 100}%)` }">
                 <!-- Single card -->
-                <div v-for="type in restaurantTypes" :key="type.id" class="card">
+
+                <div v-for="type in restaurantTypes" :key="type.id" class="card" if>
                   <div class="card-box">
                     <div class="card-body" @click="goToSearchPage(type.name)">
                       <img :src="imageUrlDefault + type.image_path" alt="" />
@@ -123,6 +125,7 @@ export default {
                     </div>
                   </div>
                 </div>
+
                 <!-- END Single card -->
               </div>
 
