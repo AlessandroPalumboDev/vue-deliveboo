@@ -129,28 +129,28 @@ export default {
             </div>
           </div>
 
-          <!-- <div class="btn-container"> -->
+          <div class="btn-container">
           <!-- Bottone per diminuire la quantità di un singolo elemento -->
-          <!-- <button -->
-          <!-- class="minus-btn" -->
-          <!-- @click="removeFromCart(item), checkCart()" -->
-          <!-- > -->
-          <!-- &minus; -->
-          <!-- </button> -->
+          <button
+          class="minus-btn"
+          @click="removeFromCart(item), checkCart()"
+          >
+          &minus;
+          </button>
 
           <!-- Bottone per aumentare la quantità di un singolo elemento -->
-          <!-- <button class="plus-btn" @click="incrementQuantity(item)"> -->
-          <!-- &plus; -->
-          <!-- </button> -->
+          <button class="plus-btn" @click="incrementQuantity(item)">
+          &plus;
+          </button>
 
           <!-- Bottone per rimuovere tutte le quantità di quell'elemento -->
-          <!-- <button -->
-          <!-- class="remove-btn" -->
-          <!-- @click="removeAllFromCart(item), checkCart()" -->
-          <!-- > -->
-          <!-- x -->
-          <!-- </button> -->
-          <!-- </div> -->
+          <button
+          class="remove-btn"
+          @click="removeAllFromCart(item), checkCart()"
+          >
+          x
+          </button>
+          </div>
         </li>
       </ul>
 
