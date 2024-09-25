@@ -174,10 +174,19 @@ export default {
   mounted() {
     this.getCart();
     this.getTotal();
+    
   },
 };
 </script>
+import confetti from 'canvas-confetti';
 
+mounted() {
+  confetti({
+    particleCount: 100,
+    spread: 70,
+    origin: { y: 0.6 }
+  });
+}
 <template>
   <div class="payment-form">
     <form @submit.prevent="submitPayment" class="container-pay">
@@ -262,7 +271,7 @@ export default {
     <div v-if="showModal" class="modal-overlay">
       <div class="modal-content">
         <h2>Pagamento completato con successo!</h2>
-        <p>ID transazione: {{ transactionId }}</p>
+        <p class="modal-text">ID transazione: {{ transactionId }}</p>
         <button @click="redirectToHome">Torna alla Home</button>
       </div>
     </div>
@@ -498,26 +507,80 @@ textarea {
 }
 
 .modal-content {
-  background: rgb(243, 175, 27);
-  color: #000000;
-  padding: 20px;
-  border-radius: 10px;
+  background: linear-gradient(
+          to bottom,
+          rgb(255, 166, 0),
+          rgba(255, 166, 1, 0.626)
+        );
+  color: #ffffff; 
+  padding: 30px;
+  border-radius: 20px;
   text-align: center;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); 
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  h2 {
+  animation: slideInFromBottom 0.5s ease-in-out;
 }
+
+@keyframes slideInFromBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+}
+
+.modal-content {
+  opacity: 1;
+  transform: scale(1);
+  animation: fadeInScale 0.4s ease forwards;
+}
+
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-text{
+margin-top: 10px;
+font-style: oblique;
+color: black;
+}
+
 
 button {
   margin-top: 20px;
-  padding: 8px 20px;
+  padding: 12px 25px;
   background-color: #ff6600;
-  color: rgb(255, 255, 255);
+  color: white;
+  font-size: 16px;
   border: none;
-  border-radius: 5px;
+  border-radius: 50px;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Effetto di profondità sul pulsante */
 }
 
+
 button:hover {
-  background-color: #ff4d00;
+  background-color: #ff4400;
+  transform: translateY(-3px); 
 }
+
+
 
 // Media queries
 @media (max-width: 780px) {
