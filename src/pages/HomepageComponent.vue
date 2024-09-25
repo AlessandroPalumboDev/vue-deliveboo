@@ -142,11 +142,11 @@ export default {
                     alt=""
                   />
                   <h4>Metti ciò che desideri nel carrello</h4>
-                  <p>Puoi scegliere tra diversi metodi di pagamento</p>
+                  <p>Puoi scegliere quale carta di credito usare</p>
                 </div>
                 <div class="small-card">
                   <img src="../assets/img/small-card/dish-cap.svg" alt="" />
-                  <h4>Consegna a domicilio o ritiro al locale</h4>
+                  <h4>Consegniamo a domicilio</h4>
                   <p>Aspetta l'ordine in tutta tranquillità a casa</p>
                 </div>
               </div>
