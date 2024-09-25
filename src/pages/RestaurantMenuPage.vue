@@ -193,9 +193,9 @@ export default {
         </div>
       </div>
       <div>
-        <button class="back-btn open-cart" v-if="isMobile" @click="toggleCart">
+        <!-- <button class="back-btn open-cart" v-if="isMobile" @click="toggleCart">
           {{ isCartActive ? "Chiudi Carrello" : "Apri Carrello" }}
-        </button>
+        </button> -->
       </div>
 
       <div class="cart" v-if="!isMobile">
@@ -414,6 +414,7 @@ export default {
 }
 
 .description-food {
+
   padding-right: 15px;
   font-size: 0.9em;
   color: #888;
@@ -460,6 +461,7 @@ span.description-food {
 }
 
 .cart {
+  min-width: 295px;
   max-height: 600px;
   margin-right: 10px;
   flex: 1;

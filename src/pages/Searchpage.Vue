@@ -9,6 +9,7 @@ export default {
     return {
       store,
       restaurants: [],
+      isLoading: true,
       rest_show: [],
       rest_ID: null,
       restaurantType: "",
@@ -41,8 +42,10 @@ export default {
           this.currentPage = results.current_page;
           this.nextPageUrl = results.next_page_url;
           this.prevPageUrl = results.prev_page_url;
+          this.isLoading = false;
         })
         .catch((error) => console.log(error));
+      this.isLoading = false;
     },
 
     goBack() {
@@ -50,7 +53,9 @@ export default {
         .push({ name: "home" })
         .catch((error) => console.log("Errore nel routing:", error));
     },
-
+    loading() {
+      this.isLoading = true;
+    },
     getMenu(rest) {
       let restID = rest.id;
       this.rest_ID = restID;
@@ -77,7 +82,9 @@ export default {
   },
 
   mounted() {
+
     this.getRestaurant();
+    this.loading();
   },
 };
 </script>
@@ -86,22 +93,20 @@ export default {
   <main class="search-page">
     <h1 class="restaurant-type-title">{{ restaurantType }}</h1>
     <button class="back-btn" @click="goBack()">← Torna Indietro</button>
-
+    <!-- loading dot -->
+    <div v-if="isLoading" class="loading-dots">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
     <!-- cards -->
     <div class="container">
       <div class="restaurant-grid">
-        <div
-          v-for="restaurant in restaurants"
-          :key="restaurant.id"
-          class="restaurant-card capitalize"
-          @click="getMenu(restaurant)"
-        >
+        <div v-for="restaurant in restaurants" :key="restaurant.id" class="restaurant-card capitalize"
+          @click="getMenu(restaurant)">
           <div class="restaurant-image-wrapper">
-            <img
-              :src="this.imageUrlDefault + restaurant.image_path"
-              :alt="restaurant.business_name"
-              class="restaurant-image"
-            />
+            <img :src="this.imageUrlDefault + restaurant.image_path" :alt="restaurant.business_name"
+              class="restaurant-image" />
           </div>
           <h2 class="restaurant-name">{{ restaurant.business_name }}</h2>
         </div>
@@ -122,6 +127,7 @@ export default {
   display: flex;
   justify-content: center;
 }
+
 .restaurant-type-title {
   font-size: 3em;
   text-align: center;
@@ -202,11 +208,13 @@ export default {
 .numero-pagina {
   color: rgb(255, 166, 0);
 }
+
 .pagination-buttons {
   display: flex;
   justify-content: space-around;
   margin-top: 20px;
   margin-bottom: 20px;
+
   button {
     background-color: transparent;
     color: rgb(255, 166, 0);
@@ -216,6 +224,7 @@ export default {
     border-radius: 50px;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
+
     &:hover {
       background-color: #ff6600;
       color: white;
