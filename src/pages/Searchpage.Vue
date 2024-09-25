@@ -100,32 +100,39 @@ export default {
       <div class="dot"></div>
     </div>
     <!-- cards -->
-    <div class="restaurant-grid">
-
-      <div v-for="restaurant in restaurants" :key="restaurant.id" class="restaurant-card capitalize"
-        @click="getMenu(restaurant)">
-        <div class="restaurant-image-wrapper">
-          <img :src="this.imageUrlDefault + restaurant.image_path" :alt="restaurant.business_name"
-            class="restaurant-image" />
+    <div class="container">
+      <div class="restaurant-grid">
+        <div v-for="restaurant in restaurants" :key="restaurant.id" class="restaurant-card capitalize"
+          @click="getMenu(restaurant)">
+          <div class="restaurant-image-wrapper">
+            <img :src="this.imageUrlDefault + restaurant.image_path" :alt="restaurant.business_name"
+              class="restaurant-image" />
+          </div>
+          <h2 class="restaurant-name">{{ restaurant.business_name }}</h2>
         </div>
-        <h2 class="restaurant-name">{{ restaurant.business_name }}</h2>
       </div>
     </div>
 
     <!-- Pagination Buttons -->
     <h3 class="numero-pagina">Pagina {{ currentPage }}</h3>
     <div class="pagination-buttons">
-      <button @click="prevPage" v-if="prevPageUrl">← Prev</button>
-      <button @click="nextPage" v-if="nextPageUrl">Next →</button>
+      <button @click="prevPage" v-if="prevPageUrl">← Prec</button>
+      <button @click="nextPage" v-if="nextPageUrl">Succ →</button>
     </div>
   </main>
 </template>
 
 <style lang="scss" scoped>
+.container {
+  display: flex;
+  justify-content: center;
+}
+
 .restaurant-type-title {
   font-size: 3em;
   text-align: center;
   margin-top: 20px;
+  padding-bottom: 20px;
   color: #ffffff;
   font-weight: bold;
 }
@@ -135,9 +142,9 @@ export default {
   margin: 20px auto;
   background-color: transparent;
   color: rgb(255, 166, 0);
-  font-size: 1.2em;
+  font-size: 16px;
   border: 2px solid rgb(255, 166, 0);
-  padding: 10px 20px;
+  padding: 8px 20px;
   border-radius: 50px;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -149,12 +156,13 @@ export default {
 }
 
 .restaurant-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(250px, 0fr));
+  max-width: 1200px;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  justify-items: center;
   gap: 30px;
   padding: 40px;
-  justify-items: center;
   align-items: start;
 }
 
@@ -210,9 +218,9 @@ export default {
   button {
     background-color: transparent;
     color: rgb(255, 166, 0);
-    font-size: 1.2em;
+    font-size: 16px;
     border: 2px solid rgb(255, 166, 0);
-    padding: 10px 20px;
+    padding: 8px 20px;
     border-radius: 50px;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;

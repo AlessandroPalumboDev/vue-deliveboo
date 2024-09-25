@@ -79,8 +79,7 @@ export default {
       }
 
       if (!this.validateExpiryDate(this.expirationDate)) {
-        this.errorMessage =
-          "Data di scadenza non valida. Usa il formato MM/YY.";
+        this.errorMessage = "Data di scadenza non valida.";
         this.loading = false;
         return;
       }
@@ -92,9 +91,10 @@ export default {
         }));
 
         const valore_id = localStorage.getItem("rest_ID");
+        const ristoGiusto = localStorage.getItem("currentRestaurant");
 
         const orderData = {
-          restaurant_id: valore_id,
+          restaurant_id: ristoGiusto,
           name: this.name,
           surname: this.surname,
           email_address: this.email_address,
@@ -158,6 +158,17 @@ export default {
     },
     clearCart() {
       store.clearCart();
+    },
+    goBack() {
+      const restaurantId = localStorage.getItem("currentRestaurant");
+
+      if (restaurantId) {
+        this.$router
+          .push({ name: "restaurantMenu", params: { id: restaurantId } })
+          .catch((error) => console.log("Errore nel routing:", error));
+      } else {
+        console.error("Nessun ristorante ID trovato.");
+      }
     },
   },
   mounted() {
@@ -231,7 +242,7 @@ export default {
           <h2 id="recap">Riepilogo del tuo ordine:</h2>
           <div id="price-list">
             <div v-for="item in this.cart" class="prod">
-              <h3>{{ item.name }}</h3>
+              <h3 class="capitalize">{{ item.name }}</h3>
               <h3>x{{ item.quantity }}</h3>
             </div>
           </div>
@@ -243,10 +254,8 @@ export default {
           <button class="purchase" type="submit" :disabled="loading">
             {{ loading ? "Processando..." : "Acquista" }}
           </button>
-          <button type="button" @click="goBack" class="back-btn">
-            Torna indietro
-          </button>
         </div>
+        <button type="button" @click="goBack" class="back-btn">Indietro</button>
       </div>
     </form>
     <!-- Modale di pagamento riuscito -->
@@ -279,7 +288,7 @@ export default {
 
   #note {
     width: 100%;
-    height: 50px;
+    height: 80px;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 6px;
@@ -296,6 +305,7 @@ export default {
 }
 
 .payment-data {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -330,8 +340,8 @@ textarea {
 }
 
 button {
-  width: 100%;
-  padding: 15px;
+  margin: 0 auto;
+  width: 95%;
   background-color: #ff6600;
   color: rgb(255, 255, 255);
   border: none;
@@ -367,6 +377,7 @@ button {
     gap: 10px;
     background-color: #d2911a;
     padding: 15px;
+    margin-bottom: 10px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 
@@ -496,7 +507,7 @@ textarea {
 
 button {
   margin-top: 20px;
-  padding: 10px 20px;
+  padding: 8px 20px;
   background-color: #ff6600;
   color: rgb(255, 255, 255);
   border: none;
@@ -506,5 +517,21 @@ button {
 
 button:hover {
   background-color: #ff4d00;
+}
+
+// Media queries
+@media (max-width: 780px) {
+  .logo {
+    display: none;
+  }
+
+  .payment-data {
+    // display: block;
+    gap: 20px;
+
+    .form-group {
+      min-width: 285px;
+    }
+  }
 }
 </style>
